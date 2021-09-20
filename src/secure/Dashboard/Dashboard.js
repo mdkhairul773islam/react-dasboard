@@ -1,10 +1,13 @@
 import React, {useEffect} from 'react';
 import AdminWraper from "../../components/layouts/AdminWraper";
-import {users} from '../../redux/actions/userAction'
 import {useSelector, useDispatch} from 'react-redux'
+
+import {users} from '../../redux/actions/userAction'
+import {userList} from '../../redux/actions/userListAction'
 
 function Dashboard(props) {
     const userData =  useSelector(state => state.userReducer.userList);
+    const userDataList =  useSelector(state => state.userReducer.getUserList);
     const dispatch = useDispatch();
 
     /*useEffect(() => {
@@ -14,7 +17,7 @@ function Dashboard(props) {
     return (
         <AdminWraper>
 
-            <button onClick={()=>dispatch(users())} className="btn btn-success mb-5">Get User List</button>
+            <button onClick={()=>dispatch(userList())} className="btn btn-success mb-5">Get User List</button>
 
             <div className="box_wrapper">
                 <div className="dash_box box_1">
