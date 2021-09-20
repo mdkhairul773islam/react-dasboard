@@ -6,7 +6,7 @@ import './dist/vendors/scrollbar/perfect-scrollbar.css'
 import './dist/css/master.css'
 import Login from "./public/Login";
 import Register from "./public/Register";
-import Dashboard from "./secure/Dashboard";
+import Dashboard from "./secure/Dashboard/Dashboard";
 
 function App() {
     return (

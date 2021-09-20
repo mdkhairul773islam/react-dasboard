@@ -158,7 +158,7 @@ $(document).ready(function() {
             checkedd.closest('.condition_group').find('> .custom-switch').addClass('open');
         }
 
-        // action button checked 
+        // action button checked
         $('.condition_group > .custom-switch input[type="checkbox"]').click(function(){
             if($(this).prop("checked") == true){
                 $(this).closest('.condition_group').find('.condition_btn input:checkbox').not(this).prop('checked', this.checked);

@@ -1,8 +1,9 @@
 import React from 'react';
 import SideBar from "../../secure/SideBar/SideBar";
 import TopHeader from "../../secure/TopHeader/TopHeader";
+import Navbar from "../../secure/Dashboard/Navbar";
 
-const AdminWraper = ({ children }) => {
+const AdminWraper = ( props, { children }) => {
     return (
         <>
             <section className="wrapper" data-menu="dashboard" data-submenu="">
@@ -11,16 +12,10 @@ const AdminWraper = ({ children }) => {
                     <TopHeader/>
                     <div className="body_container">
                         <div className="body_nav">
-                            <ul>
-                                <li><a href="">Creat Now</a></li>
-                                <li><a href="" className="active">Purchase All</a></li>
-                                <li><a href="">Nav Three</a></li>
-                                <li><a href="">Nav Four</a></li>
-                            </ul>
+                            <Navbar/>
                         </div>
-
                         <div className="body_content">
-                            { children }
+                            { props.children }
                         </div>
                     </div>
                 </div>

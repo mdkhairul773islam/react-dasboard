@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function SideBar(props) {
     return (
@@ -15,26 +16,25 @@ function SideBar(props) {
             </div>
             <ul className="aside_nav">
                 <li id="dashboard">
-                    <a href="">
+                    <Link to="/dashboard">
                         <i className="fas fa-tachometer-alt"></i>
                         <span className="menu_title">Dashboard</span>
-                    </a>
+                    </Link>
                 </li>
                 <li id="purchase" className="dropdown">
                     <a href="#">
                         <i className="fas fa-shopping-basket"></i>
                         <span className="menu_title">Purchase</span>
                         <span className="menu_arrow">
-                                <i className="icon ion-ios-arrow-forward right"></i>
-                                <i className="icon ion-ios-arrow-down down"></i>
-                            </span>
+                            <i className="icon ion-ios-arrow-forward right"></i>
+                            <i className="icon ion-ios-arrow-down down"></i>
+                        </span>
                     </a>
                     <ul>
-                        <li id="purchase_new"><a href="">Purchase new</a></li>
-                        <li id="purchase_records"><a href="">Records</a></li>
+                        <li id="purchase_new"><Link to="/register">Purchase new</Link></li>
+                        <li id="purchase_records"><Link to="/login" href="">Records</Link></li>
                     </ul>
                 </li>
-
 
                 <li id="pages" className="dropdown">
                     <a href="#">
@@ -50,7 +50,6 @@ function SideBar(props) {
                         <li id="privacy"><a href="#">Privacy policy</a></li>
                     </ul>
                 </li>
-
 
                 <li id="stock">
                     <a href="#">
