@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+
+import {useDispatch} from "react-redux";
+import {sideBarAction} from "../../redux/actions/sideBarAction";
 
 function TopHeader(props) {
+
+    const dispatch = useDispatch();
+    const getData = () =>{
+        dispatch(sideBarAction());
+    }
+
     return (
         <nav className="main_nav">
             <ul className="function_menu">
                 <li className="user_dropdown">
-                    <a href="#" id="aside-toggle">
+                   <a href="#" onClick={getData}>
+                   {/* <a href="#" id="aside-toggle">*/}
                         <i className="icon ion-ios-menu io-23"></i>
                     </a>
                 </li>

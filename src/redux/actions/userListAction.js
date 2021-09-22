@@ -8,7 +8,6 @@ export  const userList = () =>{
                 type: user_request_type,
             })
             const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-            console.log(res.data);
             dispatch({
                 type: get_user_success,
                 payload: res.data

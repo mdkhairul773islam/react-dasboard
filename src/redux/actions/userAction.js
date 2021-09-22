@@ -6,8 +6,9 @@ export const users = () =>{
     }
 }
 
+/*
 export const usersList = () =>{
     return {
         type: user_type
     }
-}
+}*/
