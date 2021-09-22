@@ -8,8 +8,6 @@ import {useSelector} from 'react-redux'
 const AdminWraper = ( props, { children }) => {
     const sidebarClose =  useSelector(state => state.sideBarReducer.getSideBarCollaps);
 
-    console.log(sidebarClose);
-
     return (
         <>
             <section className={`wrapper ${sidebarClose ? 'aside_close' : ''}`} data-menu="dashboard" data-submenu="">
@@ -18,6 +16,7 @@ const AdminWraper = ( props, { children }) => {
                     <TopHeader/>
 
                     <div className="body_container">
+
                         <div className="body_nav">
                             <Navbar />
                         </div>
