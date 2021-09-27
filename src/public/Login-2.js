@@ -2,43 +2,43 @@ import React, {useState} from 'react';
 import '../dist/css/credential.css'
 
 /** imported login images **/
+
 import bKas from '../dist/images/icon/bkash.png';
 import rocket from '../dist/images/icon/rocket.png';
 import dbbl from '../dist/images/icon/dbbl.png';
 import UserWraper from "../components/layouts/UserWraper";
+
+import {useHistory} from "react-router";
 import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {login} from "../redux/authentication/actionCreator";
-import { Redirect } from "react-router-dom";
 
-function Login(){
-    const dispatch = useDispatch();
 
-    const isLoggedin =  useSelector(state => state.authReducer.isLoggedin);
-    const loading =  useSelector(state => state.authReducer.loading);
+import {DataService} from '../config/dataService/dataService';
 
+const Login = () => {
+
+    const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [scope] = useState('admin');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const userLoginData = {
-            email,
-            password,
-            scope
-        }
-        dispatch(login(userLoginData));
+        
+        //console.log('DataService', DataService.get('dashboard'));
+
+        await DataService.post('login', {
+            email:email,
+            password: password,
+            scope: 'admin'
+        }).then(res => {  
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('isLoggedin', true);
+            localStorage.setItem('isAside', 1);
+            history.push("/admin");
+          })  
+          .catch(err => {  
+            console.log(err)  
+          }); 
     }
-    
-
-    if(loading){
-        return <p>Loding....</p>
-    } 
-
-    if(isLoggedin){
-       return <Redirect to="/admin" />
-    } 
 
     return (
         <UserWraper>
@@ -46,7 +46,7 @@ function Login(){
                 <div className="section_cover">
                     <div className="credential_div">
                         <div className="form_box">
-                            <h2>We are <span>Admin  { isLoggedin }</span></h2>
+                            <h2>We are <span>Admin </span></h2>
 
                             <form onSubmit={handleSubmit}>
                                 <div className="form_group">
@@ -54,7 +54,7 @@ function Login(){
                                 <input type="email" name="email" 
                                  onChange={e => setEmail(e.target.value)}
                                 className="form_control"
-                                           placeholder="Email" />
+                                           placeholder="Email" autoComplete="off" autoFocus />
 
                                 </div>
 

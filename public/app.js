@@ -1,4 +1,3 @@
-/*
 $(document).ready(function() {
     // all the variables
     var developermode = false;
@@ -170,4 +169,4 @@ $(document).ready(function() {
         });
     });
 });
-*/
+

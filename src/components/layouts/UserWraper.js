@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
-const UserWraper = ( { children }) => {
-    return (
-        <>
-            { children }
-        </>
-    );
+const UserWraper = ({ children }) => {
+  return <>{children}</>;
 };
 
 export default UserWraper;

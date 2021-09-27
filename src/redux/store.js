@@ -3,13 +3,13 @@ import logger from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk'
 
-import rootReducer from '../redux/reducers/index'
+import rootReducers from '../redux/rootReducers'
 
 const initialSate = {}
 
 
 export const store = createStore(
-    rootReducer,
+    rootReducers,
     initialSate,
     composeWithDevTools(applyMiddleware(logger, thunk))
 

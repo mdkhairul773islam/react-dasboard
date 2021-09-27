@@ -4,21 +4,20 @@ import './App.css';
 import './dist/css/bootstrap.min.css'
 import './dist/vendors/scrollbar/perfect-scrollbar.css'
 import './dist/css/master.css'
+import ProtectedRoute from './components/ProtectedRoute'
 import Login from "./public/Login";
 import Register from "./public/Register";
 import Dashboard from "./secure/Dashboard/Dashboard";
+import Erorr404 from "./public/erorr404";
 
 function App() {
     return (
         <div className="App">
             <Router>
                 <Switch>
-                    <Route exact path="/">
-                        <Redirect to="/login" />
-                    </Route>
-                    <Route path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
-                    <Route path="/dashboard" component={Dashboard} />
+                    <Route exact path="/login" component={Login} />
+                    <ProtectedRoute exact path="/admin" component={Dashboard} />
+                    <ProtectedRoute path="*" component={Erorr404} />
                 </Switch>
             </Router>
         </div>
