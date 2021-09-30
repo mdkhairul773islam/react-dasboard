@@ -9,10 +9,10 @@ function SideBar(props) {
           <i className="icon ion-md-home"></i>
         </span>
         <h3>Point of sale</h3>
-        <Link to="#" id="panelClose_btn">
+        <Link to="#" id="panelClose_btn" onClick={()=>props.asideToggle()}>
           <i className="icon ion-ios-close io-36"></i>
         </Link>
-        <Link to="#" id="panelOpen_btn">
+        <Link to="#" id="panelOpen_btn" onClick={()=>props.asideToggle()}>
           <i className="fas fa-arrow-right"></i>
         </Link>
       </div>
@@ -84,7 +84,7 @@ function SideBar(props) {
               <Link to="#">Sale new</Link>
             </li>
             <li id="sale_records">
-              <Link to="$">Records</Link>
+              <Link to="#">Records</Link>
             </li>
           </ul>
         </li>

@@ -22,7 +22,7 @@ useEffect(() => {
   return (
     <>
       <section className={`wrapper ${ isAside ? 'aside_close' : ''} ${ dark ? 'dark-mode' : ''}`} data-menu="dashboard" data-submenu="">
-        <SideBar />
+        <SideBar asideToggle= {asideToggleFn} />
         <div className="main_body">
           <TopHeader asideToggle= {asideToggleFn} />
           <div className="body_container">
