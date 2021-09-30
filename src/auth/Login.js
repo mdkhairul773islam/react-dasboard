@@ -1,89 +1,44 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import '../dist/css/credential.css'
 
 /** imported login images **/
-
 import bKas from '../dist/images/icon/bkash.png';
 import rocket from '../dist/images/icon/rocket.png';
 import dbbl from '../dist/images/icon/dbbl.png';
 import UserWraper from "../components/layouts/UserWraper";
-
-import {useHistory} from "react-router";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {login} from "../redux/authentication/actionCreator";
+import { Redirect } from "react-router-dom";
 
+function Login(){
+    const dispatch = useDispatch();
 
-import {DataService} from '../config/dataService/dataService';
+    const isLoggedin =  useSelector(state => state.authReducer.isLoggedin);
+    const loading =  useSelector(state => state.authReducer.loading);
 
-const Login = () => {
-
-    useEffect(() => {
-
-        console.log('DataService', DataService.get('dashboard'));
-        
-        const getData = async () => {  
-        
-            await  DataService.get('dashboard')  
-            .then(res => {  
-              console.log(res.data)  
-            })  
-            .catch(err => {  
-              console.log(err)  
-            });  
-          }  
-
-          //getData();
-        
-    }, []);
-
-    const history = useHistory();
-
-    const [userData, setUserData] = useState(
-        {
-            username: '',
-            password: '',
-        }
-    );
-
-    const [errorMessage, setErrorMessage] = useState(
-        {
-            value:'',
-        }
-    );
-
-    const handleInputChange = (e) => {
-        setUserData((prevState) => {
-            return {
-                ...prevState,
-                [e.target.name]: e.target.value,
-            };
-        });
-    };
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [scope] = useState('admin');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        //if username or password field is empty, return error message
-        if (userData.username === "" || userData.password === "") {
-            setErrorMessage((prevState) => ({
-                value: "Empty username/password field",
-            }));
-
-        } else if (
-            userData.username.toLowerCase() === "admin" &&
-            userData.password === "123456"
-        )
-
-        {
-            //Signin Success
-            localStorage.setItem("isAuthenticated", "true");
-            //window.location.pathname = "/admin";
-            history.push("/admin");
-        } else {
-            //If credentials entered is invalid
-            setErrorMessage((prevState) => ({ value: "Invalid username/password" }));
-            return;
+        const userLoginData = {
+            email,
+            password,
+            scope
         }
-    };
+        dispatch(login(userLoginData));
+    }
+    
+
+    if(loading){
+        return <p>Loding....</p>
+    } 
+
+    if(isLoggedin){
+       return <Redirect to="/admin" />
+    } 
 
     return (
         <UserWraper>
@@ -91,21 +46,23 @@ const Login = () => {
                 <div className="section_cover">
                     <div className="credential_div">
                         <div className="form_box">
-                            <h2>We are <span>Admin</span></h2>
-                            <form action="" method="GET">
+                            <h2>We are <span>Admin  { isLoggedin }</span></h2>
+
+                            <form onSubmit={handleSubmit}>
                                 <div className="form_group">
-                                    <input type="email" name="username" onChange={
-                                        (e)=>handleInputChange(e)
-                                    } className="form_control"
-                                           placeholder="User name" autoComplete="off" autoFocus />
+
+                                <input type="email" name="email" 
+                                 onChange={e => setEmail(e.target.value)}
+                                className="form_control"
+                                           placeholder="Email" />
+
                                 </div>
+
                                 <div className="form_group">
                                     <input type="password" name="password"
-                                           onChange={
-                                               (e)=>handleInputChange(e)
-                                           }
-                                           className="form_control"
-                                           placeholder="Password" />
+                                    onChange={e => setPassword(e.target.value)}
+                                    className="form_control"
+                                    placeholder="Password" />
                                 </div>
                                 <div className="form_group form-remeber">
                                     <div className="form-check">
@@ -114,7 +71,7 @@ const Login = () => {
                                     </div>
                                     <Link to="/" >Forgot password</Link>
                                 </div>
-                                <button type="submit" onClick={handleSubmit} className="submit_btn adad">Login</button>
+                                <button type="submit" className="submit_btn adad">Login</button>
                             </form>
                         </div>
                     </div>

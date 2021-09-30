@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom";
 import UserWraper from "../components/layouts/UserWraper";
 import '../dist/css/error404.css'
 export default function erorr404() {
@@ -16,14 +17,14 @@ export default function erorr404() {
                                 Sorry, an error has occured, Requested page not found!
                             </div>
                             <div className="error-actions">
-                                <a href="" className="btn btn-primary btn-lg">
+                                <Link to="#" className="btn btn-primary btn-lg">
                                     <span className="glyphicon glyphicon-home"></span>
                                     Take Me Home 
-                                </a>
-                                <a href="" className="btn btn-default btn-lg">
+                                </Link>
+                                <Link to="#" className="btn btn-default btn-lg">
                                     <span className="glyphicon glyphicon-envelope"></span>
                                  Contact Support 
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

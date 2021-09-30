@@ -1,34 +1,30 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import SideBar from "../../secure/SideBar/SideBar";
 import TopHeader from "../../secure/TopHeader/TopHeader";
 import Navbar from "../../secure/Dashboard/Navbar";
 
 
 const AdminWraper = (props, { children }) => {
-  const [wrapper, setWrapper] = useState(false);
 
-  const hasWrapperClass = useRef(null);
+  const [isAside, setAside] = useState(localStorage.getItem('aside_close') === 'true');
+  const [dark, setDark] = useState(localStorage.getItem('dark-mode') === 'true');
 
-  const asideToggleFn = () => {
-    setWrapper(!wrapper);
-    hassClass();
+  const asideToggleFn = () => { 
+    setAside(!isAside);
+    setDark(!dark);
   };
 
-  function hassClass (){
-    console.log(hasWrapperClass);
-    if(hasWrapperClass.current.classList[1]==='aside_close'){
-      window.localStorage.setItem('isAside', 1)
-    }else{
-      window.localStorage.setItem('isAside', 0)
-    }
-  }
+useEffect(() => {
+  localStorage.setItem('aside_close', isAside);
+  localStorage.setItem('dark-mode', dark);
+}, [isAside, dark]);
 
   return (
     <>
-      <section className={`wrapper ${ wrapper ? 'aside_close' : '' }`} ref={hasWrapperClass} data-menu="dashboard" data-submenu="">
+      <section className={`wrapper ${ isAside ? 'aside_close' : ''} ${ dark ? 'dark-mode' : ''}`} data-menu="dashboard" data-submenu="">
         <SideBar />
         <div className="main_body">
-          <TopHeader parentCallback= {asideToggleFn} />
+          <TopHeader asideToggle= {asideToggleFn} />
           <div className="body_container">
         
             <div className="body_nav">
@@ -40,7 +36,7 @@ const AdminWraper = (props, { children }) => {
         <div className="developer">
           <p>
             Developed By : &nbsp;
-            <a href="https://freelanceitlab.com/" target="_blank">
+            <a href="https://freelanceitlab.com/">
               Freelance It Lab
             </a>
           </p>

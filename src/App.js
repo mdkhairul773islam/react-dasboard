@@ -1,14 +1,13 @@
 import React  from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import './dist/css/bootstrap.min.css'
-import './dist/vendors/scrollbar/perfect-scrollbar.css'
 import './dist/css/master.css'
 import ProtectedRoute from './components/ProtectedRoute'
-import Login from "./public/Login";
-import Register from "./public/Register";
+import Login from "./auth/Login";
+//import Register from "./auth/Register";
 import Dashboard from "./secure/Dashboard/Dashboard";
-import Erorr404 from "./public/erorr404";
+import Erorr404 from "./auth/erorr404";
 
 function App() {
     return (

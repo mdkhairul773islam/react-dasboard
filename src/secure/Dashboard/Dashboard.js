@@ -1,15 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
-import { useDispatch } from "react-redux";
-import {userList} from "../../redux/actions/userListAction";
-
 function Dashboard(props) {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.log(dispatch(userList()));
-  }, [])
-
   return (
     <AdminWraper>
       <div className="box_wrapper">

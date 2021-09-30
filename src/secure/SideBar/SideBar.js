@@ -8,13 +8,13 @@ function SideBar(props) {
         <span className="brand_icon">
           <i className="icon ion-md-home"></i>
         </span>
-        <h3>Freelance It Lab</h3>
-        <a href="#" id="panelClose_btn">
+        <h3>Point of sale</h3>
+        <Link to="#" id="panelClose_btn">
           <i className="icon ion-ios-close io-36"></i>
-        </a>
-        <a href="#" id="panelOpen_btn">
+        </Link>
+        <Link to="#" id="panelOpen_btn">
           <i className="fas fa-arrow-right"></i>
-        </a>
+        </Link>
       </div>
       <ul className="aside_nav">
         <li id="dashboard">
@@ -24,14 +24,14 @@ function SideBar(props) {
           </Link>
         </li>
         <li id="purchase" className="dropdown">
-          <a href="#">
+          <Link to="#">
             <i className="fas fa-shopping-basket"></i>
             <span className="menu_title">Purchase</span>
             <span className="menu_arrow">
               <i className="icon ion-ios-arrow-forward right"></i>
               <i className="icon ion-ios-arrow-down down"></i>
             </span>
-          </a>
+          </Link>
           <ul>
             <li id="purchase_new">
               <Link to="/register">Purchase new</Link>
@@ -45,46 +45,46 @@ function SideBar(props) {
         </li>
 
         <li id="pages" className="dropdown">
-          <a href="#">
+          <Link to="#">
             <i className="fas fa-file-alt"></i>
             <span className="menu_title">Pages</span>
             <span className="menu_arrow">
               <i className="icon ion-ios-arrow-forward right"></i>
               <i className="icon ion-ios-arrow-down down"></i>
             </span>
-          </a>
+          </Link>
           <ul>
             <li id="terms">
-              <a href="#">Terms and Condition</a>
+              <Link to="#">Terms and Condition</Link>
             </li>
             <li id="privacy">
-              <a href="#">Privacy policy</a>
+              <Link to="#">Privacy policy</Link>
             </li>
           </ul>
         </li>
 
         <li id="stock">
-          <a href="#">
+          <Link to="#">
             <i className="fas fa-layer-group"></i>
             <span className="menu_title">Stock</span>
-          </a>
+          </Link>
         </li>
 
         <li id="sale" className="dropdown">
-          <a href="#">
+          <Link to="#">
             <i className="fas fa-cart-arrow-down"></i>
             <span className="menu_title">Sale</span>
             <span className="menu_arrow">
               <i className="icon ion-ios-arrow-forward right"></i>
               <i className="icon ion-ios-arrow-down down"></i>
             </span>
-          </a>
+          </Link>
           <ul>
             <li id="sale_new">
-              <a href="">Sale new</a>
+              <Link to="#">Sale new</Link>
             </li>
             <li id="sale_records">
-              <a href="">Records</a>
+              <Link to="$">Records</Link>
             </li>
           </ul>
         </li>

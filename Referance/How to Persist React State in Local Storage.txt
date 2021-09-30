@@ -1,0 +1,185 @@
+https://felixgerschau.com/react-localstorage/
+Persisting the state of React applications is a great way to contribute to a more cohesive user experience by saving the user's progress or settings—like the dark-mode setting on this page. By saving data in local storage, the user doesn't have to start over or adjust the settings on subsequent visits.
+
+In this post, I'll first introduce you to the localStorage API before we have a look at how to use it in React function components with React hooks.
+
+After that, I'll talk about the things you need to consider before using it to store every bit of data you receive on the frontend.
+
+You're only here for the code? Skip the intro.
+
+Table of Contents
+Introduction to the local storage API
+Persisting the state of a React component in local storage
+Storing objects in local storage
+Persisting the state of state management systems in local storage
+When and when not to use local storage
+Conclusion
+Further reading
+Introduction to the local storage API
+The local storage API allows developers to interact with the web storage to persist data. In other words, we can save data to the client's computer, where it stays until the user clears the browser's storage.
+
+For React developers—or Single-Page-Application devs in general—this means we can keep the user logged in, store data that has been fetched from an API, or save user settings.
+
+The result is a more native-like user experience, where (part of) the state of the application is saved and restored when the user comes back again.
+
+We can use the API to store data in the form of key/value pairs. The functions it provides are the following 5:
+
+// Get
+localStorage.getItem('dark-mode');
+// Set
+localStorage.setItem('dark-mode', true);
+// Remove
+localStorage.removeItem('dark-mode');
+// Remove all keys
+localStorage.clear()
+// Get n-th key name
+localStorage.key(2);
+You can see the data stored in local storage in Chrome under DevTools -> Application -> Local Storage.
+
+Session storage and DOM storage
+I'm talking all the time about local storage here, but what I'm referring to is the Web-Storage-API. This is the web API that allows us to store key/value pairs.
+
+You can access this API through window.localStorage and window.sessionStorage.
+
+Unlike localStorage, sessionStorage clears all data when the browser is closed. However, it does persist when the user refreshes the page or closes the browser tab. This can be useful for keeping the user logged in only during the current session and not after a restart of the computer.
+
+The usage of the sessionStorage API is the same as of localStorage.
+
+Persisting the state of a React component in local storage
+For this article, I'll take how I implemented dark mode on this site as an example. Feel free to inspect the DevTools and play around with the setting right here:
+
+
+Click me!
+Check out the code on this codepen.
+
+Step 1: Initialize the state from local storage
+In the example, I'll use React hooks. The first step is to initialize the state with the data we get from local storage:
+
+const [dark, setDark] = React.useState(
+  localStorage.getItem('dark-mode') === 'true'
+);
+useState will only be evaluated when the component mounts for the first time. Subsequent renders won't access local storage at this point again.
+
+Note that we're comparing the data we get to the string 'true'.
+
+This is necessary because we're only able to store strings. If we didn't do this comparison, getting the string 'false' would still result in a truthy value due to how JavaScript works.
+
+As a result of that, the dark mode would always be initialized with true, regardless of the value.
+
+Step 2: Save every state change in local storage
+Next, we need to update the state in local storage every time the state of our component changes.
+
+The best way to achieve this in React hooks is by using the useEffect hook, which should be used for such side effects.
+
+In the context of React, persisting the state in local storage is a side effect because it's outside React's eco-system.
+
+React.useEffect(() => {
+  localStorage.setItem('dark-mode', dark);
+}, [dark]);
+The second argument of useEffect accepts an array of variables. Every time one of these variables changes, the callback which we passed as the first argument will be executed.
+
+In this case, we will update local storage every time the value of dark changes.
+
+Step 3: Putting everything together
+After setting up the state as above, we can freely update the state in our component, being sure that every time the value of dark changes, it will update the local storage value as well.
+
+The final component then looks something like this:
+
+const App = () => {
+  const [dark, setDark] = React.useState(localStorage.getItem('dark-mode') === 'true');
+
+  React.useEffect(() => {
+    localStorage.setItem('dark-mode', dark);
+  }, [dark]);
+
+  const toggleDarkMode = () => {
+    setDark(!dark);
+  };
+
+  return (
+    <div className={`app-wrapper ${dark ? 'dark' : ''}`}>
+     <button className="dark-mode-toggle" onClick={toggleDarkMode}>
+       <img src="https://felixgerschau.com/logos/lightbulb.svg" height="100px" width="100px"/>
+       <h2>Click me!</h2>
+     </button>
+    </div>
+  );
+};
+Check out the code on this codepen.
+
+Storing objects in local storage
+If we want to store objects instead of primitive values, like strings or numbers, we run into the issue that instead of the object, we'll find a string in local storage that reads [object Object].
+
+That's because the toString function of the object prototype returns this. To store objects in local storage, we need to stringify the object first, and then parse it when we try to read from local storage. The JSON API allows us to do this:
+
+Step 1: Stringify the object
+localStorage.setItem('user', JSON.stringify({ name: 'Felix' }));
+Step 2: Parse the object
+const user = JSON.parse(localStorage.getItem('user'));
+Be aware that JSON.parse throws an error if the string is not a correctly formed JSON.
+
+Persisting the state of state management systems in local storage
+We've only talked about how to persist the state of a single React component. But what if the data you want to persist is stored in a state management system, like Redux, MobX, or React context?
+
+Of course, you can do this by using the local storage API, as we saw above in your getters and setters. However, there are libraries available, which I want to quickly showcase here.
+
+Redux persist
+
+MobX persist
+
+React context
+
+There's currently no library available that does this for us. We'll need to implement our own solution, for now, using the local storage API.
+
+These libraries allow you to either persist all the data you have stored in your store or selectively persist the state by white- and blacklisting parts of the store.
+
+When and when not to use local storage
+Now, before you store everything single piece of data you have available on the frontend, there are some things you'd need to consider.
+
+As with everything, using local storage has some tradeoffs that you should be aware of before using it.
+
+Space limitations
+Every browser limits the amount of data you can store on the client site per domain. This is usually around 5 MB, but the user can change this in the settings.
+
+If you want to store large amounts of data, there are better ways of doing this, like for example with the IndexedDB API.
+
+What happens when the size limit of local storage is reached?
+When trying to insert data that will exceed the storage limit, the code will throw an error and not update the local storage.
+
+If you add a lot of data to local storage, you will need to be prepared for this and handle the error by deleting old data and trying to insert the new data again.
+
+Security considerations
+For security, the browser limits the access to local storage per domain. This means that if you're in control of the domain where code is executed, you don't have to worry too much about security.
+
+But be aware that:
+
+If you embed your code on other domains, everyone can access the local storage through JavaScript.
+Even if you are in control of the domain, JavaScript code can read the data from local storage, which makes it vulnerable for cross-site scripting attacks (XSS). Unlike cookies, which you can make inaccessible via the httpOnly flag, you can't make your local storage inaccessible to JS.
+Performance considerations
+When using local storage, you need to be aware that it's synchronous, which means that it's usage blocks the main thread. Blocking the main thread has implications for the site's interactivity. User interactions, like clicking or typing, won't work while you're reading or writing data to local storage.
+
+This shouldn't be an issue for small amounts of data though. Given that the maximal storage size per domain is about 5 MB, you won't be able to store large amounts of data anyway.
+
+You also need to be aware that local storage only allows you to store strings, so you'll need to stringify objects before storing them.
+
+Conclusion
+I hope I could give you a good idea about how to use local storage to persist data in your React applications. I think that it's a powerful tool to contribute to a great user experience.
+
+If you liked the article or have any open questions, feel free to leave a comment below!
+
+Further reading
+My 9 favorite topics of "The Pragmatic Programmer"
+
+After reading the 20th-anniversary edition of the book, these are the summaries of my key-takeaways.
+
+How to Make your React App a Progressive Web App (PWA)
+
+This tutorial walks you through the steps of converting your React app into a PWA.
+
+Unit testing React - What you need to know
+
+Starter guide to unit testing for React developers, covering the basics of unit testing, tools and some pitfalls you might encounter.
+
+Separation of concerns with React hooks
+
+In this tutorial, I explain how you can leverage React hooks for a cleaner and easier-to-maintain codebase.
