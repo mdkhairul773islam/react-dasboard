@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../redux/authentication/actionCreator";
 
 function TopHeader(props) {
+  
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.authReducer.loading);
   const handlelogout = () => {
@@ -17,9 +19,10 @@ function TopHeader(props) {
     <nav className="main_nav">
       <ul className="function_menu">
         <li className="user_dropdown">
-          <a href="#" id="aside-toggle">
+
+          <Link to="#" onClick={()=>props.parentCallback()}>
             <i className="icon ion-ios-menu io-23"></i>
-          </a>
+          </Link>
         </li>
       </ul>
 
@@ -70,7 +73,7 @@ function TopHeader(props) {
               <a href="profile.html">Profile</a>
             </li>
             <li>
-              <a onClick={handlelogout}>Logout</a>
+              <Link to="#" onClick={handlelogout}>Logout</Link>
             </li>
           </ul>
         </li>

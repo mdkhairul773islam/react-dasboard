@@ -1,16 +1,36 @@
-import React from "react";
+import React, {useState, useRef, useEffect} from "react";
 import SideBar from "../../secure/SideBar/SideBar";
 import TopHeader from "../../secure/TopHeader/TopHeader";
 import Navbar from "../../secure/Dashboard/Navbar";
 
+
 const AdminWraper = (props, { children }) => {
+  const [wrapper, setWrapper] = useState(false);
+
+  const hasWrapperClass = useRef(null);
+
+  const asideToggleFn = () => {
+    setWrapper(!wrapper);
+    hassClass();
+  };
+
+  function hassClass (){
+    console.log(hasWrapperClass);
+    if(hasWrapperClass.current.classList[1]==='aside_close'){
+      window.localStorage.setItem('isAside', 1)
+    }else{
+      window.localStorage.setItem('isAside', 0)
+    }
+  }
+
   return (
     <>
-      <section className="wrapper" data-menu="dashboard" data-submenu="">
+      <section className={`wrapper ${ wrapper ? 'aside_close' : '' }`} ref={hasWrapperClass} data-menu="dashboard" data-submenu="">
         <SideBar />
         <div className="main_body">
-          <TopHeader />
+          <TopHeader parentCallback= {asideToggleFn} />
           <div className="body_container">
+        
             <div className="body_nav">
               <Navbar />
             </div>
@@ -19,7 +39,7 @@ const AdminWraper = (props, { children }) => {
         </div>
         <div className="developer">
           <p>
-            Developed By :{" "}
+            Developed By : &nbsp;
             <a href="https://freelanceitlab.com/" target="_blank">
               Freelance It Lab
             </a>
