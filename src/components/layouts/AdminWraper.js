@@ -3,7 +3,6 @@ import SideBar from "../../secure/SideBar/SideBar";
 import TopHeader from "../../secure/TopHeader/TopHeader";
 import Navbar from "../../secure/Dashboard/Navbar";
 
-
 const AdminWraper = (props, { children }) => {
 
   const [isAside, setAside] = useState(localStorage.getItem('aside_close') === 'true');
@@ -41,7 +40,7 @@ useEffect(() => {
             </a>
           </p>
         </div>
-        <div className="wrapper_background"></div>
+        <div className="wrapper_background" onClick={asideToggleFn}></div>
       </section>
     </>
   );

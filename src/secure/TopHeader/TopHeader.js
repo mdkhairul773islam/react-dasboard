@@ -10,7 +10,7 @@ function TopHeader(props) {
   const [messageMenuOpen, setMessageMenuOpen] = useState(false);
   const [userProfileOpen, setUserProfileOpen] = useState(false);
 
-  const handlelogout = () => {
+  const handleLogout = () => {
     dispatch(logOut());
   };
 
@@ -85,7 +85,7 @@ function TopHeader(props) {
               <Link to="#">Profile</Link>
             </li>
             <li>
-              <Link to="#" onClick={handlelogout}>
+              <Link to="#" onClick={handleLogout}>
                 Logout
               </Link>
             </li>
