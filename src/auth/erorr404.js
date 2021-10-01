@@ -17,7 +17,7 @@ export default function erorr404() {
                                 Sorry, an error has occured, Requested page not found!
                             </div>
                             <div className="error-actions">
-                                <Link to="#" className="btn btn-primary btn-lg">
+                                <Link to="/admin" className="btn btn-primary btn-lg">
                                     <span className="glyphicon glyphicon-home"></span>
                                     Take Me Home 
                                 </Link>

@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../redux/authentication/actionCreator";
 
 function TopHeader(props) {
-  
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.authReducer.loading);
+
   const handlelogout = () => {
     dispatch(logOut());
   };
@@ -19,7 +19,7 @@ function TopHeader(props) {
     <nav className="main_nav">
       <ul className="function_menu">
         <li className="user_dropdown">
-          <Link to="#" onClick={()=>props.asideToggle()}>
+          <Link to="#" onClick={() => props.asideToggle()}>
             <i className="icon ion-ios-menu io-23"></i>
           </Link>
         </li>
@@ -72,7 +72,9 @@ function TopHeader(props) {
               <Link to="#">Profile</Link>
             </li>
             <li>
-              <Link to="#" onClick={handlelogout}>Logout</Link>
+              <Link to="#" onClick={handlelogout}>
+                Logout
+              </Link>
             </li>
           </ul>
         </li>

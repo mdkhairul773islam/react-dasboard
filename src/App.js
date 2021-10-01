@@ -1,13 +1,12 @@
-import React  from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
-import './dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './dist/css/master.css'
 import ProtectedRoute from './components/ProtectedRoute'
 import Login from "./auth/Login";
-//import Register from "./auth/Register";
 import Dashboard from "./secure/Dashboard/Dashboard";
 import Erorr404 from "./auth/erorr404";
+import './App.css';
 
 function App() {
     return (
