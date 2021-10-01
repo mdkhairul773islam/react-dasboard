@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../redux/authentication/actionCreator";
@@ -7,8 +7,21 @@ function TopHeader(props) {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.authReducer.loading);
 
+  const [messageMenuOpen, setMessageMenuOpen] = useState(false);
+  const [userProfileOpen, setUserProfileOpen] = useState(false);
+
   const handlelogout = () => {
     dispatch(logOut());
+  };
+
+  const messageMenuToggleFn = () => {
+    setMessageMenuOpen(!messageMenuOpen);
+    setUserProfileOpen(false);
+  };
+
+  const userProfileToggleFn = () => {
+    setUserProfileOpen(!userProfileOpen);
+    setMessageMenuOpen(false);
   };
 
   if (loading) {
@@ -26,8 +39,8 @@ function TopHeader(props) {
       </ul>
 
       <ul className="user_menu">
-        <li className="user_dropdown">
-          <Link to="#" className="menu-button">
+        <li className={`user_dropdown ${messageMenuOpen ? "active" : ""}`}>
+          <Link to="#" className="menu-button" onClick={messageMenuToggleFn}>
             <i className="icon ion-ios-mail io-21"></i>
           </Link>
           <ul className="sub_menu">
@@ -51,8 +64,8 @@ function TopHeader(props) {
           </ul>
         </li>
 
-        <li className="user_dropdown">
-          <Link to="#" className="menu-button">
+        <li className={`user_dropdown ${userProfileOpen ? "active" : ""}`}>
+          <Link to="#" className="menu-button" onClick={userProfileToggleFn}>
             <img
               src={require("../../dist/images/user/02.png").default}
               alt=""
