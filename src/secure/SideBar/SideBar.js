@@ -42,12 +42,12 @@ function SideBar(props) {
               {
                 title: "New",
                 itemId: "/purchase/add",
-                elemBefore: () => <Icon name="cloud-snow" />,
+                //elemBefore: () => <Icon name="cloud-snow" />,
               },
               {
                 title: "All",
                 itemId: "/purchase/all",
-                elemBefore: () => <Icon name="coffee" />,
+                //elemBefore: () => <Icon name="coffee" />,
               },
             ],
           },
@@ -59,12 +59,12 @@ function SideBar(props) {
               {
                 title: "New",
                 itemId: "/sale/add",
-                elemBefore: () => <Icon name="cloud-snow" />,
+                //elemBefore: () => <Icon name="cloud-snow" />,
               },
               {
                 title: "All",
                 itemId: "/sale/all",
-                elemBefore: () => <Icon name="coffee" />,
+                // elemBefore: () => <Icon name="coffee" />,
               },
             ],
           },
