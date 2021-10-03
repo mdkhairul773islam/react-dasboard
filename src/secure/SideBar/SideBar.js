@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import Icon from "awesome-react-icons";
+import { Navigation } from "react-minimal-side-navigation";
+import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
 
 function SideBar(props) {
+  const history = useHistory();
+  const location = useLocation();
   return (
     <aside className="panel_aside">
       <div className="brand">
@@ -9,16 +15,64 @@ function SideBar(props) {
           <i className="icon ion-md-home"></i>
         </span>
         <h3>Point of sale</h3>
-        <Link to="#" id="panelClose_btn" onClick={()=>props.asideToggle()}>
+        <Link to="#" id="panelClose_btn" onClick={() => props.asideToggle()}>
           <i className="icon ion-ios-close io-36"></i>
         </Link>
-        <Link to="#" id="panelOpen_btn" onClick={()=>props.asideToggle()}>
+        <Link to="#" id="panelOpen_btn" onClick={() => props.asideToggle()}>
           <i className="fas fa-arrow-right"></i>
         </Link>
       </div>
-      <ul className="aside_nav">
+      <Navigation
+        // you can use your own router's api to get pathname
+        activeItemId={location.pathname}
+        onSelect={({ itemId }) => {
+          history.push(itemId);
+        }}
+        items={[
+          {
+            title: "Dashboard",
+            itemId: "/admin",
+            elemBefore: () => <Icon name="inbox" />,
+          },
+          {
+            title: "Purchase",
+            itemId: 0,
+            elemBefore: () => <Icon name="users" />,
+            subNav: [
+              {
+                title: "New",
+                itemId: "/purchase/add",
+                elemBefore: () => <Icon name="cloud-snow" />,
+              },
+              {
+                title: "All",
+                itemId: "/purchase/all",
+                elemBefore: () => <Icon name="coffee" />,
+              },
+            ],
+          },
+          {
+            title: "Sale",
+            itemId: 1,
+            elemBefore: () => <Icon name="users" />,
+            subNav: [
+              {
+                title: "New",
+                itemId: "/sale/add",
+                elemBefore: () => <Icon name="cloud-snow" />,
+              },
+              {
+                title: "All",
+                itemId: "/sale/all",
+                elemBefore: () => <Icon name="coffee" />,
+              },
+            ],
+          },
+        ]}
+      />
+      {/* <ul className="aside_nav">
         <li id="dashboard">
-          <Link to="/dashboard">
+          <Link to="/purchase">
             <i className="fas fa-tachometer-alt"></i>
             <span className="menu_title">Dashboard</span>
           </Link>
@@ -88,7 +142,7 @@ function SideBar(props) {
             </li>
           </ul>
         </li>
-      </ul>
+      </ul> */}
     </aside>
   );
 }
