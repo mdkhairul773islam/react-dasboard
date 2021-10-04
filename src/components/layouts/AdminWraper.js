@@ -19,6 +19,7 @@ const AdminWraper = (props, { children }) => {
   useEffect(() => {
     localStorage.setItem("aside_close", isAside);
     localStorage.setItem("dark-mode", dark);
+    document.title = "React Admin Dasgboard";
   }, [isAside, dark]);
 
   return (

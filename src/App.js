@@ -7,7 +7,7 @@ import Login from "./auth/Login";
 import Dashboard from "./secure/Dashboard/Dashboard";
 import Purchase from "./secure/Dashboard/Purchase";
 import PurchaseAll from "./secure/Dashboard/PurchaseAll";
-import Erorr404 from "./auth/erorr404";
+import Erorr404 from "./auth/Erorr404";
 import "./App.css";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
           <ProtectedRoute exact path="/admin" component={Dashboard} />
           <ProtectedRoute path="/purchase/add" component={Purchase} />
           <ProtectedRoute path="/purchase/all" component={PurchaseAll} />
-          <ProtectedRoute path="*" component={Erorr404} />
+          <Route component={Erorr404} />
         </Switch>
       </Router>
     </div>
