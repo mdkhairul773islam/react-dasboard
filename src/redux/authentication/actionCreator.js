@@ -12,14 +12,13 @@ const {
 const login = (userLoginData) => {
   return async (dispatch) => {
     try {
-
       dispatch(loginBegin());
       const res = await DataService.post("login", userLoginData);
 
-      console.log("Responsive", res)
+      //console.log("Responsive", res);
 
       if (res.data.data.token !== undefined) {
-        window.localStorage.setItem("token", res.data.token);
+        window.localStorage.setItem("token", res.data.data.token);
         window.localStorage.setItem("isLoggedin", true);
       } else {
         window.localStorage.removeItem("token");
@@ -27,7 +26,6 @@ const login = (userLoginData) => {
       }
 
       dispatch(loginSuccess(res.data));
-
     } catch (err) {
       dispatch(loginErr(err));
     }
@@ -36,18 +34,13 @@ const login = (userLoginData) => {
 
 const logOut = () => {
   return async (dispatch) => {
-
     try {
-
       dispatch(logoutBegin());
       window.localStorage.removeItem("isLoggedin");
       dispatch(logoutSuccess(null));
       window.localStorage.removeItem("token");
-      
     } catch (err) {
-
       dispatch(logoutErr(err));
-
     }
   };
 };
