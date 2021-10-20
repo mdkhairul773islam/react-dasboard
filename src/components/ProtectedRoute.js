@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 function ProtectedRoute({ component: Component, ...restOfProps }) {
   const isLoggedin = useSelector((state) => state.authReducer.isLoggedin);
+
   return (
     <Route
       {...restOfProps}
