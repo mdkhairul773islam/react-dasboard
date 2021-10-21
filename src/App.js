@@ -1,20 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Erorr404 from "./auth/Erorr404";
-
-// Routes
-import Login from "./routes/login";
-import Dashboard from "./routes/dashboard";
-import Purchase from "./routes/purchase";
+// All Routes Importet here.
+import RouterList from "./routes";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          {Login}
-          {Dashboard}
-          {Purchase}
+          {RouterList}
           <Route component={Erorr404} />
         </Switch>
       </Router>
