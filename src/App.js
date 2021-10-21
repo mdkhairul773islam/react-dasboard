@@ -1,22 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute";
-
-import Login from "./auth/Login";
-import Dashboard from "./secure/Dashboard/Dashboard";
-import Purchase from "./secure/Dashboard/Purchase";
-import PurchaseAll from "./secure/Dashboard/PurchaseAll";
 import Erorr404 from "./auth/Erorr404";
+
+// Routes
+import Login from "./routes/login";
+import Dashboard from "./routes/dashboard";
+import Purchase from "./routes/purchase";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/login" component={Login} />
-          <ProtectedRoute exact path="/admin" component={Dashboard} />
-          <ProtectedRoute path="/purchase/add" component={Purchase} />
-          <ProtectedRoute path="/purchase" component={PurchaseAll} />
+          {Login}
+          {Dashboard}
+          {Purchase}
           <Route component={Erorr404} />
         </Switch>
       </Router>
