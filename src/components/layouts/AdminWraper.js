@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+
+/* import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css"; */
+
 import SideBar from "../../secure/SideBar/sideBar";
 import TopHeader from "../../secure/TopHeader/TopHeader";
 import Navbar from "../../secure/Dashboard/Navbar";
@@ -38,7 +42,10 @@ const AdminWraper = (props, { children }) => {
             <div className="body_nav">
               <Navbar />
             </div>
-            <div className="body_content">{props.children}</div>
+            <div className="body_content">
+              {/*  {props.children || <Skeleton count={5} />} */}
+              {props.children}
+            </div>
           </div>
         </div>
         <div className="developer">

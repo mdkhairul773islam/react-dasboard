@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import { DataService } from "../../config/dataService/dataService";
 
+import { Button, ButtonGroup, DropdownButton, Dropdown } from "react-bootstrap";
+
 function Dashboard(props) {
   useEffect(() => {
     const res = DataService.get("user-list");
@@ -59,6 +61,19 @@ function Dashboard(props) {
           <h3>1,00.00 Tk</h3>
         </div>
       </div>
+      <ButtonGroup>
+        <Button>1</Button>
+        <Button>2</Button>
+
+        <DropdownButton
+          as={ButtonGroup}
+          title="Dropdown"
+          id="bg-nested-dropdown"
+        >
+          <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
+          <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
+        </DropdownButton>
+      </ButtonGroup>
     </AdminWraper>
   );
 }
