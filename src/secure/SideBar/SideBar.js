@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useHistory, useLocation } from "react-router-dom";
 
+import { Scrollbars } from "react-custom-scrollbars";
 import { Navigation } from "react-minimal-side-navigation";
-import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
 import sideBarItem from "./sideBarItem";
+
+import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
 
 function SideBar(props) {
   const history = useHistory();
   const location = useLocation();
+
+  useEffect(() => {}, []);
   return (
-    <aside className="panel_aside">
+    <aside className="panel_aside" id="panel_aside">
       <div className="brand">
         <span className="brand_icon">
           <i className="icon ion-md-home"></i>
@@ -23,13 +27,15 @@ function SideBar(props) {
           <i className="fas fa-arrow-right"></i>
         </Link>
       </div>
-      <Navigation
-        activeItemId={location.pathname}
-        onSelect={({ itemId }) => {
-          history.push(itemId);
-        }}
-        items={sideBarItem}
-      />
+      <Scrollbars style={{ height: "100vh" }} autoHide>
+        <Navigation
+          activeItemId={location.pathname}
+          onSelect={({ itemId }) => {
+            history.push(itemId);
+          }}
+          items={sideBarItem}
+        />
+      </Scrollbars>
     </aside>
   );
 }
