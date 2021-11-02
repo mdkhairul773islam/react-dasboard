@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Container, Row } from "react-bootstrap";
 
 /* import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css"; */
@@ -40,7 +41,11 @@ const AdminWraper = (props, { children }) => {
           <TopHeader asideToggle={asideToggleFn} />
           <div className="body_container">
             <div className="body_nav">
-              <Navbar />
+              <Container fluid>
+                <Row>
+                  <Navbar />
+                </Row>
+              </Container>
             </div>
             <div className="body_content">
               {/*  {props.children || <Skeleton count={5} />} */}

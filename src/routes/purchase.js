@@ -1,11 +1,11 @@
 import React from "react";
 import ProtectedRoute from "../components/ProtectedRoute";
-import Index from "../secure/Dashboard/Purchase";
-import All from "../secure/Dashboard/PurchaseAll";
+import NewItem from "../secure/Purchase/add";
+import Index from "../secure/Purchase/index";
 
 const Purchase = [
-  <ProtectedRoute path="/purchase/add" component={Index} key="index" />,
-  <ProtectedRoute path="/purchase" component={All} key="all" />,
+  <ProtectedRoute path="/purchase/add" component={NewItem} key="new" />,
+  <ProtectedRoute path="/purchase" component={Index} key="index" />,
 ];
 
 export default Purchase;
