@@ -1,12 +1,31 @@
 import { React, useState } from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
-import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Form,
+  Table,
+  Button,
+} from "react-bootstrap";
 // Use for datePicker
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Select from "react-select";
 
 function Purchase(props) {
   const [startDate, setStartDate] = useState(new Date());
+  const options = [
+    { value: "chocolate", label: "Chocolate" },
+    { value: "strawberry", label: "Strawberry" },
+    { value: "vanilla", label: "Vanilla" },
+    { value: "Khairul", label: "Khairul" },
+    { value: "A", label: "A" },
+    { value: "B", label: "B" },
+    { value: "C", label: "C" },
+  ];
+
   return (
     <AdminWraper>
       <Container fluid>
@@ -15,67 +34,168 @@ function Purchase(props) {
             <Card>
               <Card.Header as="h4">Add Purchase</Card.Header>
               <Card.Body>
-                <Form>
-                  <Row className="mb-3">
-                    <Col>
-                      <Form.Control placeholder="First name" />
-                    </Col>
-
-                    <Col>
-                      {" "}
+                <Form autoComplete="off">
+                  <Row>
+                    <Col
+                      className="mb-3"
+                      sm={6}
+                      md={6}
+                      lg={3}
+                      xl={3}
+                      xxl={2}
+                      xs={12}
+                    >
                       <DatePicker
                         className="form-control"
                         selected={startDate}
                         dateFormat="yyyy-MM-dd"
                         onChange={(date) => setStartDate(date)}
                         autoComplete="off"
-                        autoFocus="false"
                       />
                     </Col>
 
-                    <Form.Group as={Col} controlId="formGridPassword">
-                      <Form.Label>Password</Form.Label>
-                      <Form.Control type="password" placeholder="Password" />
-                    </Form.Group>
+                    <Col
+                      className="mb-3"
+                      sm={6}
+                      md={6}
+                      lg={3}
+                      xl={3}
+                      xxl={2}
+                      xs={12}
+                    >
+                      <Form.Control placeholder="Invoice No" />
+                    </Col>
+
+                    <Col
+                      className="mb-3"
+                      sm={6}
+                      md={6}
+                      lg={3}
+                      xl={3}
+                      xxl={2}
+                      xs={12}
+                    >
+                      <Select
+                        type="text"
+                        options={options}
+                        isClearable={true}
+                        isSearchable={true}
+                        placeholder="Chose Showroom"
+                      />
+                    </Col>
+
+                    <Col
+                      className="mb-3"
+                      sm={6}
+                      md={6}
+                      lg={3}
+                      xl={3}
+                      xxl={2}
+                      xs={12}
+                    >
+                      <Select
+                        type="text"
+                        options={options}
+                        isClearable={true}
+                        isSearchable={true}
+                        placeholder="Chose Company"
+                      />
+                    </Col>
                   </Row>
 
-                  <Form.Group className="mb-3" controlId="formGridAddress1">
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control placeholder="1234 Main St" />
-                  </Form.Group>
+                  <Row>
+                    <Col
+                      className="mb-3"
+                      sm={6}
+                      md={6}
+                      lg={3}
+                      xl={3}
+                      xxl={2}
+                      xs={12}
+                    >
+                      <Select
+                        type="text"
+                        options={options}
+                        isClearable={true}
+                        isSearchable={true}
+                        placeholder="Chose Business Type"
+                      />
+                    </Col>
 
-                  <Form.Group className="mb-3" controlId="formGridAddress2">
-                    <Form.Label>Address 2</Form.Label>
-                    <Form.Control placeholder="Apartment, studio, or floor" />
-                  </Form.Group>
-
-                  <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridCity">
-                      <Form.Label>City</Form.Label>
-                      <Form.Control />
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridState">
-                      <Form.Label>State</Form.Label>
-                      <Form.Select defaultValue="Choose...">
-                        <option>Choose...</option>
-                        <option>...</option>
-                      </Form.Select>
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridZip">
-                      <Form.Label>Zip</Form.Label>
-                      <Form.Control />
-                    </Form.Group>
+                    <Col
+                      className="mb-3"
+                      sm={6}
+                      md={6}
+                      lg={3}
+                      xl={3}
+                      xxl={2}
+                      xs={12}
+                    >
+                      <Select
+                        type="text"
+                        options={options}
+                        isClearable={true}
+                        isSearchable={true}
+                        placeholder="Chose Gift Item"
+                      />
+                    </Col>
                   </Row>
-
-                  <Form.Group className="mb-3" id="formGridCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                  </Form.Group>
-
-                  <Button variant="primary" type="submit">
-                    Submit
-                  </Button>
+                  <hr />
+                  <Row>
+                    <Col>
+                      <Table bordered hover responsive>
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>DO No.</th>
+                            <th>Qty(ctn)</th>
+                            <th>Free(ctn)</th>
+                            <th>Pending Qty.</th>
+                            <th>Free Qty.</th>
+                            <th>P.Price (TK)</th>
+                            <th>Total (TK)</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>Biscony Mogol Cookise</td>
+                            <td>945405</td>
+                            <td>27-Oct-2021</td>
+                            <td>
+                              <Form.Control type="number" placeholder="0" />
+                            </td>
+                            <td>
+                              <Form.Control type="number" placeholder="0" />
+                            </td>
+                            <td>
+                              <Form.Control type="number" placeholder="0" />
+                            </td>
+                            <td>
+                              <Form.Control type="number" placeholder="0" />
+                            </td>
+                            <td>
+                              <Form.Control type="number" placeholder="0" />
+                            </td>
+                            <td className="text-center">
+                              <Button variant="danger" type="button" size="sm">
+                                X
+                              </Button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="text-end">
+                      <Button variant="primary" type="submit">
+                        Submit
+                      </Button>
+                    </Col>
+                  </Row>
                 </Form>
               </Card.Body>
               <Card.Footer className="text-muted">&nbsp;</Card.Footer>
