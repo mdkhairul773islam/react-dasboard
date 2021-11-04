@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 
-/* import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css"; */
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-import SideBar from "../../secure/SideBar/sideBar";
+import SideBar from "../../secure/SideBar/SideBar";
 import TopHeader from "../../secure/TopHeader/TopHeader";
 import Navbar from "../../secure/Dashboard/Navbar";
 
 const AdminWraper = (props, { children }) => {
+  const [loading, setLoading] = useState(true);
+
   const [isAside, setAside] = useState(
     localStorage.getItem("aside_close") === "true"
   );
@@ -24,8 +26,18 @@ const AdminWraper = (props, { children }) => {
   useEffect(() => {
     localStorage.setItem("aside_close", isAside);
     localStorage.setItem("dark-mode", dark);
-    document.title = "React Admin Dasgboard";
+    document.title = "React Dashboard";
   }, [isAside, dark]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      // Wait for 100 ml second
+      await new Promise((r) => setTimeout(r, 100));
+      // Toggle loading state
+      setLoading((loading) => !loading);
+    };
+    loadData();
+  }, []);
 
   return (
     <>
@@ -48,8 +60,7 @@ const AdminWraper = (props, { children }) => {
               </Container>
             </div>
             <div className="body_content">
-              {/*  {props.children || <Skeleton count={5} />} */}
-              {props.children}
+              {loading ? <Skeleton count={21} /> : props.children}
             </div>
           </div>
         </div>

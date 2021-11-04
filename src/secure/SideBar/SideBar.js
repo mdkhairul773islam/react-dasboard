@@ -19,7 +19,7 @@ function SideBar(props) {
         <span className="brand_icon">
           <i className="icon ion-md-home"></i>
         </span>
-        <h3>Point of sale</h3>
+        <h3>Point of Sale</h3>
         <Link to="#" id="panelClose_btn" onClick={() => props.asideToggle()}>
           <i className="icon ion-ios-close io-36"></i>
         </Link>
