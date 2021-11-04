@@ -11,7 +11,6 @@ import {
 } from "react-bootstrap";
 // Use for datePicker
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-select";
 
 function Purchase(props) {
@@ -32,7 +31,9 @@ function Purchase(props) {
         <Row>
           <Col>
             <Card>
-              <Card.Header as="h4">Add Purchase</Card.Header>
+              <Card.Header as="h4" className="fw-bold">
+                Add Purchase
+              </Card.Header>
               <Card.Body>
                 <Form autoComplete="off">
                   <Row>

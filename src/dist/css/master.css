@@ -1026,10 +1026,10 @@ img {
   }
 }
 .developer:hover {
-  background: #1e9bd0;
+  background: #2a378b;
 }
 .developer {
-  box-shadow: 1px 4px 7px #28a9e055;
+  box-shadow: 1px 4px 7px #2a378b;
   transition: all 0.2s;
   position: fixed;
   bottom: 10px;
@@ -1037,7 +1037,7 @@ img {
   right: 32px;
   padding: 5px 12px;
   border-radius: 2px;
-  background: #28a9e0;
+  background: #2a378b;
 }
 .developer p a {
   color: #fff;
