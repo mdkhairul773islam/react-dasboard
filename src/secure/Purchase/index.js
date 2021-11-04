@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import {
   Container,
@@ -145,17 +146,20 @@ function Purchase(props) {
                       <td>1</td>
                       <td>1</td>
                       <td className="text-center">
-                        <Button
-                          className="mx-1"
-                          variant="primary"
+                        <Link
+                          to="/purchase/invoice/1"
+                          className="mx-1 btn btn-primary btn-sm"
                           type="button"
-                          size="sm"
                         >
                           <i className="fa fa-eye fa-sm" aria-hidden="true"></i>
-                        </Button>
-                        <Button variant="success" type="button" size="sm">
-                          <i className="fa fa-pen" aria-hidden="true"></i>
-                        </Button>
+                        </Link>
+                        <Link
+                          to="/purchase/edit/1"
+                          className="mx-1 btn btn-success btn-sm"
+                          type="button"
+                        >
+                          <i className="fa fa-pen fa-sm" aria-hidden="true"></i>
+                        </Link>
                         <Button
                           className="mx-1"
                           variant="danger"
@@ -180,17 +184,20 @@ function Purchase(props) {
                       <td>1</td>
                       <td>1</td>
                       <td className="text-center">
-                        <Button
-                          className="mx-1"
-                          variant="primary"
+                        <Link
+                          to="/purchase/invoice/2"
+                          className="mx-1 btn btn-primary btn-sm"
                           type="button"
-                          size="sm"
                         >
                           <i className="fa fa-eye fa-sm" aria-hidden="true"></i>
-                        </Button>
-                        <Button variant="success" type="button" size="sm">
-                          <i className="fa fa-pen" aria-hidden="true"></i>
-                        </Button>
+                        </Link>
+                        <Link
+                          to="/purchase/edit/2"
+                          className="mx-1 btn btn-success btn-sm"
+                          type="button"
+                        >
+                          <i className="fa fa-pen fa-sm" aria-hidden="true"></i>
+                        </Link>
                         <Button
                           className="mx-1"
                           variant="danger"
