@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import {
   Container,
@@ -24,6 +24,32 @@ function Purchase(props) {
     { value: "B", label: "B" },
     { value: "C", label: "C" },
   ];
+
+  const [cardItems, setCardItems] = useState([]);
+
+  const addNewProductFn = () => {
+    var items = {
+      id: 1,
+      name: "Apple",
+      dio_no: "102",
+      date: "2021-11-12",
+      qty: 10,
+      pnedingQty: 1,
+      freeCuton: 0,
+      freeQty: 0,
+      purchasePrice: 10,
+      total: 100,
+    };
+    setCardItems([...cardItems, items]);
+  };
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  };
+
+  /* useEffect(() => {
+    console.log(cardItems);
+  }, []); */
 
   return (
     <AdminWraper>
@@ -140,6 +166,11 @@ function Purchase(props) {
                         placeholder="Chose Gift Item"
                       />
                     </Col>
+                    <Col>
+                      <Button variant="primary" onClick={addNewProductFn}>
+                        Save
+                      </Button>
+                    </Col>
                   </Row>
                   <hr />
                   <Row>
@@ -148,6 +179,7 @@ function Purchase(props) {
                         <thead>
                           <tr>
                             <th>#</th>
+                            <th>Date</th>
                             <th>Name</th>
                             <th>DO No.</th>
                             <th>Qty(ctn)</th>
@@ -160,32 +192,77 @@ function Purchase(props) {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td>Biscony Mogol Cookise</td>
-                            <td>945405</td>
-                            <td>27-Oct-2021</td>
-                            <td>
-                              <Form.Control type="number" placeholder="0" />
-                            </td>
-                            <td>
-                              <Form.Control type="number" placeholder="0" />
-                            </td>
-                            <td>
-                              <Form.Control type="number" placeholder="0" />
-                            </td>
-                            <td>
-                              <Form.Control type="number" placeholder="0" />
-                            </td>
-                            <td>
-                              <Form.Control type="number" placeholder="0" />
-                            </td>
-                            <td className="text-center">
-                              <Button variant="danger" type="button" size="sm">
-                                X
-                              </Button>
-                            </td>
-                          </tr>
+                          {cardItems.map((row, index) => (
+                            <tr key={index}>
+                              <td>{index + 1}</td>
+                              <td>{row.date}</td>
+                              <td>{row.name}</td>
+                              <td>{row.dio_no}</td>
+                              <td>
+                                <Form.Control
+                                  name="qty"
+                                  type="number"
+                                  value={row.qty}
+                                  placeholder="0"
+                                  onChange={handleChange}
+                                />
+                              </td>
+                              <td>
+                                <Form.Control
+                                  name="freeCuton"
+                                  type="number"
+                                  value={row.freeCuton}
+                                  placeholder="0"
+                                  onChange={handleChange}
+                                />
+                              </td>
+                              <td>
+                                <Form.Control
+                                  name="pnedingQty"
+                                  type="number"
+                                  value={row.pnedingQty}
+                                  placeholder="0"
+                                  onChange={handleChange}
+                                />
+                              </td>
+                              <td>
+                                <Form.Control
+                                  name="freeQty"
+                                  type="number"
+                                  value={row.freeQty}
+                                  placeholder="0"
+                                  onChange={handleChange}
+                                />
+                              </td>
+                              <td>
+                                <Form.Control
+                                  name="purchasePrice"
+                                  type="number"
+                                  value={row.purchasePrice}
+                                  placeholder="0"
+                                  onChange={handleChange}
+                                />
+                              </td>
+                              <td>
+                                <Form.Control
+                                  name="total"
+                                  type="number"
+                                  value={row.total}
+                                  placeholder="0"
+                                  onChange={handleChange}
+                                />
+                              </td>
+                              <td className="text-center">
+                                <Button
+                                  variant="danger"
+                                  type="button"
+                                  size="sm"
+                                >
+                                  X
+                                </Button>
+                              </td>
+                            </tr>
+                          ))}
                         </tbody>
                       </Table>
                     </Col>
