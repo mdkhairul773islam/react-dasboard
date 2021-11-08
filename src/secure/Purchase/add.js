@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import {
   Container,
@@ -28,28 +28,49 @@ function Purchase(props) {
   const [cardItems, setCardItems] = useState([]);
 
   const addNewProductFn = () => {
-    var items = {
-      id: 1,
-      name: "Apple",
-      dio_no: "102",
-      date: "2021-11-12",
-      qty: 10,
-      pnedingQty: 1,
-      freeCuton: 0,
-      freeQty: 0,
-      purchasePrice: 10,
-      total: 100,
-    };
-    setCardItems([...cardItems, items]);
+    setCardItems([
+      ...cardItems,
+      {
+        id: 1,
+        name: "Walton AC",
+        dio_no: "101",
+        date: "2021-11-08",
+        qty: 0,
+        pnedingQty: 0,
+        freeCuton: 0,
+        freeQty: 0,
+        purchasePrice: 0,
+        total: 0,
+      },
+    ]);
   };
 
-  const handleChange = (e) => {
-    console.log(e.target.value);
+  const handleChange = (index, event) => {
+    const newInputFields = cardItems.map((item, itemIndex) => {
+      if (index === itemIndex) {
+        item[event.target.name] = event.target.value;
+        /* var total = cardItems.reduce(
+          (total, i) => (total += i.qty * i.purchasePrice),
+          0
+        );
+        console.log("total", total); */
+      }
+      return item;
+    });
+
+    setCardItems(newInputFields);
   };
 
-  /* useEffect(() => {
-    console.log(cardItems);
-  }, []); */
+  const handleRemoveItem = (index) => {
+    const items = [...cardItems];
+    items.splice(index, 1);
+    setCardItems(items);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("cardItems", cardItems);
+  };
 
   return (
     <AdminWraper>
@@ -61,7 +82,7 @@ function Purchase(props) {
                 Add Purchase
               </Card.Header>
               <Card.Body>
-                <Form autoComplete="off">
+                <Form autoComplete="off" onSubmit={handleSubmit}>
                   <Row>
                     <Col
                       className="mb-3"
@@ -204,7 +225,7 @@ function Purchase(props) {
                                   type="number"
                                   value={row.qty}
                                   placeholder="0"
-                                  onChange={handleChange}
+                                  onChange={(e) => handleChange(index, e)}
                                 />
                               </td>
                               <td>
@@ -213,7 +234,7 @@ function Purchase(props) {
                                   type="number"
                                   value={row.freeCuton}
                                   placeholder="0"
-                                  onChange={handleChange}
+                                  onChange={(e) => handleChange(index, e)}
                                 />
                               </td>
                               <td>
@@ -222,7 +243,7 @@ function Purchase(props) {
                                   type="number"
                                   value={row.pnedingQty}
                                   placeholder="0"
-                                  onChange={handleChange}
+                                  onChange={(e) => handleChange(index, e)}
                                 />
                               </td>
                               <td>
@@ -231,7 +252,7 @@ function Purchase(props) {
                                   type="number"
                                   value={row.freeQty}
                                   placeholder="0"
-                                  onChange={handleChange}
+                                  onChange={(e) => handleChange(index, e)}
                                 />
                               </td>
                               <td>
@@ -240,16 +261,16 @@ function Purchase(props) {
                                   type="number"
                                   value={row.purchasePrice}
                                   placeholder="0"
-                                  onChange={handleChange}
+                                  onChange={(e) => handleChange(index, e)}
                                 />
                               </td>
                               <td>
                                 <Form.Control
                                   name="total"
                                   type="number"
-                                  value={row.total}
+                                  value={row.qty * row.purchasePrice}
                                   placeholder="0"
-                                  onChange={handleChange}
+                                  readOnly={true}
                                 />
                               </td>
                               <td className="text-center">
@@ -257,6 +278,7 @@ function Purchase(props) {
                                   variant="danger"
                                   type="button"
                                   size="sm"
+                                  onClick={() => handleRemoveItem(index)}
                                 >
                                   X
                                 </Button>
@@ -269,7 +291,11 @@ function Purchase(props) {
                   </Row>
                   <Row>
                     <Col className="text-end">
-                      <Button variant="primary" type="submit">
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        onClick={handleSubmit}
+                      >
                         Submit
                       </Button>
                     </Col>

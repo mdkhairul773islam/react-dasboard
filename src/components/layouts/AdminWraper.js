@@ -41,10 +41,15 @@ const AdminWraper = (props, { children }) => {
 
   return (
     <>
-      <section
+      {/* <section
         className={`wrapper ${isAside ? "aside_close" : ""} ${
           dark ? "dark-mode" : ""
         }`}
+        data-menu="dashboard"
+        data-submenu=""
+      > */}
+      <section
+        className={`wrapper ${isAside ? "aside_close" : ""}`}
         data-menu="dashboard"
         data-submenu=""
       >
