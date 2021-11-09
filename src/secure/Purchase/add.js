@@ -40,7 +40,7 @@ function Purchase(props) {
         freeCuton: 0,
         freeQty: 0,
         purchasePrice: 0,
-        total: 0,
+        subtotal: 0,
       },
     ]);
   };
@@ -49,11 +49,6 @@ function Purchase(props) {
     const newInputFields = cardItems.map((item, itemIndex) => {
       if (index === itemIndex) {
         item[event.target.name] = event.target.value;
-        /* var total = cardItems.reduce(
-          (total, i) => (total += i.qty * i.purchasePrice),
-          0
-        );
-        console.log("total", total); */
       }
       return item;
     });
@@ -65,6 +60,13 @@ function Purchase(props) {
     const items = [...cardItems];
     items.splice(index, 1);
     setCardItems(items);
+  };
+
+  const subTotalFn = (index) => {
+    var items = [...cardItems];
+
+    return (items[index].subtotal =
+      items[index].qty * items[index].purchasePrice);
   };
 
   const handleSubmit = (e) => {
@@ -266,9 +268,9 @@ function Purchase(props) {
                               </td>
                               <td>
                                 <Form.Control
-                                  name="total"
+                                  name="subtotal"
                                   type="number"
-                                  value={row.qty * row.purchasePrice}
+                                  value={subTotalFn(index)}
                                   placeholder="0"
                                   readOnly={true}
                                 />
