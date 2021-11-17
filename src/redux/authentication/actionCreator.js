@@ -14,11 +14,8 @@ const login = (userLoginData) => {
     try {
       dispatch(loginBegin());
       const res = await DataService.post("login", userLoginData);
-
-      //console.log("Responsive", res);
-
-      if (res.data.data.token !== undefined) {
-        window.localStorage.setItem("token", res.data.data.token);
+      if (res.data.token !== undefined) {
+        window.localStorage.setItem("token", res.data.token);
         window.localStorage.setItem("isLoggedin", true);
       } else {
         window.localStorage.removeItem("token");
