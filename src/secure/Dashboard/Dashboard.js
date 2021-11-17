@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
-import { DataService } from "../../config/dataService/dataService";
+//import { DataService } from "../../config/dataService/dataService";
 
 import { Button, ButtonGroup, DropdownButton, Dropdown } from "react-bootstrap";
 
 function Dashboard(props) {
   useEffect(() => {
-    const res = DataService.get("user-list");
-    console.log("res", res);
+    //const res = DataService.get("user-list");
+    //console.log("res", res);
   });
   return (
     <AdminWraper>
