@@ -5,18 +5,12 @@ function Navbar(props) {
   return (
     <ul>
       <li>
-        <Link to="#">Creat Now</Link>
+        <Link to="/purchase/add">Creat Now</Link>
       </li>
       <li>
-        <Link to="#" className="active">
+        <Link to="/purchase/all" className="active">
           Purchase All
         </Link>
-      </li>
-      <li>
-        <Link to="#">Nav Three</Link>
-      </li>
-      <li>
-        <Link to="#">Nav Four</Link>
       </li>
     </ul>
   );

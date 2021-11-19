@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
+import Navbar from "../../secure/Purchase/navbar";
 import {
   Container,
   Row,
@@ -27,6 +28,11 @@ function Purchase(props) {
   return (
     <AdminWraper menuOpen='purchase'>
       <Container fluid>
+        <Row>
+          <div className="body_nav">
+            <Navbar />
+          </div>
+        </Row>
         <Row>
           <Col sm={12} className="mb-4">
             <Card>

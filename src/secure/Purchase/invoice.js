@@ -1,5 +1,6 @@
 import React from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
+import Navbar from "../../secure/Purchase/navbar";
 import { Container, Row, Col, Card, Table } from "react-bootstrap";
 
 function Purchase(props) {
@@ -7,6 +8,11 @@ function Purchase(props) {
   return (
     <AdminWraper menuOpen='purchase'>
       <Container fluid>
+        <Row>
+          <div className="body_nav">
+            <Navbar />
+          </div>
+        </Row>
         <Row>
           <Col>
             <Card>

@@ -6,7 +6,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 import SideBar from "../../secure/SideBar/SideBar";
 import TopHeader from "../../secure/TopHeader/TopHeader";
-import Navbar from "../../secure/Dashboard/Navbar";
 
 const AdminWraper = (props, { children }) => {
 
@@ -58,13 +57,6 @@ const AdminWraper = (props, { children }) => {
         <div className="main_body">
           <TopHeader asideToggle={asideToggleFn} />
           <div className="body_container">
-            <div className="body_nav">
-              <Container fluid>
-                <Row>
-                  <Navbar />
-                </Row>
-              </Container>
-            </div>
             <div className="body_content">
               {loading ? <Skeleton count={21} /> : props.children}
             </div>
