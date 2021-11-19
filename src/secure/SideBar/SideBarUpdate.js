@@ -12,7 +12,7 @@ function SideBar(props) {
   const history = useHistory();
   const location = useLocation();
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
   return (
     <aside className="panel_aside" id="panel_aside">
       <div className="brand">

@@ -56,7 +56,6 @@ img {
   height: 60px;
   line-height: 60px;
 }
-.aside_nav,
 .body_container {
   height: calc(100vh - 60px);
   overflow-y: scroll;
