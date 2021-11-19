@@ -9,6 +9,7 @@ import TopHeader from "../../secure/TopHeader/TopHeader";
 import Navbar from "../../secure/Dashboard/Navbar";
 
 const AdminWraper = (props, { children }) => {
+
   const [loading, setLoading] = useState(true);
 
   const [isAside, setAside] = useState(
@@ -53,7 +54,7 @@ const AdminWraper = (props, { children }) => {
         data-menu="dashboard"
         data-submenu=""
       >
-        <SideBar asideToggle={asideToggleFn} />
+        <SideBar asideToggle={asideToggleFn} menuOpen={props.menuOpen} />
         <div className="main_body">
           <TopHeader asideToggle={asideToggleFn} />
           <div className="body_container">

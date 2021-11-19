@@ -5,7 +5,7 @@ import { Container, Row, Col, Card, Table } from "react-bootstrap";
 function Purchase(props) {
   console.log(props.match.params);
   return (
-    <AdminWraper>
+    <AdminWraper menuOpen='purchase'>
       <Container fluid>
         <Row>
           <Col>

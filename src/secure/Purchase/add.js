@@ -75,7 +75,7 @@ function Purchase(props) {
   };
 
   return (
-    <AdminWraper>
+    <AdminWraper menuOpen='purchase'>
       <Container fluid>
         <Row>
           <Col>
@@ -92,7 +92,7 @@ function Purchase(props) {
                       md={6}
                       lg={3}
                       xl={3}
-                      xxl={2}
+                      xxl={3}
                       xs={12}
                     >
                       <DatePicker
@@ -110,7 +110,7 @@ function Purchase(props) {
                       md={6}
                       lg={3}
                       xl={3}
-                      xxl={2}
+                      xxl={3}
                       xs={12}
                     >
                       <Form.Control placeholder="Invoice No" />
@@ -122,7 +122,7 @@ function Purchase(props) {
                       md={6}
                       lg={3}
                       xl={3}
-                      xxl={2}
+                      xxl={3}
                       xs={12}
                     >
                       <Select
@@ -140,7 +140,7 @@ function Purchase(props) {
                       md={6}
                       lg={3}
                       xl={3}
-                      xxl={2}
+                      xxl={3}
                       xs={12}
                     >
                       <Select
@@ -160,7 +160,7 @@ function Purchase(props) {
                       md={6}
                       lg={3}
                       xl={3}
-                      xxl={2}
+                      xxl={3}
                       xs={12}
                     >
                       <Select
@@ -178,7 +178,7 @@ function Purchase(props) {
                       md={6}
                       lg={3}
                       xl={3}
-                      xxl={2}
+                      xxl={3}
                       xs={12}
                     >
                       <Select

@@ -10,7 +10,7 @@ function Dashboard(props) {
     //console.log("res", res);
   });
   return (
-    <AdminWraper>
+    <AdminWraper menuOpen='dashboard'>
       <div className="box_wrapper">
         <div className="dash_box box_1">
           <h2>Today's Income</h2>

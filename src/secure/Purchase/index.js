@@ -25,7 +25,7 @@ function Purchase(props) {
     { value: "C", label: "C" },
   ];
   return (
-    <AdminWraper>
+    <AdminWraper menuOpen='purchase'>
       <Container fluid>
         <Row>
           <Col sm={12} className="mb-4">
