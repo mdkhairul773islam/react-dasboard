@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row } from "react-bootstrap";
-
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 

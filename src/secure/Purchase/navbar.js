@@ -1,16 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navbar(props) {
   return (
     <ul>
       <li>
-        <Link to="/purchase/add">Creat Now</Link>
+        <NavLink
+          to="/purchase/add"
+          className={isActive =>
+            (isActive ? "active" : "")
+          }
+        >Creat Now</NavLink>
       </li>
       <li>
-        <Link to="/purchase/all" className="active">
+        <NavLink
+          to="/purchase/all"
+          className={isActive =>
+            (isActive ? "active" : "")
+          }
+        >
           Purchase All
-        </Link>
+        </NavLink>
       </li>
     </ul>
   );
