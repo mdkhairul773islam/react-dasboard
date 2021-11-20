@@ -7,7 +7,7 @@ function Purchase(props) {
   console.log(props.match.params);
   return (
     <AdminWraper menuOpen='purchase'>
-      <Container fluid>
+      <Container className="p-0" fluid>
         <Row>
           <div className="body_nav">
             <Navbar />

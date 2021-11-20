@@ -29,6 +29,12 @@ function SideBar(props) {
               <span className="menu_title">Dashboard</span>
             </Link>
           </li>
+          <li data-id="business_type" className={`dropdown ${menuOpen === 'business_type' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="/business_type">
+              <i className="fas fa-tachometer-alt"></i>
+              <span className="menu_title">Business Type</span>
+            </Link>
+          </li>
           <li data-id="purchase" className={`dropdown ${menuOpen === 'purchase' ? 'active' : ''}`} onClick={menuOpenFn}>
             <Link to="#">
               <i className="fas fa-shopping-basket"></i>
