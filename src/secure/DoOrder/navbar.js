@@ -3,14 +3,16 @@ import { NavLink } from "react-router-dom";
 
 function Navbar(props) {
   return (
-    <ul> 
+    <ul>
       <li>
         <NavLink
           to="/do-order/add"
           className={isActive =>
             (isActive ? "active" : "")
           }
-        >Add New Order</NavLink>
+        >
+          New Order
+        </NavLink>
       </li>
       <li>
         <NavLink
@@ -19,7 +21,18 @@ function Navbar(props) {
             (isActive ? "active" : "")
           }
         >
-          DO Order All
+          All Order
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/do-order/pending-order"
+          className={isActive =>
+            (isActive ? "active" : "")
+          }
+        >
+          Pending Order
         </NavLink>
       </li>
     </ul>

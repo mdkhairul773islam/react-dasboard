@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import { Link } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Purchase/navbar";
 import {
@@ -38,7 +39,13 @@ function Purchase(props) {
           <Col>
             <Card>
               <Card.Header as="h4" className="fw-bold">
-                Purchase Edit
+                Edit Purchase
+                <Link to="/purchase/invoice/1"
+                  className="btn btn-light btn-lg float-end p-0"
+                  type="button"
+                >
+                  <i className="fa fa-file-invoice" aria-hidden="true"></i>
+                </Link>
               </Card.Header>
               <Card.Body>
                 <Form autoComplete="off">

@@ -41,10 +41,10 @@ function Edit(props) {
                             <Card.Header as="h4" className="fw-bold">
                                 Edit Order
                                 <Link to="/do-order/invoice/1"
-                                    className="btn btn-primary btn-xl float-end"
+                                    className="btn btn-light btn-lg float-end p-0"
                                     type="button"
                                 >
-                                    Invoice
+                                    <i className="fa fa-file-invoice" aria-hidden="true"></i>
                                 </Link>
                             </Card.Header>
                             <Card.Body>

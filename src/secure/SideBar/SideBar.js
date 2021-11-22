@@ -53,6 +53,11 @@ function SideBar(props) {
                   All Order
                 </Link>
               </li>
+              <li id="purchase_records">
+                <Link to="/do-order/pending-order">
+                  Pending Order
+                </Link>
+              </li>
             </ul>
           </li>
 
@@ -67,11 +72,11 @@ function SideBar(props) {
             </Link>
             <ul>
               <li id="purchase_new">
-                <Link to="/purchase/add">Purchase new</Link>
+                <Link to="/purchase/add">New Purchase</Link>
               </li>
               <li id="purchase_records">
                 <Link to="/purchase/all">
-                  Purchase All
+                  All Purchase
                 </Link>
               </li>
             </ul>

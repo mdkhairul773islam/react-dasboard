@@ -10,7 +10,7 @@ function Navbar(props) {
           className={isActive =>
             (isActive ? "active" : "")
           }
-        >Creat Now</NavLink>
+        >New Purchase</NavLink>
       </li>
       <li>
         <NavLink
@@ -19,7 +19,7 @@ function Navbar(props) {
             (isActive ? "active" : "")
           }
         >
-          Purchase All
+          All Purchase
         </NavLink>
       </li>
     </ul>

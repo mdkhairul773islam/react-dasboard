@@ -6,9 +6,11 @@ import Index from "../secure/DoOrder/index";
 import NewItem from "../secure/DoOrder/add";
 import Invoice from "../secure/DoOrder/invoice";
 import Edit from "../secure/DoOrder/edit";
+import PendingOrder from "../secure/DoOrder/pendingOrder";
 
 const DoOrder = [
   <ProtectedRoute path="/do-order/all" component={Index} key="index" />,
+  <ProtectedRoute path="/do-order/pending-order" component={PendingOrder} key="pending-order" />,
   <ProtectedRoute path="/do-order/add" component={NewItem} key="new" />,
   <ProtectedRoute path="/do-order/invoice/:doInvoice" component={Invoice} key="invoice" />,
   <ProtectedRoute path="/do-order/edit-order/:doInvoice" component={Edit} key="edit" />,

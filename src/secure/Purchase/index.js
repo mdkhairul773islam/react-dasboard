@@ -123,6 +123,15 @@ function Purchase(props) {
             <Card>
               <Card.Header as="h4" className="fw-bold">
                 All Purchase
+                <Button to="#" className="btn btn-light btn-xl float-end px-1 py-0" onClick={() => window.print()}>
+                  <i className="fa fa-print" aria-hidden="true"></i>
+                </Button>
+                <Link to="/purchase/add"
+                  className="btn btn-light btn-xl float-end px-2 py-0"
+                  type="button"
+                >
+                  <i className="fa fa-plus" aria-hidden="true"></i>
+                </Link>
               </Card.Header>
               <Card.Body>
                 <Table bordered hover responsive>
