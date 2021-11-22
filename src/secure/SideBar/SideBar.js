@@ -31,10 +31,31 @@ function SideBar(props) {
           </li>
           <li data-id="business_type" className={`dropdown ${menuOpen === 'business_type' ? 'active' : ''}`} onClick={menuOpenFn}>
             <Link to="/business_type">
-              <i className="fas fa-tachometer-alt"></i>
+              <i className="fa fa-briefcase" aria-hidden="true"></i>
               <span className="menu_title">Business Type</span>
             </Link>
           </li>
+          <li data-id="do_order" className={`dropdown ${menuOpen === 'do_order' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="#">
+              <i className="fas fa-shopping-basket"></i>
+              <span className="menu_title">DO Order</span>
+              <span className="menu_arrow">
+                <i className="icon ion-ios-arrow-forward right"></i>
+                <i className="icon ion-ios-arrow-down down"></i>
+              </span>
+            </Link>
+            <ul>
+              <li id="new_order">
+                <Link to="/do-order/add">New Order</Link>
+              </li>
+              <li id="purchase_records">
+                <Link to="/do-order/all">
+                  All Order
+                </Link>
+              </li>
+            </ul>
+          </li>
+
           <li data-id="purchase" className={`dropdown ${menuOpen === 'purchase' ? 'active' : ''}`} onClick={menuOpenFn}>
             <Link to="#">
               <i className="fas fa-shopping-basket"></i>

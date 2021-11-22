@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import {
   Container, Row, Col, Card, Form, Table, Button, Modal
 } from "react-bootstrap";
 
-function Purchase(props) {
+function BusinessType(props) {
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -36,7 +35,7 @@ function Purchase(props) {
                 <Table bordered hover responsive>
                   <thead>
                     <tr>
-                      <th width="50px">#</th>
+                      <th width="50px">Sl</th>
                       <th>Date</th>
                       <th>Name</th>
                       <th width="100px">Action</th>
@@ -75,7 +74,7 @@ function Purchase(props) {
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Business Edit</Modal.Title>
+            <Modal.Title>Edit Business</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form autoComplete="off" onSubmit={handleSubmit}>
@@ -96,4 +95,4 @@ function Purchase(props) {
   );
 }
 
-export default Purchase;
+export default BusinessType;

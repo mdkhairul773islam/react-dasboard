@@ -17,8 +17,8 @@ function Login() {
   const isLoggedin = useSelector((state) => state.authReducer.isLoggedin);
   const loading = useSelector((state) => state.authReducer.loading);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@gamil.com");
+  const [password, setPassword] = useState("admin");
   const [scope] = useState("admin");
 
   const handleSubmit = (e) => {
