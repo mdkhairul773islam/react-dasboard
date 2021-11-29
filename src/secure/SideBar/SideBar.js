@@ -1,8 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Link } from "react-router-dom";
 function SideBar(props) {
   const [menuOpen, setMenuOpen] = useState(props.menuOpen)
+
+  useEffect(() => {
+    var sidebar_nav = document.querySelectorAll(".aside_nav>li>a");
+    if (sidebar_nav) {
+      sidebar_nav.forEach((value) => {
+        value.addEventListener('click', (event) => {
+          if (event.target.closest('li').classList.contains('active')) {
+            event.target.closest('li').classList.remove('active');
+            if (event.target.nextElementSibling) {
+              event.target.nextElementSibling.style.cssText = ``;
+            }
+          } else {
+            sidebar_nav.forEach((value1) => {
+              value1.parentElement.classList.remove('active');
+              value1.parentElement.lastElementChild.style.cssText = ``;
+            });
+            event.target.closest('li').classList.add('active')
+            if (event.target.nextElementSibling) {
+              event.target.nextElementSibling.style.cssText = `height:${event.target.nextElementSibling.scrollHeight}px`;
+            }
+          }
+        });
+      });
+    }
+  }, [])
+
+
   const menuOpenFn = (e) => {
     setMenuOpen(e.currentTarget.dataset.id);
   }
@@ -21,8 +48,8 @@ function SideBar(props) {
         </Link>
       </div>
 
-      <ul className="aside_nav">
-        <Scrollbars style={{ height: "calc(100vh - 60px)" }} autoHide>
+      <Scrollbars style={{ height: "calc(100vh - 60px)" }} autoHide>
+        <ul className="aside_nav">
           <li data-id="dashboard" className={`dropdown ${menuOpen === 'dashboard' ? 'active' : ''}`} onClick={menuOpenFn}>
             <Link to="/admin">
               <i className="fas fa-tachometer-alt"></i>
@@ -126,8 +153,8 @@ function SideBar(props) {
               </li>
             </ul>
           </li>
-        </Scrollbars>
-      </ul>
+        </ul>
+      </Scrollbars>
     </aside>
   );
 }
