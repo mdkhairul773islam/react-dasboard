@@ -98,21 +98,36 @@ function SideBar(props) {
               </span>
             </Link>
             <ul>
-              <li id="purchase_new">
+              <li>
                 <Link to="/purchase/add">New Purchase</Link>
               </li>
-              <li id="purchase_records">
+              <li>
                 <Link to="/purchase/all">
                   All Purchase
+                </Link>
+              </li>
+              <li>
+                <Link to="#">
+                  Item Wise
+                </Link>
+              </li>
+              <li>
+                <Link to="#">
+                  Purchase Return
+                </Link>
+              </li>
+              <li>
+                <Link to="#">
+                  All Purchase Return
                 </Link>
               </li>
             </ul>
           </li>
 
-          <li data-id="pages" className={`dropdown ${menuOpen === 'pages' ? 'active' : ''}`} onClick={menuOpenFn}>
+          <li data-id="stock-transfer" className={`dropdown ${menuOpen === 'stock-transfer' ? 'active' : ''}`} onClick={menuOpenFn}>
             <Link to="#">
               <i className="fas fa-file-alt"></i>
-              <span className="menu_title">Pages</span>
+              <span className="menu_title">Stock Transfer</span>
               <span className="menu_arrow">
                 <i className="icon ion-ios-arrow-forward right"></i>
                 <i className="icon ion-ios-arrow-down down"></i>
@@ -120,10 +135,10 @@ function SideBar(props) {
             </Link>
             <ul>
               <li id="terms">
-                <Link to="#">Terms and Condition</Link>
+                <Link to="#">Add Transfer</Link>
               </li>
               <li id="privacy">
-                <Link to="#">Privacy policy</Link>
+                <Link to="#">All Transfer</Link>
               </li>
             </ul>
           </li>
@@ -132,6 +147,13 @@ function SideBar(props) {
             <Link to="#">
               <i className="fas fa-layer-group"></i>
               <span className="menu_title">Stock</span>
+            </Link>
+          </li>
+
+          <li data-id="damage-stock" className={`dropdown ${menuOpen === 'damage-stock' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="#">
+              <i className="fas fa-layer-group"></i>
+              <span className="menu_title">Damage Stock</span>
             </Link>
           </li>
 
@@ -145,13 +167,256 @@ function SideBar(props) {
               </span>
             </Link>
             <ul>
-              <li id="sale_new">
-                <Link to="#">Sale new</Link>
+              <li>
+                <Link to="#">Dealer Sale</Link>
               </li>
-              <li id="sale_records">
-                <Link to="#">Records</Link>
+              <li>
+                <Link to="#">Retail Sale</Link>
+              </li>
+              <li>
+                <Link to="#">All Sale</Link>
+              </li>
+              <li>
+                <Link to="#">Datewise Sale</Link>
+              </li>
+              <li>
+                <Link to="#">SR Report</Link>
+              </li>
+              <li>
+                <Link to="#">Sale Return</Link>
+              </li>
+              <li>
+                <Link to="#">All Sale Return</Link>
               </li>
             </ul>
+          </li>
+
+          <li data-id="damage-product" className={`dropdown ${menuOpen === 'damage-product' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="#">
+              <i className="fas fa-cart-arrow-down"></i>
+              <span className="menu_title">Damage Product</span>
+              <span className="menu_arrow">
+                <i className="icon ion-ios-arrow-forward right"></i>
+                <i className="icon ion-ios-arrow-down down"></i>
+              </span>
+            </Link>
+            <ul>
+              <li>
+                <Link to="#">New Damage</Link>
+              </li>
+              <li>
+                <Link to="#">All Damage</Link>
+              </li>
+            </ul>
+          </li>
+
+          <li data-id="area" className={`dropdown ${menuOpen === 'area' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="#">
+              <i className="fas fa-cart-arrow-down"></i>
+              <span className="menu_title">Area</span>
+              <span className="menu_arrow">
+                <i className="icon ion-ios-arrow-forward right"></i>
+                <i className="icon ion-ios-arrow-down down"></i>
+              </span>
+            </Link>
+            <ul>
+              <li>
+                <Link to="#">New Area</Link>
+              </li>
+              <li>
+                <Link to="#">All Area</Link>
+              </li>
+            </ul>
+          </li>
+
+          <li data-id="sr" className={`dropdown ${menuOpen === 'sr' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="#">
+              <i className="fas fa-cart-arrow-down"></i>
+              <span className="menu_title">SR</span>
+              <span className="menu_arrow">
+                <i className="icon ion-ios-arrow-forward right"></i>
+                <i className="icon ion-ios-arrow-down down"></i>
+              </span>
+            </Link>
+            <ul>
+              <li>
+                <Link to="#">New SR</Link>
+              </li>
+              <li>
+                <Link to="#">All SR</Link>
+              </li>
+            </ul>
+          </li>
+
+          <li data-id="company" className={`dropdown ${menuOpen === 'company' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="#">
+              <i className="fas fa-cart-arrow-down"></i>
+              <span className="menu_title">Company</span>
+              <span className="menu_arrow">
+                <i className="icon ion-ios-arrow-forward right"></i>
+                <i className="icon ion-ios-arrow-down down"></i>
+              </span>
+            </Link>
+            <ul>
+              <li>
+                <Link to="#">New Company</Link>
+              </li>
+              <li>
+                <Link to="#">All Company</Link>
+              </li>
+              <li>
+                <Link to="#">New Transaction</Link>
+              </li>
+              <li>
+                <Link to="#">All Transaction</Link>
+              </li>
+            </ul>
+          </li>
+
+          <li data-id="party-sr" className={`dropdown ${menuOpen === 'party-sr' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="#">
+              <i className="fas fa-cart-arrow-down"></i>
+              <span className="menu_title">Party / SR</span>
+              <span className="menu_arrow">
+                <i className="icon ion-ios-arrow-forward right"></i>
+                <i className="icon ion-ios-arrow-down down"></i>
+              </span>
+            </Link>
+            <ul>
+              <li>
+                <Link to="#">New Party / SR</Link>
+              </li>
+              <li>
+                <Link to="#">All Party / SR</Link>
+              </li>
+              <li>
+                <Link to="#">New Transaction</Link>
+              </li>
+              <li>
+                <Link to="#">All Transaction</Link>
+              </li>
+            </ul>
+          </li>
+
+          <li data-id="due-list" className={`dropdown ${menuOpen === 'due-list' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="#">
+              <i className="fas fa-cart-arrow-down"></i>
+              <span className="menu_title">Due List</span>
+              <span className="menu_arrow">
+                <i className="icon ion-ios-arrow-forward right"></i>
+                <i className="icon ion-ios-arrow-down down"></i>
+              </span>
+            </Link>
+            <ul>
+              <li>
+                <Link to="#">Cash Client Due</Link>
+              </li>
+              <li>
+                <Link to="#">Due Collection List</Link>
+              </li>
+              <li>
+                <Link to="#">Dealer Client Due</Link>
+              </li>
+              <li>
+                <Link to="#">Company Due</Link>
+              </li>
+            </ul>
+          </li>
+          <li data-id="product" className={`dropdown ${menuOpen === 'product' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="#">
+              <i className="fas fa-cart-arrow-down"></i>
+              <span className="menu_title">Product</span>
+              <span className="menu_arrow">
+                <i className="icon ion-ios-arrow-forward right"></i>
+                <i className="icon ion-ios-arrow-down down"></i>
+              </span>
+            </Link>
+            <ul>
+              <li>
+                <Link to="#">New Product</Link>
+              </li>
+              <li>
+                <Link to="#">All Product</Link>
+              </li>
+              <li>
+                <Link to="#">Category</Link>
+              </li>
+              <li>
+                <Link to="#">Brand</Link>
+              </li>
+              <li>
+                <Link to="#">Unit</Link>
+              </li>
+            </ul>
+          </li>
+          <li data-id="free-product" className={`dropdown ${menuOpen === 'free-product' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="#">
+              <i className="fas fa-cart-arrow-down"></i>
+              <span className="menu_title">Free Product</span>
+              <span className="menu_arrow">
+                <i className="icon ion-ios-arrow-forward right"></i>
+                <i className="icon ion-ios-arrow-down down"></i>
+              </span>
+            </Link>
+            <ul>
+              <li>
+                <Link to="#">New Product</Link>
+              </li>
+              <li>
+                <Link to="#">All Product</Link>
+              </li>
+            </ul>
+          </li>
+          <li data-id="ledger" className={`dropdown ${menuOpen === 'ledger' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="#">
+              <i className="fas fa-cart-arrow-down"></i>
+              <span className="menu_title">Ledger</span>
+              <span className="menu_arrow">
+                <i className="icon ion-ios-arrow-forward right"></i>
+                <i className="icon ion-ios-arrow-down down"></i>
+              </span>
+            </Link>
+            <ul>
+              <li>
+                <Link to="#">Company Ledger</Link>
+              </li>
+              <li>
+                <Link to="#">Party / SR ledger</Link>
+              </li>
+            </ul>
+          </li>
+          <li data-id="report" className={`dropdown ${menuOpen === 'report' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="#">
+              <i className="fas fa-cart-arrow-down"></i>
+              <span className="menu_title">Report</span>
+              <span className="menu_arrow">
+                <i className="icon ion-ios-arrow-forward right"></i>
+                <i className="icon ion-ios-arrow-down down"></i>
+              </span>
+            </Link>
+            <ul>
+              <li>
+                <Link to="#">Purchase Report</Link>
+              </li>
+              <li>
+                <Link to="#">Purchase Item Report</Link>
+              </li>
+              <li>
+                <Link to="#">Sales Report</Link>
+              </li>
+              <li>
+                <Link to="#">Sales Item Report</Link>
+              </li>
+              <li>
+                <Link to="#">Cash Book</Link>
+              </li>
+            </ul>
+          </li>
+          <li data-id="privilege" className={`dropdown ${menuOpen === 'privilege' ? 'active' : ''}`} onClick={menuOpenFn}>
+            <Link to="#">
+              <i className="fas fa-cart-arrow-down"></i>
+              <span className="menu_title">Privilege</span>
+            </Link>
           </li>
         </ul>
       </Scrollbars>

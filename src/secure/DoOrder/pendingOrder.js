@@ -44,7 +44,7 @@ function PendingOrder(props) {
                                             sm={6}
                                             md={6}
                                             lg={2}
-                                            xl={2}
+                                            xl={3}
                                             xxl={2}
                                             xs={12}
                                         >
@@ -62,7 +62,7 @@ function PendingOrder(props) {
                                             sm={6}
                                             md={6}
                                             lg={2}
-                                            xl={2}
+                                            xl={3}
                                             xxl={2}
                                             xs={12}
                                         >
@@ -80,7 +80,7 @@ function PendingOrder(props) {
                                             sm={6}
                                             md={6}
                                             lg={2}
-                                            xl={2}
+                                            xl={3}
                                             xxl={2}
                                             xs={12}
                                         >
@@ -92,7 +92,7 @@ function PendingOrder(props) {
                                             sm={6}
                                             md={6}
                                             lg={2}
-                                            xl={2}
+                                            xl={3}
                                             xxl={2}
                                             xs={12}
                                         >
@@ -110,7 +110,7 @@ function PendingOrder(props) {
                                             sm={6}
                                             md={6}
                                             lg={2}
-                                            xl={2}
+                                            xl={3}
                                             xxl={2}
                                             xs={12}
                                         >
@@ -127,7 +127,7 @@ function PendingOrder(props) {
                                             sm={6}
                                             md={6}
                                             lg={2}
-                                            xl={2}
+                                            xl={3}
                                             xxl={2}
                                             xs={12}
                                         >
@@ -163,9 +163,10 @@ function PendingOrder(props) {
                                             <th>Date</th>
                                             <th>DO Invoice</th>
                                             <th>Item Name</th>
-                                            <th>Company Name</th>
-                                            <th>Mobile</th>
-                                            <th>Total (TK)</th>
+                                            <th>Qty(ctn)</th>
+                                            <th>Free(ctn)</th>
+                                            <th>Price</th>
+                                            <th>Amount</th>
                                             <th className="text-center w-25">Action</th>
                                         </tr>
                                     </thead>
@@ -176,8 +177,9 @@ function PendingOrder(props) {
                                             <td>548745</td>
                                             <td>Test Item</td>
                                             <td>Test</td>
-                                            <td>01707536945</td>
-                                            <td>100000</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                             <td className="text-center">
                                                 <Link
                                                     to="/do-order/invoice/1"
@@ -202,6 +204,13 @@ function PendingOrder(props) {
                                                     <i className="fa fa-trash" aria-hidden="true"></i>
                                                 </Button>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <th colSpan="4" className="text-end">Total</th>
+                                            <th>0</th>
+                                            <th>0</th>
+                                            <th>0</th>
+                                            <th>0</th>
                                         </tr>
                                     </tbody>
                                 </Table>

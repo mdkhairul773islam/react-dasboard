@@ -44,7 +44,7 @@ function Index(props) {
                                             sm={6}
                                             md={6}
                                             lg={2}
-                                            xl={2}
+                                            xl={3}
                                             xxl={2}
                                             xs={12}
                                         >
@@ -62,7 +62,7 @@ function Index(props) {
                                             sm={6}
                                             md={6}
                                             lg={2}
-                                            xl={2}
+                                            xl={3}
                                             xxl={2}
                                             xs={12}
                                         >
@@ -80,7 +80,7 @@ function Index(props) {
                                             sm={6}
                                             md={6}
                                             lg={2}
-                                            xl={2}
+                                            xl={3}
                                             xxl={2}
                                             xs={12}
                                         >
@@ -92,7 +92,7 @@ function Index(props) {
                                             sm={6}
                                             md={6}
                                             lg={2}
-                                            xl={2}
+                                            xl={3}
                                             xxl={2}
                                             xs={12}
                                         >
@@ -110,7 +110,7 @@ function Index(props) {
                                             sm={6}
                                             md={6}
                                             lg={2}
-                                            xl={2}
+                                            xl={3}
                                             xxl={2}
                                             xs={12}
                                         >
@@ -127,7 +127,7 @@ function Index(props) {
                                             sm={6}
                                             md={6}
                                             lg={2}
-                                            xl={2}
+                                            xl={3}
                                             xxl={2}
                                             xs={12}
                                         >
