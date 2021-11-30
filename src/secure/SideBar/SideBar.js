@@ -333,19 +333,22 @@ function SideBar(props) {
             </Link>
             <ul>
               <li>
-                <Link to="#">New Product</Link>
+                <Link to="/product/add">New Product</Link>
               </li>
               <li>
-                <Link to="#">All Product</Link>
+                <Link to="/product/all">All Product</Link>
               </li>
               <li>
-                <Link to="#">Category</Link>
+                <Link to="/product/category/">Category</Link>
               </li>
               <li>
-                <Link to="#">Brand</Link>
+                <Link to="/product/subcategory">Subcategory</Link>
               </li>
               <li>
-                <Link to="#">Unit</Link>
+                <Link to="/product/brand">Brand</Link>
+              </li>
+              <li>
+                <Link to="/product/unit">Unit</Link>
               </li>
             </ul>
           </li>
