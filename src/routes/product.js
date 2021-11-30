@@ -17,7 +17,8 @@ const Product = [
     <ProtectedRoute path="/product/category" component={Category} key="category" />,
     <ProtectedRoute path="/product/subcategory" component={Subcategory} key="subcategory" />,
     <ProtectedRoute path="/product/brand" component={Brand} key="brand" />,
-    <ProtectedRoute path="/product/unit" component={Unit} key="unit" />
+    <ProtectedRoute path="/product/unit" component={Unit} key="unit" />,
+    <ProtectedRoute path="/product/unit/edit:id" component={Unit} key="unitEdit" />
 ];
 
 export default Product;
