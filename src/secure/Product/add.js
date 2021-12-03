@@ -42,7 +42,7 @@ function Add(props) {
                     <Col>
                         <Card>
                             <Card.Header as="h4" className="fw-bold">
-                                Product Create
+                                New Product
                             </Card.Header>
                             <Card.Body>
                                 <Form>
@@ -50,11 +50,11 @@ function Add(props) {
 
                                         <Col className="mb-3" md={4} lg={4} xl={4} xxl={4} xs={12}>
                                             <Form.Label>Name <span className="text-danger">*</span></Form.Label>
-                                            <Form.Control type="text" name="name" placeholder="Product Name" />
+                                            <Form.Control type="text" name="name" placeholder="Product Name" required />
                                         </Col>
 
                                         <Col className="mb-3" md={4} lg={4} xl={4} xxl={4} xs={12}>
-                                            <Form.Label>Category</Form.Label>
+                                            <Form.Label>Category <span className="text-danger">*</span> </Form.Label>
                                             <Select
                                                 name="category"
                                                 type="text"
@@ -62,12 +62,13 @@ function Add(props) {
                                                 isClearable={true}
                                                 isSearchable={true}
                                                 placeholder="Chose Category"
+                                                required
                                             >
                                             </Select>
                                         </Col>
 
                                         <Col md={4} lg={4} xl={4} xxl={4} xs={12}>
-                                            <Form.Label>Subcategory </Form.Label>
+                                            <Form.Label>Subcategory <span className="text-danger">*</span> </Form.Label>
                                             <Select
                                                 name="subcategory"
                                                 type="text"
@@ -75,6 +76,7 @@ function Add(props) {
                                                 isClearable={true}
                                                 isSearchable={true}
                                                 placeholder="Chose Subcategory"
+                                                required
                                             >
                                             </Select>
                                         </Col>
@@ -84,7 +86,7 @@ function Add(props) {
                                     <Form.Group as={Row} className="mb-3">
 
                                         <Col className="mb-3" md={4} lg={4} xl={4} xxl={4} xs={12}>
-                                            <Form.Label>Brand </Form.Label>
+                                            <Form.Label>Brand <span className="text-danger">*</span> </Form.Label>
                                             <Select
                                                 name="brand"
                                                 type="text"
@@ -92,6 +94,7 @@ function Add(props) {
                                                 isClearable={true}
                                                 isSearchable={true}
                                                 placeholder="Chose Brand"
+                                                required
                                             >
                                             </Select>
                                         </Col>
@@ -111,7 +114,7 @@ function Add(props) {
                                     <Form.Group as={Row} className="mb-3">
 
                                         <Col md={4} lg={4} xl={4} xxl={4} xs={12}>
-                                            <Form.Label>Unit </Form.Label>
+                                            <Form.Label>Unit <span className="text-danger">*</span> </Form.Label>
                                             <Select
                                                 name="unit"
                                                 type="text"
@@ -119,6 +122,7 @@ function Add(props) {
                                                 isClearable={true}
                                                 isSearchable={true}
                                                 placeholder="Chose Unit"
+                                                required
                                             >
                                             </Select>
                                         </Col>
