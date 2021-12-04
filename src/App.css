@@ -11,7 +11,7 @@ ul {
 /* React Data Table  */
 .rdt_TableCol,
 .rdt_TableHeader {
-  background-color: #2a378b;
+  background-color: #303f9f;
   color: #fff;
   font-weight: 800;
   border-top: 1px solid rgba(0, 0, 0, 0.12);

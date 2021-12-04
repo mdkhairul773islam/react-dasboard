@@ -74,7 +74,7 @@ function BusinessType(props) {
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Edit Business</Modal.Title>
+            <Modal.Title as="h5">Edit Business</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form autoComplete="off" onSubmit={handleSubmit}>

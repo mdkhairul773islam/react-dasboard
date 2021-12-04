@@ -1,14 +1,15 @@
 import { React } from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
+import CategoryList from "../../secure/Product/categoryList";
 import {
     Container,
     Row,
     Col,
     Card,
     Form,
-    Table,
-    Button,
+    Button
+
 } from "react-bootstrap";
 
 
@@ -23,16 +24,15 @@ function Category(props) {
                     </div>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col sm={12} className="mb-4">
                         <Card>
                             <Card.Header as="h4" className="fw-bold">
-                                Category
+                                New Category
                             </Card.Header>
                             <Card.Body>
                                 <Form autoComplete="off">
-                                    <Row>
-                                        <Col
-                                            className="mb-3"
+                                    <Row className="justify-content-md-start">
+                                        <Col className="mb-3"
                                             sm={6}
                                             md={6}
                                             lg={3}
@@ -40,11 +40,9 @@ function Category(props) {
                                             xxl={3}
                                             xs={12}
                                         >
-                                            <Form.Control placeholder="Invoice No" />
+                                            <Form.Control placeholder="Category Name" />
                                         </Col>
-
                                         <Col
-                                            className="mb-3"
                                             sm={6}
                                             md={6}
                                             lg={3}
@@ -52,91 +50,24 @@ function Category(props) {
                                             xxl={3}
                                             xs={12}
                                         >
-                                            <Form.Control placeholder="Invoice No" />
-
-                                        </Col>
-
-                                        <Col
-                                            className="mb-3"
-                                            sm={6}
-                                            md={6}
-                                            lg={3}
-                                            xl={3}
-                                            xxl={3}
-                                            xs={12}
-                                        >
-                                            <Form.Control placeholder="Invoice No" />
-                                        </Col>
-
-                                        <Col
-                                            className="mb-3"
-                                            sm={6}
-                                            md={6}
-                                            lg={3}
-                                            xl={3}
-                                            xxl={3}
-                                            xs={12}
-                                        >
-                                            <Form.Control placeholder="Invoice No" />
-                                        </Col>
-                                    </Row>
-                                    <hr />
-                                    <Row>
-                                        <Col>
-                                            <Table bordered hover responsive>
-                                                <thead>
-                                                    <tr>
-                                                        <th>SL</th>
-                                                        <th>Product Name</th>
-                                                        <th>Pack Size</th>
-                                                        <th>Qty(ctn)</th>
-                                                        <th>Free(ctn)</th>
-                                                        <th>Pending Qty.</th>
-                                                        <th>Free Qty.</th>
-                                                        <th>P.Price (TK)</th>
-                                                        <th>Total (TK)</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Biscony Mogol Cookise</td>
-                                                        <td>945405</td>
-                                                        <td>27-Oct-2021</td>
-                                                        <td>
-                                                            <Form.Control type="number" placeholder="0" />
-                                                        </td>
-                                                        <td>
-                                                            <Form.Control type="number" placeholder="0" />
-                                                        </td>
-                                                        <td>
-                                                            <Form.Control type="number" placeholder="0" />
-                                                        </td>
-                                                        <td>
-                                                            <Form.Control type="number" placeholder="0" />
-                                                        </td>
-                                                        <td>
-                                                            <Form.Control type="number" placeholder="0" />
-                                                        </td>
-                                                        <td className="text-center">
-                                                            <Button variant="danger" type="button" size="sm">
-                                                                X
-                                                            </Button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </Table>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col className="text-end">
                                             <Button variant="primary" type="submit">
-                                                Save
+                                                Submit
                                             </Button>
                                         </Col>
                                     </Row>
                                 </Form>
+                            </Card.Body>
+                            <Card.Footer className="text-muted">&nbsp;</Card.Footer>
+                        </Card>
+                    </Col>
+
+                    <Col>
+                        <Card>
+                            <Card.Header as="h4" className="fw-bold">
+                                Category List
+                            </Card.Header>
+                            <Card.Body>
+                                <CategoryList />
                             </Card.Body>
                             <Card.Footer className="text-muted">&nbsp;</Card.Footer>
                         </Card>

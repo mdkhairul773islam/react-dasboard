@@ -31,7 +31,7 @@ function Unit(props) {
                             </Card.Header>
                             <Card.Body>
                                 <Form autoComplete="off">
-                                    <Row className="justify-content-md-center">
+                                    <Row className="justify-content-md-start">
                                         <Col className="mb-3"
                                             sm={6}
                                             md={6}
@@ -51,7 +51,7 @@ function Unit(props) {
                                             xs={12}
                                         >
                                             <Button variant="primary" type="submit">
-                                                Save
+                                                Submit
                                             </Button>
                                         </Col>
                                     </Row>

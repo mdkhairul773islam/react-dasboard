@@ -13,38 +13,31 @@ function Index(props) {
   const columns = [
     {
       name: "Name",
-      selector: (row) => row.title,
-      action: (row) => row.action,
+      selector: (row) => row.title
     },
     {
       name: "Category",
-      selector: (row) => row.year,
-      action: (row) => row.action,
+      selector: (row) => row.year
     },
     {
       name: "Subcategory",
-      selector: (row) => row.year,
-      action: (row) => row.action,
+      selector: (row) => row.year
     },
     {
       name: "Brand",
-      selector: (row) => row.year,
-      action: (row) => row.action,
+      selector: (row) => row.year
     },
     {
       name: "Purchase Price",
-      selector: (row) => row.year,
-      action: (row) => row.action,
+      selector: (row) => row.year
     },
     {
       name: "Sale Price",
-      selector: (row) => row.year,
-      action: (row) => row.action,
+      selector: (row) => row.year
     },
     {
       name: "Unit",
-      selector: (row) => row.year,
-      action: (row) => row.action,
+      selector: (row) => row.year
     },
 
     {
