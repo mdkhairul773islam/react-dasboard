@@ -1,8 +1,9 @@
 import { React } from "react";
+import { Link } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
 import KitchenSinkStory from "react-data-table-component";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 function Index(props) {
   const handleButtonClick = (e) => {
@@ -11,42 +12,71 @@ function Index(props) {
 
   const columns = [
     {
-      name: "Title",
+      name: "Name",
       selector: (row) => row.title,
       action: (row) => row.action,
     },
     {
-      name: "Year",
+      name: "Category",
       selector: (row) => row.year,
       action: (row) => row.action,
     },
     {
+      name: "Subcategory",
+      selector: (row) => row.year,
+      action: (row) => row.action,
+    },
+    {
+      name: "Brand",
+      selector: (row) => row.year,
+      action: (row) => row.action,
+    },
+    {
+      name: "Purchase Price",
+      selector: (row) => row.year,
+      action: (row) => row.action,
+    },
+    {
+      name: "Sale Price",
+      selector: (row) => row.year,
+      action: (row) => row.action,
+    },
+    {
+      name: "Unit",
+      selector: (row) => row.year,
+      action: (row) => row.action,
+    },
+
+    {
       name: "Action",
       cell: (row) => (
         <>
-          <button
+          <Link
+            to="/product/view/1"
             className="btn btn-primary btn-sm m-1"
             onClick={handleButtonClick}
             id={row.id}
           >
-            View
-          </button>
-          <button
+            <i className="fas fa-eye fa-sm"></i>
+          </Link>
+          <Link
+            to="/product/edit/2"
             className="btn btn-success btn-sm m-1"
             onClick={handleButtonClick}
             id={row.id}
           >
-            Edit
-          </button>
+            <i className="fas fa-pen fa-sm"></i>
+          </Link>
           <button
             className="btn btn-danger btn-sm m-1"
             onClick={handleButtonClick}
             id={row.id}
           >
-            Delete
+            <i className="fas fa-trash fa-sm"></i>
           </button>
         </>
       ),
+      className: 'action-width'
     },
   ];
 
@@ -55,6 +85,11 @@ function Index(props) {
       id: 1,
       title: "Lejuice",
       year: "20",
+    },
+    {
+      id: 11,
+      title: "Beetlejuice",
+      year: "1988",
     },
     {
       id: 112,
@@ -76,6 +111,9 @@ function Index(props) {
             <Card>
               <Card.Header as="h4" className="fw-bold">
                 All Product
+                <Button to="#" className="btn btn-light btn-xl float-end px-1 py-0" onClick={() => window.print()}>
+                  <i className="fa fa-print" aria-hidden="true"></i>
+                </Button>
               </Card.Header>
               <Card.Body>
                 <KitchenSinkStory
