@@ -1,5 +1,4 @@
-import { React, useState } from "react";
-
+import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 
 import KitchenSinkStory from "react-data-table-component";

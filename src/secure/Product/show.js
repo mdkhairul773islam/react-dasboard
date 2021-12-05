@@ -30,7 +30,7 @@ function Show(props) {
                                 </Link>
                             </Card.Header>
                             <Card.Body>
-                                <Table bordered striped hover responsive>
+                                <Table bordered striped hover responsive className="custom-table">
                                     <thead>
                                         <tr>
                                             <th>SL</th>

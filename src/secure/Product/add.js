@@ -1,4 +1,4 @@
-import { React } from "react";
+import * as React from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
 import {
@@ -11,13 +11,43 @@ import {
   Button,
 } from "react-bootstrap";
 import Select from "react-select";
-import { useForm } from 'react-hook-form';
+
+import { useForm } from "react-hook-form";
+
+const platforms = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" }
+];
 
 function Add(props) {
 
-  const { register, handleSubmit } = useForm();
+  const { setValue, register, handleSubmit } = useForm({
+    defaultValues: {
+      purchase_price: '0.00',
+      sale_price: '0.00'
+    }
+  });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = data => {
+    console.log(data);
+  };
+
+  const handleCategoryChange = (e) => {
+    setValue("category", e.value);
+  };
+
+  const handleSubCategoryChange = (e) => {
+    setValue("subcategory", e.value);
+  };
+
+  const handleBrandChange = (e) => {
+    setValue("brand", e.value);
+  };
+
+  const handleUnitChange = (e) => {
+    setValue("unit", e.value);
+  };
 
 
   const options = [
@@ -60,7 +90,7 @@ function Add(props) {
                       <Form.Control
                         type="text"
                         name="name"
-                        {...register('name')}
+                        {...register('name', { required: true })}
                         placeholder="Product Name"
                         required
                       />
@@ -72,7 +102,8 @@ function Add(props) {
                       </Form.Label>
                       <Select
                         name="category"
-                        {...register("category")}
+                        onChange={handleCategoryChange}
+                        ref={e => { register('category', { required: true }) }}
                         options={options}
                         isClearable={true}
                         isSearchable={true}
@@ -87,7 +118,8 @@ function Add(props) {
                       </Form.Label>
                       <Select
                         name="subcategory"
-                        {...register('subcategory')}
+                        onChange={handleSubCategoryChange}
+                        ref={e => { register('subcategory', { required: true }) }}
                         type="text"
                         options={options}
                         isClearable={true}
@@ -105,7 +137,8 @@ function Add(props) {
                       </Form.Label>
                       <Select
                         name="brand"
-                        {...register('brand')}
+                        onChange={handleBrandChange}
+                        ref={e => { register('brand', { required: true }) }}
                         type="text"
                         options={options}
                         isClearable={true}
@@ -120,7 +153,7 @@ function Add(props) {
                       <Form.Control
                         type="number"
                         name="purchase_price"
-                        {...register('purchase_price')}
+                        {...register('purchase_price', { required: true })}
                         placeholder="0.0"
                       />
                     </Col>
@@ -130,7 +163,7 @@ function Add(props) {
                       <Form.Control
                         type="number"
                         name="sale_price"
-                        {...register('sale_price')}
+                        {...register('sale_price', { required: true })}
                         placeholder="0.0"
                       />
                     </Col>
@@ -143,7 +176,8 @@ function Add(props) {
                       </Form.Label>
                       <Select
                         name="unit"
-                        {...register('unit')}
+                        onChange={handleUnitChange}
+                        ref={e => { register('unit', { required: true }) }}
                         type="text"
                         options={optionsUnit}
                         isClearable={true}
@@ -153,7 +187,8 @@ function Add(props) {
                       ></Select>
                     </Col>
 
-                    <Col className="mt-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
+
+                    {/* <Col className="mt-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
                       <FormCheck.Label className="me-2 mt-4">
                         Status{" "}
                       </FormCheck.Label>
@@ -161,7 +196,6 @@ function Add(props) {
                         inline
                         label="Available"
                         name="status"
-                        {...register('status')}
                         type="radio"
                         checked
                         id="one"
@@ -169,12 +203,11 @@ function Add(props) {
                       <Form.Check
                         inline
                         name="status"
-                        {...register('status')}
                         label="Not Available"
                         type="radio"
                         id="two"
                       />
-                    </Col>
+                    </Col> */}
                   </Form.Group>
 
                   <Button variant="primary" type="submit">

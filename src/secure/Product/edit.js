@@ -1,4 +1,4 @@
-import { React } from "react";
+import React from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
 import {

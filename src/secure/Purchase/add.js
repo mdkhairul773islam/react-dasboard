@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Purchase/navbar";
 import {
