@@ -11,8 +11,15 @@ import {
   Button,
 } from "react-bootstrap";
 import Select from "react-select";
+import { useForm } from 'react-hook-form';
 
 function Add(props) {
+
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => console.log(data);
+
+
   const options = [
     { value: "chocolate", label: "Chocolate" },
     { value: "strawberry", label: "Strawberry" },
@@ -44,7 +51,7 @@ function Add(props) {
                 New Product
               </Card.Header>
               <Card.Body>
-                <Form>
+                <Form onSubmit={handleSubmit(onSubmit)}>
                   <Form.Group as={Row} className="mb-2">
                     <Col className="mb-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
                       <Form.Label>
@@ -53,6 +60,7 @@ function Add(props) {
                       <Form.Control
                         type="text"
                         name="name"
+                        {...register('name')}
                         placeholder="Product Name"
                         required
                       />
@@ -64,7 +72,7 @@ function Add(props) {
                       </Form.Label>
                       <Select
                         name="category"
-                        type="text"
+                        {...register("category")}
                         options={options}
                         isClearable={true}
                         isSearchable={true}
@@ -79,6 +87,7 @@ function Add(props) {
                       </Form.Label>
                       <Select
                         name="subcategory"
+                        {...register('subcategory')}
                         type="text"
                         options={options}
                         isClearable={true}
@@ -96,6 +105,7 @@ function Add(props) {
                       </Form.Label>
                       <Select
                         name="brand"
+                        {...register('brand')}
                         type="text"
                         options={options}
                         isClearable={true}
@@ -110,6 +120,7 @@ function Add(props) {
                       <Form.Control
                         type="number"
                         name="purchase_price"
+                        {...register('purchase_price')}
                         placeholder="0.0"
                       />
                     </Col>
@@ -119,6 +130,7 @@ function Add(props) {
                       <Form.Control
                         type="number"
                         name="sale_price"
+                        {...register('sale_price')}
                         placeholder="0.0"
                       />
                     </Col>
@@ -131,6 +143,7 @@ function Add(props) {
                       </Form.Label>
                       <Select
                         name="unit"
+                        {...register('unit')}
                         type="text"
                         options={optionsUnit}
                         isClearable={true}
@@ -148,6 +161,7 @@ function Add(props) {
                         inline
                         label="Available"
                         name="status"
+                        {...register('status')}
                         type="radio"
                         checked
                         id="one"
@@ -155,6 +169,7 @@ function Add(props) {
                       <Form.Check
                         inline
                         name="status"
+                        {...register('status')}
                         label="Not Available"
                         type="radio"
                         id="two"
