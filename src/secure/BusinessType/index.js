@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import {
-  Container, Row, Col, Card, Form, Table, Button, Modal
+  Container,
+  Row,
+  Col,
+  Card,
+  Form,
+  Table,
+  Button,
+  Modal,
 } from "react-bootstrap";
 
 function BusinessType(props) {
-
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -13,10 +19,10 @@ function BusinessType(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("ok");
-  }
+  };
 
   return (
-    <AdminWraper menuOpen='business_type'>
+    <AdminWraper menuOpen="business_type">
       <Container className="p-0" fluid>
         <Row>
           <Col>
@@ -32,7 +38,7 @@ function BusinessType(props) {
                 </Button>
               </Card.Header>
               <Card.Body>
-                <Table bordered hover responsive>
+                <Table bordered hover responsive className="custom-table">
                   <thead>
                     <tr>
                       <th width="50px">Sl</th>

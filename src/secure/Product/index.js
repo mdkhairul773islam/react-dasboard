@@ -122,6 +122,7 @@ function Index(props) {
                   pagination
                   pointerOnHover
                   responsive
+                  striped
                 />
               </Card.Body>
               <Card.Footer className="text-muted">&nbsp;</Card.Footer>

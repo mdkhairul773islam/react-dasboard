@@ -8,6 +8,10 @@ ul {
   outline: none !important;
   box-shadow: none !important;
 }
+.custom-table thead th {
+  background-color: #303f9f;
+  color: #fff;
+}
 
 /* React Data Table  */
 
@@ -23,7 +27,8 @@ ul {
 
 .rdt_TableCol:last-child,
 .rdt_TableHeader:last-child {
-  width: 150px;
+  width: 100%;
+  max-width: 150px;
   min-width: 150px;
 }
 .rdt_TableCell {
@@ -33,7 +38,7 @@ ul {
   border-left: 1px solid rgba(0, 0, 0, 0.12);
 }
 .rdt_TableCell:last-child {
-  width: 150px;
+  width: 100%;
+  max-width: 150px;
   min-width: 150px;
-  flex-wrap: wrap;
 }
