@@ -28,7 +28,7 @@ function Purchase(props) {
   ];
 
   return (
-    <AdminWraper menuOpen='purchase'>
+    <AdminWraper menuOpen="purchase">
       <Container className="p-0" fluid>
         <Row>
           <div className="body_nav">
@@ -40,7 +40,8 @@ function Purchase(props) {
             <Card>
               <Card.Header as="h4" className="fw-bold">
                 Edit Purchase
-                <Link to="/purchase/invoice/1"
+                <Link
+                  to="/purchase/invoice/1"
                   className="btn btn-light btn-lg float-end p-0"
                   type="button"
                 >
@@ -157,7 +158,13 @@ function Purchase(props) {
                   <hr />
                   <Row>
                     <Col>
-                      <Table bordered hover responsive>
+                      <Table
+                        bordered
+                        striped
+                        hover
+                        responsive
+                        className="custom-table"
+                      >
                         <thead>
                           <tr>
                             <th>#</th>

@@ -76,7 +76,7 @@ function Purchase(props) {
   };
 
   return (
-    <AdminWraper menuOpen='purchase'>
+    <AdminWraper menuOpen="purchase">
       <Container className="p-0" fluid>
         <Row>
           <div className="body_nav">
@@ -204,7 +204,13 @@ function Purchase(props) {
                   <hr />
                   <Row>
                     <Col>
-                      <Table bordered hover responsive>
+                      <Table
+                        bordered
+                        striped
+                        hover
+                        responsive
+                        className="custom-table"
+                      >
                         <thead>
                           <tr>
                             <th>#</th>

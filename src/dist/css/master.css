@@ -802,8 +802,9 @@ img {
 .body_content .table th,
 .body_content .table td {
   vertical-align: middle;
-  font-size: 15px;
-  padding: 10px 8px;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 15px 8px;
 }
 .body_content .table .img {
   padding: 2px 8px;
