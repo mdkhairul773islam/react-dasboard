@@ -8,7 +8,9 @@ ul {
   outline: none !important;
   box-shadow: none !important;
 }
+
 /* React Data Table  */
+
 .rdt_TableCol,
 .rdt_TableHeader {
   background-color: #303f9f;
@@ -18,9 +20,20 @@ ul {
   border-left: 1px solid #fff;
   border-right: 1px solid rgba(0, 0, 0, 0.12);
 }
+
+.rdt_TableCol:last-child,
+.rdt_TableHeader:last-child {
+  width: 150px;
+  min-width: 150px;
+}
 .rdt_TableCell {
   border-right: 1px solid rgba(0, 0, 0, 0.12);
 }
 .rdt_TableCell:first-child {
   border-left: 1px solid rgba(0, 0, 0, 0.12);
+}
+.rdt_TableCell:last-child {
+  width: 150px;
+  min-width: 150px;
+  flex-wrap: wrap;
 }

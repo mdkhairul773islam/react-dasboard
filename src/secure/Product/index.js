@@ -13,31 +13,31 @@ function Index(props) {
   const columns = [
     {
       name: "Name",
-      selector: (row) => row.title
+      selector: (row) => row.title,
     },
     {
       name: "Category",
-      selector: (row) => row.year
+      selector: (row) => row.year,
     },
     {
       name: "Subcategory",
-      selector: (row) => row.year
+      selector: (row) => row.year,
     },
     {
       name: "Brand",
-      selector: (row) => row.year
+      selector: (row) => row.year,
     },
     {
       name: "Purchase Price",
-      selector: (row) => row.year
+      selector: (row) => row.year,
     },
     {
       name: "Sale Price",
-      selector: (row) => row.year
+      selector: (row) => row.year,
     },
     {
       name: "Unit",
-      selector: (row) => row.year
+      selector: (row) => row.year,
     },
 
     {
@@ -69,7 +69,7 @@ function Index(props) {
           </button>
         </>
       ),
-      className: 'action-width'
+      className: "action-width",
     },
   ];
 
@@ -104,7 +104,11 @@ function Index(props) {
             <Card>
               <Card.Header as="h4" className="fw-bold">
                 All Product
-                <Button to="#" className="btn btn-light btn-xl float-end px-1 py-0" onClick={() => window.print()}>
+                <Button
+                  to="#"
+                  className="btn btn-light btn-xl float-end px-1 py-0"
+                  onClick={() => window.print()}
+                >
                   <i className="fa fa-print" aria-hidden="true"></i>
                 </Button>
               </Card.Header>
@@ -118,9 +122,6 @@ function Index(props) {
                   pagination
                   pointerOnHover
                   responsive
-                  selectableRows
-                  selectableRowsHighlight
-                  selectableRowsRadio="checkbox"
                 />
               </Card.Body>
               <Card.Footer className="text-muted">&nbsp;</Card.Footer>
