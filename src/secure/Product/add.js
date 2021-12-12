@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
 import {
@@ -14,13 +14,9 @@ import Select from "react-select";
 
 import { useForm } from "react-hook-form";
 
-const platforms = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" }
-];
 
 function Add(props) {
+  const [product, setProduct] = useState([]);
 
   const { setValue, register, handleSubmit } = useForm({
     defaultValues: {
@@ -28,10 +24,6 @@ function Add(props) {
       sale_price: '0.00'
     }
   });
-
-  const onSubmit = data => {
-    console.log(data);
-  };
 
   const handleCategoryChange = (e) => {
     setValue("category", e.value);
@@ -49,6 +41,9 @@ function Add(props) {
     setValue("unit", e.value);
   };
 
+  const onSubmit = data => {
+    setProduct(data);
+  };
 
   const options = [
     { value: "chocolate", label: "Chocolate" },
@@ -65,6 +60,10 @@ function Add(props) {
     { value: "bg", label: "Bg" },
     { value: "pcs", label: "Pcs" },
   ];
+
+  useEffect(() => {
+    console.log(product);
+  }, [product])
 
   return (
     <AdminWraper menuOpen="product">
@@ -209,7 +208,7 @@ function Add(props) {
                       />
                     </Col> */}
                   </Form.Group>
-
+                  <hr />
                   <Button variant="primary" type="submit">
                     Submit
                   </Button>
