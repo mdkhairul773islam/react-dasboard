@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
+
+import { DataService } from "../../config/dataService/dataService";
+
 import {
     Container,
     Row,
@@ -14,6 +19,14 @@ import {
 
 
 function Unit(props) {
+    const [unit, setUnit] = useState("");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await DataService.get("/dashboard");
+        console.log(res.data);
+        console.log(unit);
+    }
 
     return (
         <AdminWraper menuOpen='product'>
@@ -40,7 +53,8 @@ function Unit(props) {
                                             xxl={3}
                                             xs={12}
                                         >
-                                            <Form.Control placeholder="Unit Name" />
+                                            <Form.Control value={unit}
+                                                onChange={(e) => setUnit(e.target.value)} placeholder="Unit Name" />
                                         </Col>
                                         <Col
                                             sm={6}
@@ -50,8 +64,8 @@ function Unit(props) {
                                             xxl={3}
                                             xs={12}
                                         >
-                                            <Button variant="primary" type="submit">
-                                                Submit
+                                            <Button variant="primary" type="submit" onClick={handleSubmit}>
+                                                Submit sd
                                             </Button>
                                         </Col>
                                     </Row>
@@ -108,5 +122,12 @@ function Unit(props) {
         </AdminWraper>
     );
 }
+Unit.defaultProps = {
+    unit: '',
+};
+
+Unit.propTypes = {
+    unit: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+};
 
 export default Unit;
