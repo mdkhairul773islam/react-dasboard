@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from 'prop-types';
+import { useForm } from "react-hook-form";
 
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
@@ -19,14 +19,40 @@ import {
 
 
 function Unit(props) {
+
     const [unit, setUnit] = useState("");
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const res = await DataService.get("/dashboard");
-        console.log(res.data);
-        console.log(unit);
-    }
+    const { register, handleSubmit } = useForm({
+        defaultValues: {
+            unit: '',
+        }
+    });
+
+    const onSubmit = async (input, e) => {
+
+        try {
+            const res = await DataService.get("/dashboard");
+            console.log(res.data);
+        } catch (error) {
+            console.log("error");
+        }
+        e.target.reset();
+    };
+
+
+    /*     const handleSubmit = async (e) => {
+            e.preventDefault();
+    
+            try {
+                const res = await DataService.get("/dashboard");
+                console.log(res.data);
+                console.log(unit);
+            } catch (error) {
+                console.log("error");
+            }
+            //const res = await DataService.get("/dashboard");
+    
+        } */
 
     return (
         <AdminWraper menuOpen='product'>
@@ -43,7 +69,7 @@ function Unit(props) {
                                 Unit
                             </Card.Header>
                             <Card.Body>
-                                <Form autoComplete="off">
+                                <Form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
                                     <Row className="justify-content-md-start">
                                         <Col className="mb-3"
                                             sm={6}
@@ -53,8 +79,9 @@ function Unit(props) {
                                             xxl={3}
                                             xs={12}
                                         >
-                                            <Form.Control value={unit}
-                                                onChange={(e) => setUnit(e.target.value)} placeholder="Unit Name" />
+                                            <Form.Control name="unit" required
+                                                {...register('unit', { required: true })}
+                                                placeholder="Unit Name" />
                                         </Col>
                                         <Col
                                             sm={6}
@@ -64,8 +91,8 @@ function Unit(props) {
                                             xxl={3}
                                             xs={12}
                                         >
-                                            <Button variant="primary" type="submit" onClick={handleSubmit}>
-                                                Submit sd
+                                            <Button variant="primary" type="submit">
+                                                Submit
                                             </Button>
                                         </Col>
                                     </Row>
@@ -122,12 +149,5 @@ function Unit(props) {
         </AdminWraper>
     );
 }
-Unit.defaultProps = {
-    unit: '',
-};
-
-Unit.propTypes = {
-    unit: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-};
 
 export default Unit;

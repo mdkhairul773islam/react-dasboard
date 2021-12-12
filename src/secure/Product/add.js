@@ -18,7 +18,7 @@ function Add(props) {
   const [product, setProduct] = useState([]);
 
   const { setValue, register, handleSubmit } = useForm({
-    defaultValues: { 
+    defaultValues: {
       purchase_price: '0.00',
       sale_price: '0.00'
     }
