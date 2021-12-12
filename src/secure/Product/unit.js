@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
@@ -20,7 +20,7 @@ import {
 
 function Unit(props) {
 
-    const [unit, setUnit] = useState("");
+    const [unitList, setUnitList] = useState([]);
 
     const { register, handleSubmit } = useForm({
         defaultValues: {
@@ -28,11 +28,11 @@ function Unit(props) {
         }
     });
 
-    const onSubmit = async (input, e) => {
-
+    const onSubmit = async (data, e) => {
         try {
-            const res = await DataService.get("/dashboard");
-            console.log(res.data);
+            const res = await DataService.post("unit-store", data);
+            setUnitList(res.data);
+
         } catch (error) {
             console.log("error");
         }
@@ -53,6 +53,18 @@ function Unit(props) {
             //const res = await DataService.get("/dashboard");
     
         } */
+
+    useEffect(() => {
+        async function getUnit() {
+            try {
+                const res = await DataService.get("unit");
+                setUnitList(res.data);
+            } catch (error) {
+                console.log("error");
+            }
+        }
+        getUnit();
+    }, [])
 
     return (
         <AdminWraper menuOpen='product'>
@@ -108,6 +120,7 @@ function Unit(props) {
                                 Unit List
                             </Card.Header>
                             <Card.Body>
+
                                 <Table bordered hover responsive>
                                     <thead>
                                         <tr>
@@ -117,27 +130,29 @@ function Unit(props) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td className="text-center">
-                                                <Link
-                                                    to="/product/unit/edit/1"
-                                                    className="mx-1 btn btn-success btn-sm"
-                                                    type="button"
-                                                >
-                                                    <i className="fa fa-pen fa-sm" aria-hidden="true"></i>
-                                                </Link>
-                                                <Button
-                                                    className="mx-1"
-                                                    variant="danger"
-                                                    type="button"
-                                                    size="sm"
-                                                >
-                                                    <i className="fa fa-trash" aria-hidden="true"></i>
-                                                </Button>
-                                            </td>
-                                        </tr>
+                                        {unitList.map((unit, index) => (
+                                            <tr key={index}>
+                                                <td>{(index + 1)}</td>
+                                                <td>{unit.unit}</td>
+                                                <td className="text-center">
+                                                    <Link
+                                                        to={`/product/unit/edit/${unit.id}`}
+                                                        className="mx-1 btn btn-success btn-sm"
+                                                        type="button"
+                                                    >
+                                                        <i className="fa fa-pen fa-sm" aria-hidden="true"></i>
+                                                    </Link>
+                                                    <Button
+                                                        className="mx-1"
+                                                        variant="danger"
+                                                        type="button"
+                                                        size="sm"
+                                                    >
+                                                        <i className="fa fa-trash" aria-hidden="true"></i>
+                                                    </Button>
+                                                </td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </Table>
                             </Card.Body>
@@ -146,7 +161,7 @@ function Unit(props) {
                     </Col>
                 </Row>
             </Container>
-        </AdminWraper>
+        </AdminWraper >
     );
 }
 
