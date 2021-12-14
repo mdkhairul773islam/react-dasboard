@@ -1,8 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Form, Button, Modal } from "react-bootstrap";
 import KitchenSinkStory from "react-data-table-component";
 
 function ListUnit(props) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = (e) => {
+    console.log(e.target.id);
+    setShow(true);
+  };
+
   const handleButtonClick = (e) => {
     console.log(e.target.id);
   };
@@ -21,19 +28,20 @@ function ListUnit(props) {
       name: "Action",
       cell: (row) => (
         <>
-          <Link
-            to={`/product/unit/edit/${row.id}`}
+          <Button
+            onClick={handleShow}
+            id={row.id}
             className="btn btn-success btn-sm m-1"
           >
             <i className="fas fa-pen fa-sm"></i>
-          </Link>
-          <button
+          </Button>
+          <Button
             className="btn btn-danger btn-sm m-1"
             onClick={handleButtonClick}
             id={row.id}
           >
             <i className="fas fa-trash fa-sm"></i>
-          </button>
+          </Button>
         </>
       ),
       center: true,
@@ -43,17 +51,38 @@ function ListUnit(props) {
 
   const unitList = props.units;
   return (
-    <KitchenSinkStory
-      columns={columns}
-      data={unitList}
-      fixedHeader
-      fixedHeaderScrollHeight="60vh"
-      highlightOnHover
-      pagination
-      pointerOnHover
-      responsive
-      striped
-    />
+    <>
+      <KitchenSinkStory
+        columns={columns}
+        data={unitList}
+        fixedHeader
+        fixedHeaderScrollHeight="60vh"
+        highlightOnHover
+        pagination
+        pointerOnHover
+        responsive
+        striped
+      />
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title as="h5">Edit Unit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form autoComplete="off">
+            <Form.Control placeholder="Unit Name" />
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" size="sm" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="success" size="sm" onClick={handleClose}>
+            Update Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 }
 

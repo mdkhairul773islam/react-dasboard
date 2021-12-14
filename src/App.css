@@ -46,3 +46,16 @@ ul {
   max-width: 150px;
   min-width: 150px;
 }
+
+.rdt_TableCell .btn {
+  position: relative;
+}
+.rdt_TableCell .btn::after {
+  display: inline-block;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
