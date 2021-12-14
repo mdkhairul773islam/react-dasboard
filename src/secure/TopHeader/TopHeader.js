@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../redux/authentication/actionCreator";
 
+import userPhoto from "../../dist/images/user/02.png";
+
 function TopHeader(props) {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.authReducer.loading);
@@ -66,10 +68,7 @@ function TopHeader(props) {
 
         <li className={`user_dropdown ${userProfileOpen ? "active" : ""}`}>
           <Link to="#" className="menu-button" onClick={userProfileToggleFn}>
-            <img
-              src={require("../../dist/images/user/02.png").default}
-              alt=""
-            />
+            <img src={userPhoto} alt="" />
           </Link>
           <ul className="sub_menu">
             <li className="head">
