@@ -9,6 +9,11 @@ function ListUnit(props) {
 
   const columns = [
     {
+      name: "Sl",
+      selector: (row, index) => index + 1,
+      maxWidth: "20px",
+    },
+    {
       name: "Name",
       selector: (row) => row.unit,
     },
@@ -31,6 +36,7 @@ function ListUnit(props) {
           </button>
         </>
       ),
+      center: true,
       className: "action-width",
     },
   ];
