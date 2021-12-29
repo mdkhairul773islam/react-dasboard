@@ -6,7 +6,6 @@ import SideBar from "../../secure/SideBar/SideBar";
 import TopHeader from "../../secure/TopHeader/TopHeader";
 
 const AdminWraper = (props, { children }) => {
-
   const [loading, setLoading] = useState(true);
 
   const [isAside, setAside] = useState(
@@ -52,6 +51,7 @@ const AdminWraper = (props, { children }) => {
         data-submenu=""
       >
         <SideBar asideToggle={asideToggleFn} menuOpen={props.menuOpen} />
+
         <div className="main_body">
           <TopHeader asideToggle={asideToggleFn} />
           <div className="body_container">
@@ -60,6 +60,7 @@ const AdminWraper = (props, { children }) => {
             </div>
           </div>
         </div>
+
         <div className="developer">
           <p>
             Developed By : &nbsp;
