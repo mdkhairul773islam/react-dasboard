@@ -21,12 +21,13 @@ import {
 
 function Unit(props) {
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const [loading, setLoading] = useState(false);
+  const [units, setUnits] = useState([]);
 
   const { addToast } = useToasts();
+  const handleClose = () => setShow(false);
 
   /* unit database store here */
-  const [units, setUnits] = useState([]);
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -35,10 +36,12 @@ function Unit(props) {
   });
 
   const onSubmit = async (data, e) => {
+    setLoading(true);
     try {
       const res = await DataService.post("unit-store", data);
       addToast("Saved Successfully", { appearance: "success" });
       setUnits(res.data);
+      setLoading(false);
     } catch (error) {
       console.log("error");
     }
@@ -46,10 +49,13 @@ function Unit(props) {
   };
 
   useEffect(() => {
+
     async function getUnit() {
+      setLoading(true);
       try {
         const res = await DataService.get("unit");
         setUnits(res.data);
+        setLoading(false);
       } catch (error) {
         console.log("error");
       }
@@ -77,9 +83,11 @@ function Unit(props) {
   const onSubmitUpdate = async (data, e) => {
     const { id, unit } = data.editUnit;
     try {
+      setLoading(true);
       const res = await DataService.post("unit-update", { id: id, unit: unit });
       addToast("Updated Successfully", { appearance: "info" });
       setUnits(res.data);
+      setLoading(false);
       setShow(false);
     } catch (error) {
       console.log("error");
@@ -132,6 +140,7 @@ function Unit(props) {
     {
       name: "Name",
       selector: (row) => row.unit,
+      sortable: true,
     },
     {
       name: "Action",
@@ -223,6 +232,7 @@ function Unit(props) {
                   pointerOnHover
                   responsive
                   striped
+                  progressPending={loading}
                 />
 
                 <Modal show={show} onHide={handleClose}>
