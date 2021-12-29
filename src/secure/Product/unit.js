@@ -19,6 +19,7 @@ import {
 
 function Unit(props) {
   const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
 
   /* unit database store here */
   const [units, setUnits] = useState([]);
@@ -79,16 +80,25 @@ function Unit(props) {
     }
   };
 
+  /* unit delete  */
+  const handleDeleteClick = async (e) => {
+    try {
+      var id = e.target.id;
+      var confirmDelete = window.confirm("Want to delete?");
+      if (confirmDelete) {
+        const res = await DataService.get(`/unit-destroy/${id}`);
+        setUnits(res.data);
+      }
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
   useEffect(() => {
     reset({
       editUnit,
     });
   }, [editUnit, reset]);
-
-  const handleClose = () => setShow(false);
-  const handleButtonClick = (e) => {
-    //console.log(e.target.id);
-  };
 
   /* unit update end here */
 
@@ -129,7 +139,7 @@ function Unit(props) {
           </Button>
           <Button
             className="btn btn-danger btn-sm m-1"
-            onClick={handleButtonClick}
+            onClick={handleDeleteClick}
             id={row.id}
           >
             <i className="fas fa-trash fa-sm"></i>
@@ -200,7 +210,7 @@ function Unit(props) {
                   columns={columns}
                   data={units}
                   fixedHeader
-                  fixedHeaderScrollHeight="60vh"
+                  fixedHeaderScrollHeight="90vh"
                   highlightOnHover
                   pagination
                   pointerOnHover
