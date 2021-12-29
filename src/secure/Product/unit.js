@@ -7,6 +7,8 @@ import Navbar from "../../secure/Product/navbar";
 import KitchenSinkStory from "react-data-table-component";
 import { DataService } from "../../config/dataService/dataService";
 
+import { useToasts } from "react-toast-notifications";
+
 import {
   Container,
   Row,
@@ -21,6 +23,8 @@ function Unit(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
 
+  const { addToast } = useToasts();
+
   /* unit database store here */
   const [units, setUnits] = useState([]);
 
@@ -33,6 +37,7 @@ function Unit(props) {
   const onSubmit = async (data, e) => {
     try {
       const res = await DataService.post("unit-store", data);
+      addToast("Saved Successfully", { appearance: "success" });
       setUnits(res.data);
     } catch (error) {
       console.log("error");
@@ -73,6 +78,7 @@ function Unit(props) {
     const { id, unit } = data.editUnit;
     try {
       const res = await DataService.post("unit-update", { id: id, unit: unit });
+      addToast("Updated Successfully", { appearance: "info" });
       setUnits(res.data);
       setShow(false);
     } catch (error) {
@@ -87,6 +93,7 @@ function Unit(props) {
       var confirmDelete = window.confirm("Want to delete?");
       if (confirmDelete) {
         const res = await DataService.get(`/unit-destroy/${id}`);
+        addToast("Unit Successfully Deleted", { appearance: "error" });
         setUnits(res.data);
       }
     } catch (error) {
