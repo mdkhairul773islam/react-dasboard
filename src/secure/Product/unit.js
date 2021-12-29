@@ -27,20 +27,6 @@ function Unit(props) {
     e.target.reset();
   };
 
-  /*     const handleSubmit = async (e) => {
-            e.preventDefault();
-    
-            try {
-                const res = await DataService.get("/dashboard");
-                console.log(res.data);
-                console.log(unit);
-            } catch (error) {
-                console.log("error");
-            }
-            //const res = await DataService.get("/dashboard");
-    
-        } */
-
   useEffect(() => {
     async function getUnit() {
       try {
