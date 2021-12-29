@@ -7,6 +7,7 @@ import {
   Col,
   Card,
   Form,
+  FormCheck,
   Button,
 } from "react-bootstrap";
 import Select from "react-select";
@@ -186,9 +187,9 @@ function Add(props) {
                     </Col>
 
 
-                    {/* <Col className="mt-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
+                    <Col className="mt-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
                       <FormCheck.Label className="me-2 mt-4">
-                        Status{" "}
+                        Status
                       </FormCheck.Label>
                       <Form.Check
                         inline
@@ -197,6 +198,7 @@ function Add(props) {
                         type="radio"
                         checked
                         id="one"
+                        {...register("status")}
                       />
                       <Form.Check
                         inline
@@ -204,8 +206,9 @@ function Add(props) {
                         label="Not Available"
                         type="radio"
                         id="two"
+                        {...register("status")}
                       />
-                    </Col> */}
+                    </Col>
                   </Form.Group>
                   <hr />
                   <Button variant="primary" type="submit">
