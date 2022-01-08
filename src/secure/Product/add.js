@@ -10,19 +10,62 @@ import {
   FormCheck,
   Button,
 } from "react-bootstrap";
-import Select from "react-select";
 
+import Select from "react-select";
 import { useForm } from "react-hook-form";
+
+// use redux
+import { useDispatch, useSelector } from "react-redux";
+import { category } from "../../redux/category/actionCreator";
+import { subcategory } from "../../redux/subcategory/actionSubcategory";
+import { brand } from "../../redux/brand/actionCreator";
+import { unit } from "../../redux/unit/actionCreator";
 
 
 function Add(props) {
+  const dispatch = useDispatch();
   const [product, setProduct] = useState([]);
+
+  // use redux
+  const categories = useSelector((state) => state.categoryReducer.categoryList);
+  const subcategories = useSelector((state) => state.subCategoryReducer.subCategoryList);
+  const brandItems = useSelector((state) => state.brandReducer.brandList);
+  const units = useSelector((state) => state.unitReducer.unitList);
+
+
+  const categoryList = categories.map((item) => {
+    const { name: label, id: value, ...rest } = item;
+    return { value, label, ...rest };
+  });
+
+  const subCategoryList = subcategories.map((item) => {
+    const { name: label, id: value, ...rest } = item;
+    return { value, label, ...rest };
+  });
+
+  const brandList = brandItems.map((item) => {
+    const { name: label, id: value, ...rest } = item;
+    return { value, label, ...rest };
+  });
+
+  const unitList = units.map((item) => {
+    const { unit: label, id: value, ...rest } = item;
+    return { value, label, ...rest };
+  });
+
+
+  useEffect(() => {
+    dispatch(category());
+    dispatch(subcategory());
+    dispatch(brand());
+    dispatch(unit());
+  }, [dispatch]);
 
   const { setValue, register, handleSubmit } = useForm({
     defaultValues: {
-      purchase_price: '0.00',
-      sale_price: '0.00'
-    }
+      purchase_price: "0.00",
+      sale_price: "0.00",
+    },
   });
 
   const handleCategoryChange = (e) => {
@@ -41,29 +84,13 @@ function Add(props) {
     setValue("unit", e.value);
   };
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     setProduct(data);
   };
 
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-    { value: "Khairul", label: "Khairul" },
-    { value: "A", label: "A" },
-    { value: "B", label: "B" },
-    { value: "C", label: "C" },
-  ];
-
-  const optionsUnit = [
-    { value: "kg", label: "Kg" },
-    { value: "bg", label: "Bg" },
-    { value: "pcs", label: "Pcs" },
-  ];
-
   useEffect(() => {
     console.log(product);
-  }, [product])
+  }, [product]);
 
   return (
     <AdminWraper menuOpen="product">
@@ -89,7 +116,7 @@ function Add(props) {
                       <Form.Control
                         type="text"
                         name="name"
-                        {...register('name', { required: true })}
+                        {...register("name", { required: true })}
                         placeholder="Product Name"
                         required
                       />
@@ -102,8 +129,10 @@ function Add(props) {
                       <Select
                         name="category"
                         onChange={handleCategoryChange}
-                        ref={e => { register('category', { required: true }) }}
-                        options={options}
+                        ref={(e) => {
+                          register("category", { required: true });
+                        }}
+                        options={categoryList}
                         isClearable={true}
                         isSearchable={true}
                         placeholder="Chose Category"
@@ -118,9 +147,11 @@ function Add(props) {
                       <Select
                         name="subcategory"
                         onChange={handleSubCategoryChange}
-                        ref={e => { register('subcategory', { required: true }) }}
+                        ref={(e) => {
+                          register("subcategory", { required: true });
+                        }}
                         type="text"
-                        options={options}
+                        options={subCategoryList}
                         isClearable={true}
                         isSearchable={true}
                         placeholder="Chose Subcategory"
@@ -137,9 +168,11 @@ function Add(props) {
                       <Select
                         name="brand"
                         onChange={handleBrandChange}
-                        ref={e => { register('brand', { required: true }) }}
+                        ref={(e) => {
+                          register("brand", { required: true });
+                        }}
                         type="text"
-                        options={options}
+                        options={brandList}
                         isClearable={true}
                         isSearchable={true}
                         placeholder="Chose Brand"
@@ -152,7 +185,7 @@ function Add(props) {
                       <Form.Control
                         type="number"
                         name="purchase_price"
-                        {...register('purchase_price', { required: true })}
+                        {...register("purchase_price", { required: true })}
                         placeholder="0.0"
                       />
                     </Col>
@@ -162,7 +195,7 @@ function Add(props) {
                       <Form.Control
                         type="number"
                         name="sale_price"
-                        {...register('sale_price', { required: true })}
+                        {...register("sale_price", { required: true })}
                         placeholder="0.0"
                       />
                     </Col>
@@ -176,16 +209,17 @@ function Add(props) {
                       <Select
                         name="unit"
                         onChange={handleUnitChange}
-                        ref={e => { register('unit', { required: true }) }}
+                        ref={(e) => {
+                          register("unit", { required: true });
+                        }}
                         type="text"
-                        options={optionsUnit}
+                        options={unitList}
                         isClearable={true}
                         isSearchable={true}
                         placeholder="Chose Unit"
                         required
                       ></Select>
                     </Col>
-
 
                     <Col className="mt-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
                       <FormCheck.Label className="me-2 mt-4">
