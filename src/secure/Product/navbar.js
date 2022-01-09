@@ -37,16 +37,6 @@ function Navbar(props) {
       </li>
       <li>
         <NavLink
-          to="/product/subcategory"
-          className={isActive =>
-            (isActive ? "active" : "")
-          }
-        >
-          Subcategory
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
           to="/product/brand"
           className={isActive =>
             (isActive ? "active" : "")

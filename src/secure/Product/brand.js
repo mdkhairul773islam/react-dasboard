@@ -82,7 +82,9 @@ function Brand(props) {
     };
 
     const onSubmitUpdate = async (data, e) => {
+
         const { id, name } = data.editBrand;
+
         try {
             setLoading(true);
             const res = await DataService.post("brand-update", { id: id, name: name });

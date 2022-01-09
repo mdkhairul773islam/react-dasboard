@@ -342,9 +342,6 @@ function SideBar(props) {
                 <Link to="/product/category/">Category</Link>
               </li>
               <li>
-                <Link to="/product/subcategory">Subcategory</Link>
-              </li>
-              <li>
                 <Link to="/product/brand">Brand</Link>
               </li>
               <li>
