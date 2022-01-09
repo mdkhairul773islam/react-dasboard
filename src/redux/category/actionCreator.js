@@ -6,7 +6,7 @@ const category = () => {
   return async (dispatch) => {
     try {
       dispatch(categoryBegin());
-      const res = await DataService.get("category-list");
+      const res = await DataService.get("category");
       dispatch(categorySuccess(res.data));
     } catch (err) {
       dispatch(categoryErr(err));

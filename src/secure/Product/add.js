@@ -17,7 +17,6 @@ import { useForm } from "react-hook-form";
 // use redux
 import { useDispatch, useSelector } from "react-redux";
 import { category } from "../../redux/category/actionCreator";
-import { subcategory } from "../../redux/subcategory/actionSubcategory";
 import { brand } from "../../redux/brand/actionCreator";
 import { unit } from "../../redux/unit/actionCreator";
 
@@ -28,17 +27,11 @@ function Add(props) {
 
   // use redux
   const categories = useSelector((state) => state.categoryReducer.categoryList);
-  const subcategories = useSelector((state) => state.subCategoryReducer.subCategoryList);
   const brandItems = useSelector((state) => state.brandReducer.brandList);
   const units = useSelector((state) => state.unitReducer.unitList);
 
 
   const categoryList = categories.map((item) => {
-    const { name: label, id: value, ...rest } = item;
-    return { value, label, ...rest };
-  });
-
-  const subCategoryList = subcategories.map((item) => {
     const { name: label, id: value, ...rest } = item;
     return { value, label, ...rest };
   });
@@ -56,7 +49,6 @@ function Add(props) {
 
   useEffect(() => {
     dispatch(category());
-    dispatch(subcategory());
     dispatch(brand());
     dispatch(unit());
   }, [dispatch]);
@@ -140,27 +132,6 @@ function Add(props) {
                       ></Select>
                     </Col>
 
-                    <Col md={4} lg={4} xl={4} xxl={4} xs={12}>
-                      <Form.Label>
-                        Subcategory <span className="text-danger">*</span>{" "}
-                      </Form.Label>
-                      <Select
-                        name="subcategory"
-                        onChange={handleSubCategoryChange}
-                        ref={(e) => {
-                          register("subcategory", { required: true });
-                        }}
-                        type="text"
-                        options={subCategoryList}
-                        isClearable={true}
-                        isSearchable={true}
-                        placeholder="Chose Subcategory"
-                        required
-                      ></Select>
-                    </Col>
-                  </Form.Group>
-
-                  <Form.Group as={Row} className="mb-2">
                     <Col className="mb-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
                       <Form.Label>
                         Brand <span className="text-danger">*</span>{" "}
@@ -179,6 +150,10 @@ function Add(props) {
                         required
                       ></Select>
                     </Col>
+
+                  </Form.Group>
+
+                  <Form.Group as={Row} className="mb-2">
 
                     <Col className="mb-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
                       <Form.Label>Purchase Price</Form.Label>
@@ -199,9 +174,7 @@ function Add(props) {
                         placeholder="0.0"
                       />
                     </Col>
-                  </Form.Group>
 
-                  <Form.Group as={Row} className="mb-2">
                     <Col md={4} lg={4} xl={4} xxl={4} xs={12}>
                       <Form.Label>
                         Unit <span className="text-danger">*</span>{" "}
@@ -220,7 +193,9 @@ function Add(props) {
                         required
                       ></Select>
                     </Col>
+                  </Form.Group>
 
+                  <Form.Group as={Row} className="mb-2">
                     <Col className="mt-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
                       <FormCheck.Label className="me-2 mt-4">
                         Status
