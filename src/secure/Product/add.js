@@ -19,11 +19,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { category } from "../../redux/category/actionCreator";
 import { brand } from "../../redux/brand/actionCreator";
 import { unit } from "../../redux/unit/actionCreator";
+import { product } from "../../redux/product/actionCreator";
 
 
 function Add(props) {
   const dispatch = useDispatch();
-  const [product, setProduct] = useState([]);
+  //const [product, setProduct] = useState([]);
 
   // use redux
   const categories = useSelector((state) => state.categoryReducer.categoryList);
@@ -61,28 +62,25 @@ function Add(props) {
   });
 
   const handleCategoryChange = (e) => {
-    setValue("category", e.value);
-  };
-
-  const handleSubCategoryChange = (e) => {
-    setValue("subcategory", e.value);
+    setValue("category_id", e.value);
   };
 
   const handleBrandChange = (e) => {
-    setValue("brand", e.value);
+    setValue("brand_id", e.value);
   };
 
   const handleUnitChange = (e) => {
-    setValue("unit", e.value);
+    setValue("unit_id", e.value);
   };
 
   const onSubmit = (data) => {
-    setProduct(data);
+    //setProduct(data);
+    dispatch(product(data));
   };
 
   useEffect(() => {
     console.log(product);
-  }, [product]);
+  }, []);
 
   return (
     <AdminWraper menuOpen="product">
@@ -107,7 +105,6 @@ function Add(props) {
                       </Form.Label>
                       <Form.Control
                         type="text"
-                        name="name"
                         {...register("name", { required: true })}
                         placeholder="Product Name"
                         required
@@ -119,10 +116,9 @@ function Add(props) {
                         Category <span className="text-danger">*</span>{" "}
                       </Form.Label>
                       <Select
-                        name="category"
                         onChange={handleCategoryChange}
                         ref={(e) => {
-                          register("category", { required: true });
+                          register("category_id", { required: true });
                         }}
                         options={categoryList}
                         isClearable={true}
@@ -137,10 +133,9 @@ function Add(props) {
                         Brand <span className="text-danger">*</span>{" "}
                       </Form.Label>
                       <Select
-                        name="brand"
                         onChange={handleBrandChange}
                         ref={(e) => {
-                          register("brand", { required: true });
+                          register("brand_id", { required: true });
                         }}
                         type="text"
                         options={brandList}
@@ -180,10 +175,9 @@ function Add(props) {
                         Unit <span className="text-danger">*</span>{" "}
                       </Form.Label>
                       <Select
-                        name="unit"
                         onChange={handleUnitChange}
                         ref={(e) => {
-                          register("unit", { required: true });
+                          register("unit_id", { required: true });
                         }}
                         type="text"
                         options={unitList}
