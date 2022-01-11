@@ -14,6 +14,8 @@ import {
 import Select from "react-select";
 import { useForm } from "react-hook-form";
 
+import { useToasts } from "react-toast-notifications";
+
 // use redux
 import { useDispatch, useSelector } from "react-redux";
 import { category } from "../../redux/category/actionCreator";
@@ -21,8 +23,8 @@ import { brand } from "../../redux/brand/actionCreator";
 import { unit } from "../../redux/unit/actionCreator";
 import { product } from "../../redux/product/actionCreator";
 
-
 function Add(props) {
+  const { addToast } = useToasts();
   const dispatch = useDispatch();
   //const [product, setProduct] = useState([]);
 
@@ -30,7 +32,6 @@ function Add(props) {
   const categories = useSelector((state) => state.categoryReducer.categoryList);
   const brandItems = useSelector((state) => state.brandReducer.brandList);
   const units = useSelector((state) => state.unitReducer.unitList);
-
 
   const categoryList = categories.map((item) => {
     const { name: label, id: value, ...rest } = item;
@@ -46,7 +47,6 @@ function Add(props) {
     const { unit: label, id: value, ...rest } = item;
     return { value, label, ...rest };
   });
-
 
   useEffect(() => {
     dispatch(category());
@@ -73,13 +73,13 @@ function Add(props) {
     setValue("unit_id", e.value);
   };
 
-  const onSubmit = (data) => {
-    //setProduct(data);
-    dispatch(product(data));
+  const onSubmit = (data, e) => {
+    dispatch(product(data, addToast));
+    e.target.reset();
   };
 
   useEffect(() => {
-    console.log(product);
+    //console.log(product);
   }, []);
 
   return (
@@ -121,7 +121,6 @@ function Add(props) {
                           register("category_id", { required: true });
                         }}
                         options={categoryList}
-                        isClearable={true}
                         isSearchable={true}
                         placeholder="Chose Category"
                         required
@@ -139,17 +138,14 @@ function Add(props) {
                         }}
                         type="text"
                         options={brandList}
-                        isClearable={true}
                         isSearchable={true}
                         placeholder="Chose Brand"
                         required
                       ></Select>
                     </Col>
-
                   </Form.Group>
 
                   <Form.Group as={Row} className="mb-2">
-
                     <Col className="mb-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
                       <Form.Label>Purchase Price</Form.Label>
                       <Form.Control
@@ -181,7 +177,6 @@ function Add(props) {
                         }}
                         type="text"
                         options={unitList}
-                        isClearable={true}
                         isSearchable={true}
                         placeholder="Chose Unit"
                         required
