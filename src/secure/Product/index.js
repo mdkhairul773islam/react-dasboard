@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
 import KitchenSinkStory from "react-data-table-component";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
+// use redux
+import { useDispatch, useSelector } from "react-redux";
+import { productList } from "../../redux/product/actionCreator";
+
 function Index(props) {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.productReducer.productList);
+
   const handleButtonClick = (e) => {
     console.log(e.target.id);
   };
@@ -13,31 +20,27 @@ function Index(props) {
   const columns = [
     {
       name: "Name",
-      selector: (row) => row.title,
+      selector: (row) => row.name,
     },
     {
       name: "Category",
-      selector: (row) => row.year,
-    },
-    {
-      name: "Subcategory",
-      selector: (row) => row.year,
+      selector: (row) => row.category.name,
     },
     {
       name: "Brand",
-      selector: (row) => row.year,
+      selector: (row) => row.brand.name,
     },
     {
       name: "Purchase Price",
-      selector: (row) => row.year,
+      selector: (row) => row.purchase_price,
     },
     {
       name: "Sale Price",
-      selector: (row) => row.year,
+      selector: (row) => row.sale_price,
     },
     {
       name: "Unit",
-      selector: (row) => row.year,
+      selector: (row) => row.unit.unit,
     },
 
     {
@@ -72,24 +75,9 @@ function Index(props) {
       className: "action-width",
     },
   ];
-
-  const data = [
-    {
-      id: 1,
-      title: "Lejuice",
-      year: "20",
-    },
-    {
-      id: 11,
-      title: "Beetlejuice",
-      year: "1988",
-    },
-    {
-      id: 112,
-      title: "Beetlejuice",
-      year: "1988",
-    },
-  ];
+  useEffect(() => {
+    dispatch(productList());
+  }, [dispatch]);
 
   return (
     <AdminWraper menuOpen="product">
@@ -116,8 +104,6 @@ function Index(props) {
                 <KitchenSinkStory
                   columns={columns}
                   data={data}
-                  fixedHeader
-                  fixedHeaderScrollHeight="60vh"
                   highlightOnHover
                   pagination
                   pointerOnHover

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
 import {
@@ -25,8 +26,8 @@ import { product } from "../../redux/product/actionCreator";
 
 function Add(props) {
   const { addToast } = useToasts();
+  const history = useHistory();
   const dispatch = useDispatch();
-  //const [product, setProduct] = useState([]);
 
   // use redux
   const categories = useSelector((state) => state.categoryReducer.categoryList);
@@ -56,8 +57,8 @@ function Add(props) {
 
   const { setValue, register, handleSubmit } = useForm({
     defaultValues: {
-      purchase_price: "0.00",
-      sale_price: "0.00",
+      purchase_price: "0",
+      sale_price: "0",
     },
   });
 
@@ -74,7 +75,7 @@ function Add(props) {
   };
 
   const onSubmit = (data, e) => {
-    dispatch(product(data, addToast));
+    dispatch(product(data, addToast, history));
     e.target.reset();
   };
 
