@@ -4,9 +4,8 @@ import { useForm } from "react-hook-form";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
 
-import DataTable from "../../components/DataTable/Table";
 import { DataService } from "../../config/dataService/dataService";
-
+import DataTable from "../../components/DataTable/Table";
 import { useToasts } from "react-toast-notifications";
 
 import {
@@ -205,7 +204,7 @@ function Unit(props) {
                 Unit List
               </Card.Header>
               <Card.Body>
-                <DataTable columns={columns} data={units} />
+                <DataTable columns={columns} data={units} loading={loading} />
                 <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
                     <Modal.Title as="h5">Edit Unit</Modal.Title>

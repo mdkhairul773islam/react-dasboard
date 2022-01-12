@@ -34,6 +34,7 @@ function Table(props) {
     <KitchenSinkStory
       columns={props.columns}
       data={filteredItems}
+      progressPending={props.loading}
       highlightOnHover
       pagination
       pointerOnHover

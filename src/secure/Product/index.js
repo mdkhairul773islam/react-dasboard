@@ -10,8 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { productList } from "../../redux/product/actionCreator";
 
 function Index(props) {
+  // get data from redux
   const dispatch = useDispatch();
   const data = useSelector((state) => state.productReducer.productList);
+  const loading = useSelector((state) => state.productReducer.loading);
 
   const handleButtonClick = (e) => {
     console.log(e.target.id);
@@ -48,7 +50,7 @@ function Index(props) {
       cell: (row) => (
         <>
           <Link
-            to="/product/view/1"
+            to={`/product/view/${row.id}`}
             className="btn btn-primary btn-sm m-1"
             onClick={handleButtonClick}
             id={row.id}
@@ -56,7 +58,7 @@ function Index(props) {
             <i className="fas fa-eye fa-sm"></i>
           </Link>
           <Link
-            to="/product/edit/2"
+            to={`/product/edit/${row.id}`}
             className="btn btn-success btn-sm m-1"
             onClick={handleButtonClick}
             id={row.id}
@@ -101,7 +103,7 @@ function Index(props) {
                 </Button>
               </Card.Header>
               <Card.Body>
-                <DataTable columns={columns} data={data} />
+                <DataTable columns={columns} data={data} loading={loading} />
               </Card.Body>
               <Card.Footer className="text-muted">&nbsp;</Card.Footer>
             </Card>

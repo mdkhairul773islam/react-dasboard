@@ -4,9 +4,8 @@ import { useForm } from "react-hook-form";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
 
-import KitchenSinkStory from "react-data-table-component";
 import { DataService } from "../../config/dataService/dataService";
-
+import DataTable from "../../components/DataTable/Table";
 import { useToasts } from "react-toast-notifications";
 
 import {
@@ -209,19 +208,7 @@ function Brand(props) {
                                 Brand List
                             </Card.Header>
                             <Card.Body>
-                                <KitchenSinkStory
-                                    columns={columns}
-                                    data={brands}
-                                    fixedHeader
-                                    fixedHeaderScrollHeight="90vh"
-                                    highlightOnHover
-                                    pagination
-                                    pointerOnHover
-                                    responsive
-                                    striped
-                                    progressPending={loading}
-                                />
-
+                                <DataTable columns={columns} data={brands} loading={loading} />
                                 <Modal show={show} onHide={handleClose}>
                                     <Modal.Header closeButton>
                                         <Modal.Title as="h5">Edit Brand</Modal.Title>

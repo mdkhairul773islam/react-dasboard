@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
 
-import KitchenSinkStory from "react-data-table-component";
 import { DataService } from "../../config/dataService/dataService";
+import DataTable from "../../components/DataTable/Table";
 
 import { useToasts } from "react-toast-notifications";
 
@@ -208,19 +208,7 @@ function Category(props) {
                                 Category List
                             </Card.Header>
                             <Card.Body>
-                                <KitchenSinkStory
-                                    columns={columns}
-                                    data={category}
-                                    fixedHeader
-                                    fixedHeaderScrollHeight="90vh"
-                                    highlightOnHover
-                                    pagination
-                                    pointerOnHover
-                                    responsive
-                                    striped
-                                    progressPending={loading}
-                                />
-
+                                <DataTable columns={columns} data={category} loading={loading} />
                                 <Modal show={show} onHide={handleClose}>
                                     <Modal.Header closeButton>
                                         <Modal.Title as="h5">Edit Category</Modal.Title>
