@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
-import KitchenSinkStory from "react-data-table-component";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-
-import FilterComponent from "../../components/FilterComponent";
+import DataTable from "../../components/DataTable/Table";
 
 // use redux
 import { useDispatch, useSelector } from "react-redux";
@@ -77,35 +75,6 @@ function Index(props) {
       className: "action-width",
     },
   ];
-
-  // Filter Code Start
-  const [filterText, setFilterText] = React.useState("");
-  const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-
-  const filteredItems = data.filter(
-    (item) =>
-      JSON.stringify(item).toLowerCase().indexOf(filterText.toLowerCase()) !==
-      -1
-  );
-
-  const subHeaderComponent = useMemo(() => {
-    const handleClear = () => {
-      if (filterText) {
-        setResetPaginationToggle(!resetPaginationToggle);
-        setFilterText("");
-      }
-    };
-
-    return (
-      <FilterComponent
-        onFilter={(e) => setFilterText(e.target.value)}
-        onClear={handleClear}
-        filterText={filterText}
-      />
-    );
-  }, [filterText, resetPaginationToggle]);
-  // Filter Code End
-
   useEffect(() => {
     dispatch(productList());
   }, [dispatch]);
@@ -132,17 +101,7 @@ function Index(props) {
                 </Button>
               </Card.Header>
               <Card.Body>
-                <KitchenSinkStory
-                  columns={columns}
-                  data={filteredItems}
-                  highlightOnHover
-                  pagination
-                  pointerOnHover
-                  responsive
-                  striped
-                  subHeader
-                  subHeaderComponent={subHeaderComponent}
-                />
+                <DataTable columns={columns} data={data} />
               </Card.Body>
               <Card.Footer className="text-muted">&nbsp;</Card.Footer>
             </Card>

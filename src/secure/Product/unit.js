@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
 
-import KitchenSinkStory from "react-data-table-component";
+import DataTable from "../../components/DataTable/Table";
 import { DataService } from "../../config/dataService/dataService";
 
 import { useToasts } from "react-toast-notifications";
@@ -49,7 +49,6 @@ function Unit(props) {
   };
 
   useEffect(() => {
-
     async function getUnit() {
       setLoading(true);
       try {
@@ -114,22 +113,6 @@ function Unit(props) {
       editUnit,
     });
   }, [editUnit, reset]);
-
-  /* unit update end here */
-
-  /*     const handleSubmit = async (e) => {
-            e.preventDefault();
-    
-            try {
-                const res = await DataService.get("/dashboard");
-                console.log(res.data);
-                console.log(unit);
-            } catch (error) {
-                console.log("error");
-            }
-            //const res = await DataService.get("/dashboard");
-    
-        } */
 
   const columns = [
     {
@@ -222,19 +205,7 @@ function Unit(props) {
                 Unit List
               </Card.Header>
               <Card.Body>
-                <KitchenSinkStory
-                  columns={columns}
-                  data={units}
-                  fixedHeader
-                  fixedHeaderScrollHeight="90vh"
-                  highlightOnHover
-                  pagination
-                  pointerOnHover
-                  responsive
-                  striped
-                  progressPending={loading}
-                />
-
+                <DataTable columns={columns} data={units} />
                 <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
                     <Modal.Title as="h5">Edit Unit</Modal.Title>
