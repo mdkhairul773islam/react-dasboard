@@ -18,7 +18,9 @@ ul {
 }
 
 /* React Data Table  */
-
+.gzECfY {
+  padding: 0 !important;
+}
 .rdt_TableCol,
 .rdt_TableHeader {
   background-color: #303f9f;
