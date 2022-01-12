@@ -1,8 +1,9 @@
 import actions from "./actions";
 
-const { PRODUCT_BEGIN, PRODUCT_SUCCESS, PRODUCT_ERR } = actions;
+const { PRODUCT_BEGIN, PRODUCT_SUCCESS, PRODUCT_GET, PRODUCT_ERR } = actions;
 
 const initState = {
+  product: {},
   productList: [],
   loading: false,
   error: "",
@@ -26,6 +27,11 @@ const Product = (state = initState, action) => {
         ...state,
         productList: data,
         loading: false,
+      };
+    case PRODUCT_GET:
+      return {
+        ...state,
+        product: data,
       };
     case PRODUCT_ERR:
       return {

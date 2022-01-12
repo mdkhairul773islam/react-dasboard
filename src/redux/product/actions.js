@@ -1,6 +1,7 @@
 const actions = {
   PRODUCT_BEGIN: "PRODUCT_BEGIN",
   PRODUCT_SUCCESS: "PRODUCT_SUCCESS",
+  PRODUCT_GET: "PRODUCT_GET",
   PRODUCT_ERR: "PRODUCT_ERR",
 
   productBegin: () => {
@@ -12,6 +13,13 @@ const actions = {
   productSuccess: (data) => {
     return {
       type: actions.PRODUCT_SUCCESS,
+      data,
+    };
+  },
+
+  productGet: (data) => {
+    return {
+      type: actions.PRODUCT_GET,
       data,
     };
   },

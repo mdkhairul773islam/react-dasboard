@@ -1,6 +1,6 @@
 import actions from "./actions";
 import { DataService } from "../../config/dataService/dataService";
-const { productBegin, productSuccess, productErr } = actions;
+const { productBegin, productSuccess, productGet, productErr } = actions;
 
 const product = (data, addToast, history) => {
   return async (dispatch) => {
@@ -28,7 +28,6 @@ const productList = (addToast) => {
     try {
       dispatch(productBegin());
       const res = await DataService.get("product");
-      console.log("res", res);
       dispatch(productSuccess(res.data));
     } catch (err) {
       dispatch(productErr(err));
@@ -36,4 +35,16 @@ const productList = (addToast) => {
   };
 };
 
-export { product, productList };
+const productEdit = (id) => {
+  return async (dispatch) => {
+    try {
+      dispatch(productBegin());
+      const res = await DataService.get(`/product-edit/${id}`);
+      dispatch(productGet(res.data));
+    } catch (err) {
+      dispatch(productErr(err));
+    }
+  };
+};
+
+export { product, productList, productEdit };

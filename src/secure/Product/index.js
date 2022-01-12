@@ -50,18 +50,8 @@ function Index(props) {
       cell: (row) => (
         <>
           <Link
-            to={`/product/view/${row.id}`}
-            className="btn btn-primary btn-sm m-1"
-            onClick={handleButtonClick}
-            id={row.id}
-          >
-            <i className="fas fa-eye fa-sm"></i>
-          </Link>
-          <Link
             to={`/product/edit/${row.id}`}
             className="btn btn-success btn-sm m-1"
-            onClick={handleButtonClick}
-            id={row.id}
           >
             <i className="fas fa-pen fa-sm"></i>
           </Link>
@@ -74,6 +64,7 @@ function Index(props) {
           </button>
         </>
       ),
+      center: true,
       className: "action-width",
     },
   ];

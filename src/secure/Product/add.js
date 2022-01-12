@@ -12,10 +12,9 @@ import {
   Button,
 } from "react-bootstrap";
 
-import Select from "react-select";
-import { useForm } from "react-hook-form";
-
 import { useToasts } from "react-toast-notifications";
+import { useForm } from "react-hook-form";
+import Select from "react-select";
 
 // use redux
 import { useDispatch, useSelector } from "react-redux";
