@@ -24,11 +24,11 @@ function Index(props) {
     },
     {
       name: "Category",
-      selector: (row) => row.category.name,
+      selector: (row) => (row.category != null ? row.category.name : "N/A"),
     },
     {
       name: "Brand",
-      selector: (row) => row.brand.name,
+      selector: (row) => (row.brand != null ? row.brand.name : "N/A"),
     },
     {
       name: "Purchase Price",
@@ -40,7 +40,7 @@ function Index(props) {
     },
     {
       name: "Unit",
-      selector: (row) => row.unit.unit,
+      selector: (row) => (row.unit != null ? row.unit.unit : "N/A"),
     },
 
     {
