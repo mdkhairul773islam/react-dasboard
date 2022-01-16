@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
@@ -7,7 +7,9 @@ import DataTable from "../../components/DataTable/Table";
 
 // use redux
 import { useDispatch, useSelector } from "react-redux";
-import { productList } from "../../redux/product/actionCreator";
+import { productList, productDelete } from "../../redux/product/actionCreator";
+
+import { useToasts } from "react-toast-notifications";
 
 function Index(props) {
   // get data from redux
@@ -15,8 +17,12 @@ function Index(props) {
   const data = useSelector((state) => state.productReducer.productList);
   const loading = useSelector((state) => state.productReducer.loading);
 
-  const handleButtonClick = (e) => {
-    console.log(e.target.id);
+  const { addToast } = useToasts();
+  const history = useHistory();
+
+  const handleDeleteClick = (e) => {
+    var id = e.target.id;
+    dispatch(productDelete(id, addToast, history));
   };
 
   const columns = [
@@ -57,7 +63,7 @@ function Index(props) {
           </Link>
           <button
             className="btn btn-danger btn-sm m-1"
-            onClick={handleButtonClick}
+            onClick={handleDeleteClick}
             id={row.id}
           >
             <i className="fas fa-trash fa-sm"></i>

@@ -67,4 +67,23 @@ const productUpdate = (data, addToast, history) => {
   };
 };
 
-export { product, productList, productEdit, productUpdate };
+const productDelete = (id, addToast) => {
+  return async (dispatch) => {
+    try {
+      dispatch(productBegin());
+      const res = await DataService.get(`/product-destroy/${id}`);
+      if (res.data) {
+        addToast("Product successfully deleted", { appearance: "success" });
+        dispatch(productSuccess(res.data));
+      }
+
+      if (res.data.warning) {
+        addToast(res.data.warning, { appearance: "warning" });
+      }
+    } catch (err) {
+      dispatch(productErr(err));
+    }
+  };
+};
+
+export { product, productList, productEdit, productUpdate, productDelete };
