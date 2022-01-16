@@ -47,4 +47,24 @@ const productEdit = (id) => {
   };
 };
 
-export { product, productList, productEdit };
+const productUpdate = (data, addToast, history) => {
+  return async (dispatch) => {
+    try {
+      dispatch(productBegin());
+      const res = await DataService.post("product-update", data);
+      if (res.data.success) {
+        addToast(res.data.success, { appearance: "success" });
+        history.push("/product/all");
+      }
+
+      if (res.data.warning) {
+        addToast(res.data.warning, { appearance: "warning" });
+      }
+    } catch (err) {
+      dispatch(productErr(err));
+      addToast("Product not getting added.", { appearance: "error" });
+    }
+  };
+};
+
+export { product, productList, productEdit, productUpdate };
