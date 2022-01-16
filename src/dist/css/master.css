@@ -706,20 +706,24 @@ img {
 .body_content select:disabled {
   cursor: not-allowed;
 }
+.body_content .form-select:focus,
 .body_content .form-control:focus {
   border-color: rgba(48, 63, 159, 0.4);
 }
+.body_content .form-select,
 .body_content .form-control {
   color: rgba(0, 0, 0, 0.75);
   resize: none;
   border-radius: 2px;
   border: 1px solid #d4d9de;
 }
+.body_content .form-select:focus,
 .body_content .form-control:focus {
   box-shadow: none;
   outline: none;
 }
-.body_content .form-control::placeholder {
+.body_content .form-control::placeholder,
+.body_content .form-select::placeholder {
   color: rgba(0, 0, 0, 0.5);
 }
 .body_content .submit_btn:hover {
@@ -771,7 +775,8 @@ img {
 .body_content input[type="text"].form-control,
 .body_content input[type="email"].form-control,
 .body_content input[type="date"].form-control,
-.body_content select.form-control {
+.body_content select.form-control,
+.body_content select.form-select {
   padding-bottom: 0;
   box-shadow: none;
   outline: none;
