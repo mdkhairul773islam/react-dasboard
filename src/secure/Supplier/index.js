@@ -7,22 +7,22 @@ import DataTable from "../../components/DataTable/Table";
 
 // use redux
 import { useDispatch, useSelector } from "react-redux";
-import { productList, productDelete } from "../../redux/product/actionCreator";
+import { supplierList, supplierDelete } from "../../redux/supplier/actionCreator";
 
 import { useToasts } from "react-toast-notifications";
 
 function Index(props) {
   // get data from redux
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.productReducer.productList);
-  const loading = useSelector((state) => state.productReducer.loading);
+  const data = useSelector((state) => state.supplierReducer.supplierList);
+  const loading = useSelector((state) => state.supplierReducer.loading);
 
   const { addToast } = useToasts();
   const history = useHistory();
 
   const handleDeleteClick = (e) => {
     var id = e.target.id;
-    dispatch(productDelete(id, addToast, history));
+    dispatch(supplierDelete(id, addToast, history));
   };
 
   const columns = [
@@ -32,19 +32,19 @@ function Index(props) {
     },
     {
       name: "Contact Person",
-      selector: (row) => (row.category != null ? row.category.name : "N/A"),
+      selector: (row) => (row.contact_person != null ? row.contact_person : "N/A"),
     },
     {
       name: "Mobile",
-      selector: (row) => (row.brand != null ? row.brand.name : "N/A"),
+      selector: (row) => (row.mobile != null ? row.mobile : "N/A"),
     },
     {
       name: "Initial Balance",
-      selector: (row) => row.purchase_price,
+      selector: (row) => row.initial_balance,
     },
     {
       name: "Current Balance",
-      selector: (row) => row.sale_price,
+      selector: (row) => '0',
     },
     {
       name: "Action",
@@ -70,7 +70,7 @@ function Index(props) {
     },
   ];
   useEffect(() => {
-    dispatch(productList());
+    dispatch(supplierList());
   }, [dispatch]);
 
   return (

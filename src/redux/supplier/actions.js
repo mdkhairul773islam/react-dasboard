@@ -24,7 +24,7 @@ const actions = {
     };
   },
 
-  suppliertErr: (err) => {
+  supplierErr: (err) => {
     return {
       type: actions.SUPPLIER_ERR,
       err,
