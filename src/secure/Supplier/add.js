@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Supplier/navbar";
@@ -7,11 +7,14 @@ import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { useToasts } from "react-toast-notifications";
 import { useForm } from "react-hook-form";
 
+// use redux
+import { useDispatch } from "react-redux";
+import { supplier } from "../../redux/supplier/actionCreator";
+
 function Add(props) {
   const { addToast } = useToasts();
   const history = useHistory();
-
-  useEffect(() => { }, []);
+  const dispatch = useDispatch();
 
   const {
     setValue,
@@ -29,8 +32,8 @@ function Add(props) {
   };
 
   const onSubmit = (data, e) => {
-    console.log(data);
-    //e.target.reset();
+    dispatch(supplier(data, addToast, history));
+    e.target.reset();
   };
 
   return (
@@ -70,7 +73,7 @@ function Add(props) {
                     <Col sm={5}>
                       <Form.Control
                         type="text"
-                        {...register("contact", { required: false })}
+                        {...register("contact_person", { required: false })}
                         placeholder="Contact Person"
                       />
                     </Col>
@@ -120,7 +123,7 @@ function Add(props) {
 
                   <Form.Group as={Row} className="mb-3">
                     <Form.Label column sm={3} className="text-sm-end">
-                      Initial Balance (TK)
+                      Initial Balance (TK) <span className="text-danger">*</span>
                     </Form.Label>
                     <Col sm={3}>
                       <Form.Control
@@ -133,7 +136,7 @@ function Add(props) {
                       <Form.Select
                         onChange={handleBalanceStatusChange}
                         ref={(e) => {
-                          register("balance_status", { required: false });
+                          register("balance_status", { required: true });
                         }}
                       >
                         <option value="payable">Payable</option>
