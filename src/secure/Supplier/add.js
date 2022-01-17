@@ -13,7 +13,13 @@ function Add(props) {
 
   useEffect(() => {}, []);
 
-  const { setValue, register, handleSubmit } = useForm({
+  const {
+    setValue,
+    register,
+    handleSubmit,
+    formState,
+    formState: { isSubmitting },
+  } = useForm({
     defaultValues: {
       balance_status: "",
     },
@@ -140,7 +146,11 @@ function Add(props) {
                   <hr />
                   <Form.Group as={Row} className="mb-3">
                     <Form.Label column sm={8} className="text-sm-end">
-                      <Button variant="primary" type="submit">
+                      <Button
+                        disabled={formState.isSubmitting}
+                        variant="primary"
+                        type="submit"
+                      >
                         Submit
                       </Button>
                     </Form.Label>

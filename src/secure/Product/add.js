@@ -54,7 +54,13 @@ function Add(props) {
     dispatch(unit());
   }, [dispatch]);
 
-  const { setValue, register, handleSubmit } = useForm({
+  const {
+    setValue,
+    register,
+    handleSubmit,
+    formState,
+    formState: { isSubmitting },
+  } = useForm({
     defaultValues: {
       purchase_price: "0",
       sale_price: "0",
@@ -205,7 +211,11 @@ function Add(props) {
                     </Col>
                   </Form.Group>
                   <hr />
-                  <Button variant="primary" type="submit">
+                  <Button
+                    disabled={formState.isSubmitting}
+                    variant="primary"
+                    type="submit"
+                  >
                     Submit
                   </Button>
                 </Form>
