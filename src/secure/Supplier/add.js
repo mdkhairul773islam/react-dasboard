@@ -11,14 +11,13 @@ function Add(props) {
   const { addToast } = useToasts();
   const history = useHistory();
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const {
     setValue,
     register,
     handleSubmit,
-    formState,
-    formState: { isSubmitting },
+    formState
   } = useForm({
     defaultValues: {
       balance_status: "",

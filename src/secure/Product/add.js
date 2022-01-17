@@ -58,8 +58,7 @@ function Add(props) {
     setValue,
     register,
     handleSubmit,
-    formState,
-    formState: { isSubmitting },
+    formState
   } = useForm({
     defaultValues: {
       purchase_price: "0",

@@ -31,32 +31,27 @@ function Index(props) {
       selector: (row) => row.name,
     },
     {
-      name: "Category",
+      name: "Contact Person",
       selector: (row) => (row.category != null ? row.category.name : "N/A"),
     },
     {
-      name: "Brand",
+      name: "Mobile",
       selector: (row) => (row.brand != null ? row.brand.name : "N/A"),
     },
     {
-      name: "Purchase Price",
+      name: "Initial Balance",
       selector: (row) => row.purchase_price,
     },
     {
-      name: "Sale Price",
+      name: "Current Balance",
       selector: (row) => row.sale_price,
     },
-    {
-      name: "Unit",
-      selector: (row) => (row.unit != null ? row.unit.unit : "N/A"),
-    },
-
     {
       name: "Action",
       cell: (row) => (
         <>
           <Link
-            to={`/product/edit/${row.id}`}
+            to={`/supplier/edit/${row.id}`}
             className="btn btn-success btn-sm m-1"
           >
             <i className="fas fa-pen fa-sm"></i>
@@ -90,7 +85,7 @@ function Index(props) {
           <Col>
             <Card>
               <Card.Header as="h4" className="fw-bold">
-                All Product
+                All Supplier
                 <Button
                   to="#"
                   className="btn btn-light btn-xl float-end px-1 py-0"
