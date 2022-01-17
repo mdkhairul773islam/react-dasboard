@@ -60,6 +60,65 @@ function SideBar(props) {
             </Link>
           </li>
           <li
+            data-id="supplier"
+            className={`dropdown ${menuOpen === "supplier" ? "active" : ""}`}
+            onClick={menuOpenFn}
+          >
+            <Link to="#">
+              <i className="fas fa-users"></i>
+              <span className="menu_title">Supplier</span>
+              <span className="menu_arrow">
+                <i className="icon ion-ios-arrow-forward right"></i>
+                <i className="icon ion-ios-arrow-down down"></i>
+              </span>
+            </Link>
+            <ul>
+              <li>
+                <Link to="/supplier/add">Add Supplier</Link>
+              </li>
+              <li>
+                <Link to="/supplier/all">All Supplier</Link>
+              </li>
+              <li>
+                <Link to="#">Add Transaction</Link>
+              </li>
+              <li>
+                <Link to="#">All Transaction</Link>
+              </li>
+            </ul>
+          </li>
+          <li
+            data-id="product"
+            className={`dropdown ${menuOpen === "product" ? "active" : ""}`}
+            onClick={menuOpenFn}
+          >
+            <Link to="#">
+              <i className="fas fa-cart-arrow-down"></i>
+              <span className="menu_title">Product</span>
+              <span className="menu_arrow">
+                <i className="icon ion-ios-arrow-forward right"></i>
+                <i className="icon ion-ios-arrow-down down"></i>
+              </span>
+            </Link>
+            <ul>
+              <li>
+                <Link to="/product/add">Add Product</Link>
+              </li>
+              <li>
+                <Link to="/product/all">All Product</Link>
+              </li>
+              <li>
+                <Link to="/product/category/">Category</Link>
+              </li>
+              <li>
+                <Link to="/product/brand">Brand</Link>
+              </li>
+              <li>
+                <Link to="/product/unit">Unit</Link>
+              </li>
+            </ul>
+          </li>
+          <li
             data-id="business_type"
             className={`dropdown ${
               menuOpen === "business_type" ? "active" : ""
@@ -340,65 +399,6 @@ function SideBar(props) {
               </li>
               <li>
                 <Link to="#">Company Due</Link>
-              </li>
-            </ul>
-          </li>
-          <li
-            data-id="supplier"
-            className={`dropdown ${menuOpen === "supplier" ? "active" : ""}`}
-            onClick={menuOpenFn}
-          >
-            <Link to="#">
-              <i className="fas fa-users"></i>
-              <span className="menu_title">Supplier</span>
-              <span className="menu_arrow">
-                <i className="icon ion-ios-arrow-forward right"></i>
-                <i className="icon ion-ios-arrow-down down"></i>
-              </span>
-            </Link>
-            <ul>
-              <li>
-                <Link to="/supplier/add">Add Supplier</Link>
-              </li>
-              <li>
-                <Link to="/supplier/all">All Supplier</Link>
-              </li>
-              <li>
-                <Link to="#">Add Transaction</Link>
-              </li>
-              <li>
-                <Link to="#">All Transaction</Link>
-              </li>
-            </ul>
-          </li>
-          <li
-            data-id="product"
-            className={`dropdown ${menuOpen === "product" ? "active" : ""}`}
-            onClick={menuOpenFn}
-          >
-            <Link to="#">
-              <i className="fas fa-cart-arrow-down"></i>
-              <span className="menu_title">Product</span>
-              <span className="menu_arrow">
-                <i className="icon ion-ios-arrow-forward right"></i>
-                <i className="icon ion-ios-arrow-down down"></i>
-              </span>
-            </Link>
-            <ul>
-              <li>
-                <Link to="/product/add">New Product</Link>
-              </li>
-              <li>
-                <Link to="/product/all">All Product</Link>
-              </li>
-              <li>
-                <Link to="/product/category/">Category</Link>
-              </li>
-              <li>
-                <Link to="/product/brand">Brand</Link>
-              </li>
-              <li>
-                <Link to="/product/unit">Unit</Link>
               </li>
             </ul>
           </li>

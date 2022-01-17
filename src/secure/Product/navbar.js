@@ -7,19 +7,15 @@ function Navbar(props) {
       <li>
         <NavLink
           to="/product/add"
-          className={isActive =>
-            (isActive ? "active" : "")
-          }
+          className={(isActive) => (isActive ? "active" : "")}
         >
-          New Product
+          Add Product
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/product/all"
-          className={isActive =>
-            (isActive ? "active" : "")
-          }
+          className={(isActive) => (isActive ? "active" : "")}
         >
           All Product
         </NavLink>
@@ -28,9 +24,7 @@ function Navbar(props) {
       <li>
         <NavLink
           to="/product/category"
-          className={isActive =>
-            (isActive ? "active" : "")
-          }
+          className={(isActive) => (isActive ? "active" : "")}
         >
           Category
         </NavLink>
@@ -38,9 +32,7 @@ function Navbar(props) {
       <li>
         <NavLink
           to="/product/brand"
-          className={isActive =>
-            (isActive ? "active" : "")
-          }
+          className={(isActive) => (isActive ? "active" : "")}
         >
           Brand
         </NavLink>
@@ -48,9 +40,7 @@ function Navbar(props) {
       <li>
         <NavLink
           to="/product/unit"
-          className={isActive =>
-            (isActive ? "active" : "")
-          }
+          className={(isActive) => (isActive ? "active" : "")}
         >
           Unit
         </NavLink>

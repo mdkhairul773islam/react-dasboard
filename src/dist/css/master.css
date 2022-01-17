@@ -1010,7 +1010,10 @@ img {
 .io-30 {
   font-size: 30px;
 }
-
+.card-header,
+.card-footer {
+  background: #f5f7fa;
+}
 /* wrapper style start */
 .wrapper.aside_close .wrapper_background,
 .wrapper_background.none {
