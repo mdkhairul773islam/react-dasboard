@@ -14,45 +14,12 @@ import {
 
 import { useToasts } from "react-toast-notifications";
 import { useForm } from "react-hook-form";
-import Select from "react-select";
-
-// use redux
-import { useDispatch, useSelector } from "react-redux";
-import { category } from "../../redux/category/actionCreator";
-import { brand } from "../../redux/brand/actionCreator";
-import { unit } from "../../redux/unit/actionCreator";
-import { product } from "../../redux/product/actionCreator";
 
 function Add(props) {
   const { addToast } = useToasts();
   const history = useHistory();
-  const dispatch = useDispatch();
 
-  // use redux
-  const categories = useSelector((state) => state.categoryReducer.categoryList);
-  const brandItems = useSelector((state) => state.brandReducer.brandList);
-  const units = useSelector((state) => state.unitReducer.unitList);
-
-  const categoryList = categories.map((item) => {
-    const { name: label, id: value, ...rest } = item;
-    return { value, label, ...rest };
-  });
-
-  const brandList = brandItems.map((item) => {
-    const { name: label, id: value, ...rest } = item;
-    return { value, label, ...rest };
-  });
-
-  const unitList = units.map((item) => {
-    const { unit: label, id: value, ...rest } = item;
-    return { value, label, ...rest };
-  });
-
-  useEffect(() => {
-    dispatch(category());
-    dispatch(brand());
-    dispatch(unit());
-  }, [dispatch]);
+  useEffect(() => {}, []);
 
   const { setValue, register, handleSubmit } = useForm({
     defaultValues: {
@@ -65,16 +32,7 @@ function Add(props) {
     setValue("category_id", e.value);
   };
 
-  const handleBrandChange = (e) => {
-    setValue("brand_id", e.value);
-  };
-
-  const handleUnitChange = (e) => {
-    setValue("unit_id", e.value);
-  };
-
   const onSubmit = (data, e) => {
-    dispatch(product(data, addToast, history));
     e.target.reset();
   };
 
@@ -90,120 +48,103 @@ function Add(props) {
           <Col>
             <Card>
               <Card.Header as="h4" className="fw-bold">
-                New Product
+                Add Supplier
               </Card.Header>
               <Card.Body>
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                  <Form.Group as={Row} className="mb-2">
-                    <Col className="mb-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
-                      <Form.Label>
-                        Name <span className="text-danger">*</span>
-                      </Form.Label>
+                  <Form.Group as={Row} className="mb-3">
+                    <Form.Label column sm={3} className="text-sm-end">
+                      Name <span className="text-danger">*</span>
+                    </Form.Label>
+                    <Col sm={5}>
                       <Form.Control
                         type="text"
                         {...register("name", { required: true })}
-                        placeholder="Product Name"
+                        placeholder="Supplier Name"
                         required
                       />
                     </Col>
+                  </Form.Group>
 
-                    <Col className="mb-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
-                      <Form.Label>
-                        Category <span className="text-danger">*</span>{" "}
-                      </Form.Label>
-                      <Select
-                        onChange={handleCategoryChange}
-                        ref={(e) => {
-                          register("category_id", { required: true });
-                        }}
-                        options={categoryList}
-                        isSearchable={true}
-                        placeholder="Chose Category"
-                        required
-                      ></Select>
-                    </Col>
-
-                    <Col className="mb-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
-                      <Form.Label>
-                        Brand <span className="text-danger">*</span>{" "}
-                      </Form.Label>
-                      <Select
-                        onChange={handleBrandChange}
-                        ref={(e) => {
-                          register("brand_id", { required: true });
-                        }}
+                  <Form.Group as={Row} className="mb-3">
+                    <Form.Label column sm={3} className="text-sm-end">
+                      Contact Person
+                    </Form.Label>
+                    <Col sm={5}>
+                      <Form.Control
                         type="text"
-                        options={brandList}
-                        isSearchable={true}
-                        placeholder="Chose Brand"
-                        required
-                      ></Select>
+                        {...register("contact", { required: false })}
+                        placeholder="Contact Person"
+                      />
                     </Col>
                   </Form.Group>
 
-                  <Form.Group as={Row} className="mb-2">
-                    <Col className="mb-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
-                      <Form.Label>Purchase Price</Form.Label>
+                  <Form.Group as={Row} className="mb-3">
+                    <Form.Label column sm={3} className="text-sm-end">
+                      Mobile <span className="text-danger">*</span>
+                    </Form.Label>
+                    <Col sm={5}>
+                      <Form.Control
+                        type="text"
+                        {...register("mobile", { required: true })}
+                        placeholder="Mobile"
+                        required
+                      />
+                    </Col>
+                  </Form.Group>
+
+                  <Form.Group as={Row} className="mb-3">
+                    <Form.Label column sm={3} className="text-sm-end">
+                      Address
+                    </Form.Label>
+                    <Col sm={5}>
+                      <Form.Control
+                        as="textarea"
+                        rows={3}
+                        {...register("address", { required: false })}
+                        placeholder="Address"
+                      />
+                    </Col>
+                  </Form.Group>
+
+                  <Form.Group as={Row} className="mb-3">
+                    <Form.Label column sm={3} className="text-sm-end">
+                      Remarks
+                    </Form.Label>
+                    <Col sm={5}>
+                      <Form.Control
+                        as="textarea"
+                        rows={3}
+                        {...register("remarks", { required: false })}
+                        placeholder="Remarks"
+                      />
+                    </Col>
+                  </Form.Group>
+
+                  <Form.Group as={Row} className="mb-3">
+                    <Form.Label column sm={3} className="text-sm-end">
+                      Initial Balance (TK)
+                    </Form.Label>
+                    <Col sm={3}>
                       <Form.Control
                         type="number"
-                        name="purchase_price"
-                        {...register("purchase_price", { required: true })}
-                        placeholder="0.0"
+                        {...register("initial_balance", { required: false })}
+                        placeholder="0"
                       />
                     </Col>
-
-                    <Col md={4} lg={4} xl={4} xxl={4} xs={12}>
-                      <Form.Label>Sale Price</Form.Label>
-                      <Form.Control
-                        type="number"
-                        name="sale_price"
-                        {...register("sale_price", { required: true })}
-                        placeholder="0.0"
-                      />
-                    </Col>
-
-                    <Col md={4} lg={4} xl={4} xxl={4} xs={12}>
-                      <Form.Label>
-                        Unit <span className="text-danger">*</span>{" "}
-                      </Form.Label>
-                      <Select
-                        onChange={handleUnitChange}
-                        ref={(e) => {
-                          register("unit_id", { required: true });
-                        }}
-                        type="text"
-                        options={unitList}
-                        isSearchable={true}
-                        placeholder="Chose Unit"
-                        required
-                      ></Select>
+                    <Col sm={2}>
+                      <Form.Select
+                        {...register("balance_status", { required: false })}
+                      >
+                        <option value="" selected disabled>
+                          Chose Balance Status
+                        </option>
+                        <option value="payable">Payable</option>
+                        <option value="receivable">Receivable</option>
+                      </Form.Select>
                     </Col>
                   </Form.Group>
 
-                  <Form.Group as={Row} className="mb-2">
-                    <Col className="mt-2" md={4} lg={4} xl={4} xxl={4} xs={12}>
-                      <FormCheck.Label className="me-2 mt-4">
-                        Status
-                      </FormCheck.Label>
-                      <Form.Check
-                        inline
-                        label="Available"
-                        name="status"
-                        type="radio"
-                        checked
-                        id="one"
-                        {...register("status")}
-                      />
-                      <Form.Check
-                        inline
-                        name="status"
-                        label="Not Available"
-                        type="radio"
-                        id="two"
-                        {...register("status")}
-                      />
-                    </Col>
-                  </Form.Group>
                   <hr />
                   <Button variant="primary" type="submit">
                     Submit

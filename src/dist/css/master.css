@@ -692,7 +692,7 @@ img {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 100%;
+  /* width: 100%; */
   margin: 0;
   font-size: 15px;
   font-weight: 600;
