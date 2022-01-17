@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
-import Navbar from "../../secure/Product/navbar";
+import Navbar from "../../secure/Supplier/navbar";
 import {
   Container,
   Row,
@@ -79,7 +79,7 @@ function Add(props) {
   };
 
   return (
-    <AdminWraper menuOpen="product">
+    <AdminWraper menuOpen="supplier">
       <Container className="p-0" fluid>
         <Row>
           <div className="body_nav">
