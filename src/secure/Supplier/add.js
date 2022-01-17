@@ -2,15 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Supplier/navbar";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Form,
-  FormCheck,
-  Button,
-} from "react-bootstrap";
+import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 
 import { useToasts } from "react-toast-notifications";
 import { useForm } from "react-hook-form";
@@ -23,17 +15,17 @@ function Add(props) {
 
   const { setValue, register, handleSubmit } = useForm({
     defaultValues: {
-      purchase_price: "0",
-      sale_price: "0",
+      balance_status: "",
     },
   });
 
-  const handleCategoryChange = (e) => {
-    setValue("category_id", e.value);
+  const handleBalanceStatusChange = (e) => {
+    setValue("balance_status", e.target.value);
   };
 
   const onSubmit = (data, e) => {
-    e.target.reset();
+    console.log(data);
+    //e.target.reset();
   };
 
   return (
@@ -134,11 +126,11 @@ function Add(props) {
                     </Col>
                     <Col sm={2}>
                       <Form.Select
-                        {...register("balance_status", { required: false })}
+                        onChange={handleBalanceStatusChange}
+                        ref={(e) => {
+                          register("balance_status", { required: false });
+                        }}
                       >
-                        <option value="" selected disabled>
-                          Chose Balance Status
-                        </option>
                         <option value="payable">Payable</option>
                         <option value="receivable">Receivable</option>
                       </Form.Select>
@@ -146,9 +138,13 @@ function Add(props) {
                   </Form.Group>
 
                   <hr />
-                  <Button variant="primary" type="submit">
-                    Submit
-                  </Button>
+                  <Form.Group as={Row} className="mb-3">
+                    <Form.Label column sm={8} className="text-sm-end">
+                      <Button variant="primary" type="submit">
+                        Submit
+                      </Button>
+                    </Form.Label>
+                  </Form.Group>
                 </Form>
               </Card.Body>
               <Card.Footer className="text-muted">&nbsp;</Card.Footer>
