@@ -5,6 +5,8 @@ import Navbar from "../../secure/Supplier/navbar";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import DataTable from "../../components/DataTable/Table";
 
+import { toFilter } from "../../utility/utility";
+
 // use redux
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -36,7 +38,12 @@ function Index(props) {
     {
       name: "Contact Person",
       selector: (row) =>
-        row.contact_person != null ? row.contact_person : "N/A",
+        row.contact_person != null ? toFilter(row.contact_person) : "N/A",
+    },
+    {
+      name: "Address",
+      selector: (row) =>
+        row.address != null ? row.address : "N/A",
     },
     {
       name: "Mobile",
