@@ -6,6 +6,7 @@ const supplier = (data, addToast, history) => {
   return async (dispatch) => {
     try {
       dispatch(supplierBegin());
+      console.log("data", data);
       const res = await DataService.post("supplier-store", data);
 
       if (res.data.success) {

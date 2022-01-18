@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Supplier/navbar";
@@ -6,35 +6,40 @@ import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 
 import { useToasts } from "react-toast-notifications";
 import { useForm } from "react-hook-form";
+import Select from "react-select";
 
 // use redux
 import { useDispatch } from "react-redux";
 import { supplier } from "../../redux/supplier/actionCreator";
+
+const balanceStatusList = [
+  { label: "Payable", value: "payable" },
+  { label: "Receivable", value: "receivable" },
+];
 
 function Add(props) {
   const { addToast } = useToasts();
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const {
-    setValue,
-    register,
-    handleSubmit,
-    formState
-  } = useForm({
+  const { setValue, register, handleSubmit, formState } = useForm({
     defaultValues: {
-      balance_status: "",
+      initial_balance: 0,
     },
   });
-
-  const handleBalanceStatusChange = (e) => {
-    setValue("balance_status", e.target.value);
-  };
 
   const onSubmit = (data, e) => {
     dispatch(supplier(data, addToast, history));
     e.target.reset();
   };
+
+  const handleBalanceStatusChange = (e) => {
+    setValue("balance_status", e.value);
+  };
+
+  useEffect(() => {
+    setValue("balance_status", "payable");
+  }, [setValue]);
 
   return (
     <AdminWraper menuOpen="supplier">
@@ -123,7 +128,8 @@ function Add(props) {
 
                   <Form.Group as={Row} className="mb-3">
                     <Form.Label column sm={3} className="text-sm-end">
-                      Initial Balance (TK) <span className="text-danger">*</span>
+                      Initial Balance (TK){" "}
+                      <span className="text-danger">*</span>
                     </Form.Label>
                     <Col sm={3}>
                       <Form.Control
@@ -133,15 +139,18 @@ function Add(props) {
                       />
                     </Col>
                     <Col sm={2}>
-                      <Form.Select
+                      <Select
                         onChange={handleBalanceStatusChange}
                         ref={(e) => {
                           register("balance_status", { required: true });
                         }}
-                      >
-                        <option value="payable">Payable</option>
-                        <option value="receivable">Receivable</option>
-                      </Form.Select>
+                        type="text"
+                        defaultValue={balanceStatusList[0]}
+                        options={balanceStatusList}
+                        isSearchable={true}
+                        placeholder="Chose"
+                        required
+                      ></Select>
                     </Col>
                   </Form.Group>
 
