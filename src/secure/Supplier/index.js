@@ -7,7 +7,10 @@ import DataTable from "../../components/DataTable/Table";
 
 // use redux
 import { useDispatch, useSelector } from "react-redux";
-import { supplierList, supplierDelete } from "../../redux/supplier/actionCreator";
+import {
+  supplierList,
+  supplierDelete,
+} from "../../redux/supplier/actionCreator";
 
 import { useToasts } from "react-toast-notifications";
 
@@ -32,7 +35,8 @@ function Index(props) {
     },
     {
       name: "Contact Person",
-      selector: (row) => (row.contact_person != null ? row.contact_person : "N/A"),
+      selector: (row) =>
+        row.contact_person != null ? row.contact_person : "N/A",
     },
     {
       name: "Mobile",
@@ -44,7 +48,7 @@ function Index(props) {
     },
     {
       name: "Current Balance",
-      selector: (row) => '0',
+      selector: (row) => "0",
     },
     {
       name: "Action",

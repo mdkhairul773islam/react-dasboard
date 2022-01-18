@@ -2,43 +2,52 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Supplier/navbar";
+import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+
+// use redux
+import { useDispatch, useSelector } from "react-redux";
 import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Form,
-  Button,
-} from "react-bootstrap";
+  supplierEdit,
+  supplierUpdate,
+} from "../../redux/supplier/actionCreator";
 
 import { useToasts } from "react-toast-notifications";
 import { useForm } from "react-hook-form";
 
 function Edit(props) {
+  const [getBstatus, setGetBstatus] = useState();
+  const { addToast } = useToasts();
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+  const getSupplier = useSelector((state) => state.supplierReducer.supplier);
 
   const handleBalanceStatusChange = (e) => {
-    setValue("balance_status", e.target.value);
+    setValue("getSupplier.balance_status", e.target.value);
+    setGetBstatus(e.target.value);
   };
 
+  const id = props.match.params.id;
   useEffect(() => {
-
-  }, []);
+    dispatch(supplierEdit(id));
+    if (getSupplier.initial_balance >= 0) {
+      setGetBstatus("receivable");
+    } else {
+      setGetBstatus("payable");
+    }
+  }, [dispatch, getSupplier.initial_balance, id]);
 
   const { setValue, register, handleSubmit, reset } = useForm({
-    defaultValues: {
-      purchase_price: "0",
-      sale_price: "0",
-    },
+    defaultValues: {},
   });
 
   const onSubmit = (data, e) => {
-    console.log('data', data);
+    dispatch(supplierUpdate(data.getProduct, addToast, history));
   };
 
   useEffect(() => {
-    reset({
-    });
-  }, [reset]);
+    reset({ getSupplier });
+  }, [getSupplier, reset]);
 
   return (
     <AdminWraper menuOpen="supplier">
@@ -63,7 +72,7 @@ function Edit(props) {
                     <Col sm={5}>
                       <Form.Control
                         type="text"
-                        {...register("name", { required: true })}
+                        {...register("getSupplier.name", { required: true })}
                         placeholder="Supplier Name"
                         required
                       />
@@ -77,7 +86,9 @@ function Edit(props) {
                     <Col sm={5}>
                       <Form.Control
                         type="text"
-                        {...register("contact", { required: false })}
+                        {...register("getSupplier.contact_person", {
+                          required: false,
+                        })}
                         placeholder="Contact Person"
                       />
                     </Col>
@@ -90,7 +101,7 @@ function Edit(props) {
                     <Col sm={5}>
                       <Form.Control
                         type="text"
-                        {...register("mobile", { required: true })}
+                        {...register("getSupplier.mobile", { required: true })}
                         placeholder="Mobile"
                         required
                       />
@@ -105,7 +116,9 @@ function Edit(props) {
                       <Form.Control
                         as="textarea"
                         rows={3}
-                        {...register("address", { required: false })}
+                        {...register("getSupplier.address", {
+                          required: false,
+                        })}
                         placeholder="Address"
                       />
                     </Col>
@@ -119,7 +132,9 @@ function Edit(props) {
                       <Form.Control
                         as="textarea"
                         rows={3}
-                        {...register("remarks", { required: false })}
+                        {...register("getSupplier.remarks", {
+                          required: false,
+                        })}
                         placeholder="Remarks"
                       />
                     </Col>
@@ -132,17 +147,24 @@ function Edit(props) {
                     <Col sm={3}>
                       <Form.Control
                         type="number"
-                        {...register("initial_balance", { required: false })}
+                        {...register("getSupplier.openingBalance", {
+                          required: false,
+                        })}
                         placeholder="0"
                       />
                     </Col>
                     <Col sm={2}>
                       <Form.Select
+                        aria-label="Chose"
+                        value={getBstatus == null ? "" : getBstatus}
                         onChange={handleBalanceStatusChange}
                         ref={(e) => {
-                          register("balance_status", { required: false });
+                          register("getSupplier.balance_status", {
+                            required: false,
+                          });
                         }}
                       >
+                        <option>Chose Status</option>
                         <option value="payable">Payable</option>
                         <option value="receivable">Receivable</option>
                       </Form.Select>
@@ -152,10 +174,7 @@ function Edit(props) {
                   <hr />
                   <Form.Group as={Row} className="mb-3">
                     <Form.Label column sm={8} className="text-sm-end">
-                      <Button
-                        variant="success"
-                        type="submit"
-                      >
+                      <Button variant="success" type="submit">
                         Update
                       </Button>
                     </Form.Label>
