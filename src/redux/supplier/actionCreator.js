@@ -49,10 +49,12 @@ const supplierEdit = (id) => {
 };
 
 const supplierUpdate = (data, addToast, history) => {
+
   return async (dispatch) => {
     try {
       dispatch(supplierBegin());
       const res = await DataService.post("supplier-update", data);
+
       if (res.data.success) {
         addToast(res.data.success, { appearance: "success" });
         history.push("/supplier/all");

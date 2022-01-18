@@ -22,30 +22,27 @@ function Edit(props) {
   const dispatch = useDispatch();
   const getSupplier = useSelector((state) => state.supplierReducer.supplier);
 
+  const { setValue, register, handleSubmit, reset } = useForm();
+
   const handleBalanceStatusChange = (e) => {
     setValue("getSupplier.balance_status", e.target.value);
     setGetBstatus(e.target.value);
   };
 
   const id = props.match.params.id;
-  useEffect(() => {
-    dispatch(supplierEdit(id));
-    if (getSupplier.initial_balance >= 0) {
-      setGetBstatus("receivable");
-    } else {
-      setGetBstatus("payable");
-    }
-  }, [dispatch, getSupplier.initial_balance, id]);
-
-  const { setValue, register, handleSubmit, reset } = useForm({
-    defaultValues: {},
-  });
-
   const onSubmit = (data, e) => {
-    dispatch(supplierUpdate(data.getProduct, addToast, history));
+    setValue("getSupplier.balance_status", getBstatus);
+    dispatch(supplierUpdate(data.getSupplier, addToast, history));
   };
 
   useEffect(() => {
+    dispatch(supplierEdit(id));
+  }, [dispatch, id]);
+
+  useEffect(() => {
+
+    getSupplier.initial_balance >= 0 ? setGetBstatus("receivable") : setGetBstatus("payable");
+
     reset({ getSupplier });
   }, [getSupplier, reset]);
 
@@ -147,8 +144,8 @@ function Edit(props) {
                     <Col sm={3}>
                       <Form.Control
                         type="number"
-                        {...register("getSupplier.openingBalance", {
-                          required: false,
+                        {...register("getSupplier.initial_balance", {
+                          required: true,
                         })}
                         placeholder="0"
                       />
