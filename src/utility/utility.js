@@ -26,5 +26,9 @@ const toFilter = (str) => {
 }
 //Output: Humpdey Dumpdey
 
+const numberFormat = (x) => {
+  return Number.parseFloat(x).toFixed(0);
+}
 
-export { ellipsis, toUpperCase, toCapitalize, toFilter };
+
+export { ellipsis, toUpperCase, toCapitalize, toFilter, numberFormat };

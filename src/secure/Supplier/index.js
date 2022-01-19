@@ -5,7 +5,7 @@ import Navbar from "../../secure/Supplier/navbar";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import DataTable from "../../components/DataTable/Table";
 
-import { toFilter } from "../../utility/utility";
+import { numberFormat, toFilter } from "../../utility/utility";
 
 // use redux
 import { useDispatch, useSelector } from "react-redux";
@@ -51,16 +51,25 @@ function Index(props) {
     },
     {
       name: "Initial Balance",
-      selector: (row) => row.initial_balance,
+      selector: (row) => numberFormat(row.initial_balance),
+      center: true,
     },
     {
       name: "Current Balance",
       selector: (row) => "0",
+      center: true,
     },
     {
       name: "Action",
       cell: (row) => (
         <>
+          <Link
+            to={`/supplier/view/${row.id}`}
+            className="btn btn-primary btn-sm m-1"
+          >
+            <i className="fas fa-eye fa-sm"></i>
+          </Link>
+
           <Link
             to={`/supplier/edit/${row.id}`}
             className="btn btn-success btn-sm m-1"
