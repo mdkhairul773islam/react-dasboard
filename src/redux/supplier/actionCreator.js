@@ -54,7 +54,6 @@ const supplierUpdate = (data, addToast, history) => {
     try {
       dispatch(supplierBegin());
       const res = await DataService.post("supplier-update", data);
-
       if (res.data.success) {
         addToast(res.data.success, { appearance: "success" });
         history.push("/supplier/all");
