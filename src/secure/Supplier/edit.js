@@ -7,7 +7,7 @@ import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 // use redux
 import { useDispatch, useSelector } from "react-redux";
 import {
-  supplierEdit,
+  supplierInfo,
   supplierUpdate,
 } from "../../redux/supplier/actionCreator";
 
@@ -36,7 +36,7 @@ function Edit(props) {
   };
 
   useEffect(() => {
-    dispatch(supplierEdit(id));
+    dispatch(supplierInfo(id));
   }, [dispatch, id]);
 
   useEffect(() => {

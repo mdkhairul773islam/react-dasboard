@@ -36,7 +36,7 @@ const supplierList = (addToast) => {
   };
 };
 
-const supplierEdit = (id) => {
+const supplierInfo = (id) => {
   return async (dispatch) => {
     try {
       dispatch(supplierBegin());
@@ -88,4 +88,4 @@ const supplierDelete = (id, addToast) => {
   };
 };
 
-export { supplier, supplierList, supplierEdit, supplierUpdate, supplierDelete };
+export { supplier, supplierList, supplierInfo, supplierUpdate, supplierDelete };

@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Supplier/navbar";
 import { Container, Row, Col, Card, Button, Table } from "react-bootstrap";
 
+// use redux
+import { useDispatch, useSelector } from "react-redux";
+import { supplierInfo } from "../../redux/supplier/actionCreator";
+
 function Show(props) {
+  const dispatch = useDispatch();
+  const { address, contact_person, name, mobile, remarks, initial_balance } = useSelector((state) => state.supplierReducer.supplier);
+
+  const id = props.match.params.id;
+
+  useEffect(() => {
+    dispatch(supplierInfo(id));
+  }, [dispatch, id]);
+
   return (
     <AdminWraper menuOpen="supplier">
       <Container className="p-0" fluid>
@@ -17,7 +30,7 @@ function Show(props) {
           <Col>
             <Card>
               <Card.Header as="h4" className="fw-bold">
-                Product Details
+                Supplier Information
                 <Button
                   to="#"
                   className="btn btn-light btn-xl float-end px-1 py-0"
@@ -26,7 +39,7 @@ function Show(props) {
                   <i className="fa fa-print" aria-hidden="true"></i>
                 </Button>
                 <Link
-                  to="/product/edit/1"
+                  to="/supplier/edit/1"
                   className="btn btn-light btn-xl float-end px-2 py-0"
                   type="button"
                 >
@@ -41,83 +54,38 @@ function Show(props) {
                   responsive
                   className="custom-table"
                 >
-                  <thead>
-                    <tr>
-                      <th>SL</th>
-                      <th>Date</th>
-                      <th>Item</th>
-                      <th>DO Invoice</th>
-                      <th>Qty(ctn)</th>
-                      <th>Free(ctn)</th>
-                      <th>Pending Qty(ctn)</th>
-                      <th>Free (ctn)</th>
-                      <th>P.Price (TK)</th>
-                      <th>Total (TK)</th>
-                    </tr>
-                  </thead>
                   <tbody>
                     <tr>
-                      <td>1</td>
-                      <td>27-Oct-2021</td>
-                      <td>Biscony Mogol Cookise</td>
-                      <td>454780</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
+                      <th>Supplier Name</th>
+                      <td>{name}</td>
                     </tr>
                     <tr>
-                      <td>2</td>
-                      <td>27-Oct-2021</td>
-                      <td>Biscony Mogol Cookise</td>
-                      <td>454780</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
+                      <th>Contact Person</th>
+                      <td>{contact_person}</td>
                     </tr>
                     <tr>
-                      <td>3</td>
-                      <td>27-Oct-2021</td>
-                      <td>Biscony Mogol Cookise</td>
-                      <td>454780</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
+                      <th>Mobile</th>
+                      <td>{mobile}</td>
                     </tr>
                     <tr>
-                      <td>4</td>
-                      <td>27-Oct-2021</td>
-                      <td>Biscony Mogol Cookise</td>
-                      <td>454780</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
+                      <th>Address</th>
+                      <td>{address}</td>
                     </tr>
                     <tr>
-                      <th colSpan="4" className="text-end">
-                        Total
-                      </th>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
+                      <th>Remarks</th>
+                      <td>{remarks}</td>
                     </tr>
                     <tr>
-                      <th>Remark:</th>
-                      <td colSpan="9"></td>
+                      <th>Initial Balance</th>
+                      <td>{initial_balance}</td>
+                    </tr>
+                    <tr>
+                      <th>Current Balance</th>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <th>Supplier Type</th>
+                      <td>{initial_balance > 0 ? 'Receivable' : 'Payable'}</td>
                     </tr>
                   </tbody>
                 </Table>
