@@ -40,7 +40,7 @@ const logOut = (addToast) => {
       addToast("Admin Successfully Logout.", { appearance: "success" });
     } catch (err) {
       dispatch(logoutErr(err));
-      addToast("Admin Successfully Logout.", { appearance: "error" });
+      addToast("Admin Successfully Not Logout.", { appearance: "error" });
     }
   };
 };
