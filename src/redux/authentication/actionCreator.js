@@ -9,20 +9,21 @@ const {
   logoutErr,
 } = actions;
 
-const login = (userLoginData) => {
+const login = (data, addToast) => {
   return async (dispatch) => {
     try {
       dispatch(loginBegin());
-      const res = await DataService.post("login", userLoginData);
+      const res = await DataService.post("login", data);
       if (res.data.token !== undefined) {
         window.localStorage.setItem("token", res.data.token);
         window.localStorage.setItem("isLoggedin", true);
+        addToast("Admin Successfully Loggedin.", { appearance: "success" });
+        dispatch(loginSuccess(res.data));
       } else {
         window.localStorage.removeItem("token");
         window.localStorage.removeItem("isLoggedin");
+        addToast("Admin Successfully Not Loggedin.", { appearance: "warning" });
       }
-
-      dispatch(loginSuccess(res.data));
     } catch (err) {
       dispatch(loginErr(err));
     }

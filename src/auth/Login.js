@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../dist/css/credential.css";
 
 /** imported login images **/
@@ -12,24 +12,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/authentication/actionCreator";
 import { Redirect } from "react-router-dom";
 
+import { useForm } from "react-hook-form";
+import { useToasts } from "react-toast-notifications";
+
 function Login() {
+  const { addToast } = useToasts();
   const dispatch = useDispatch();
 
   const isLoggedin = useSelector((state) => state.authReducer.isLoggedin);
   const loading = useSelector((state) => state.authReducer.loading);
 
-  const [email, setEmail] = useState("admin@gamil.com");
-  const [password, setPassword] = useState("admin");
-  const [scope] = useState("admin");
+  const { register, handleSubmit, formState } = useForm({
+    defaultValues: {
+      email: "admin@gmail.com",
+      password: "admin",
+      scope: "admin"
+    },
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const userLoginData = {
-      email,
-      password,
-      scope,
-    };
-    dispatch(login(userLoginData));
+  const onSubmit = (data, e) => {
+    dispatch(login(data, addToast));
+    e.target.reset();
   };
 
   if (loading) {
@@ -50,12 +53,11 @@ function Login() {
                 We are <span>Admin {isLoggedin}</span>
               </h2>
 
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form_group">
                   <input
                     type="email"
-                    name="email"
-                    onChange={(e) => setEmail(e.target.value)}
+                    {...register("email", { required: true })}
                     className="form_control"
                     placeholder="Email"
                   />
@@ -64,8 +66,7 @@ function Login() {
                 <div className="form_group">
                   <input
                     type="password"
-                    name="password"
-                    onChange={(e) => setPassword(e.target.value)}
+                    {...register("password", { required: true })}
                     className="form_control"
                     placeholder="Password"
                   />
@@ -77,7 +78,7 @@ function Login() {
                   </div>
                   <Link to="/">Forgot password</Link>
                 </div>
-                <button type="submit" className="submit_btn adad">
+                <button type="submit" className="submit_btn adad" onSubmit={handleSubmit(onSubmit)} disabled={formState.isSubmitting}>
                   Login
                 </button>
               </form>
