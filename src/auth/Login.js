@@ -3,6 +3,7 @@ import "../dist/css/credential.css";
 
 /** imported login images **/
 import bKas from "../dist/images/icon/bkash.png";
+import logo from "../dist/images/logo/freelanceitlab.png";
 import rocket from "../dist/images/icon/rocket.png";
 import dbbl from "../dist/images/icon/dbbl.png";
 import UserWraper from "../components/layouts/UserWraper";
@@ -87,9 +88,7 @@ function Login() {
             <div className="container_box">
               <div className="company_brand">
                 <img
-                  src={
-                    require("../dist/images/logo/freelanceitlab.png").default
-                  }
+                  src={logo}
                   alt=""
                 />
                 <h3>Freelance IT Lab</h3>
