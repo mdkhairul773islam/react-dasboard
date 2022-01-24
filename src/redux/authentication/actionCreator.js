@@ -13,6 +13,7 @@ const login = (userLoginData) => {
   return async (dispatch) => {
     try {
       dispatch(loginBegin());
+      window.localStorage.setItem("isLoggedin", true);
       const res = await DataService.post("login", userLoginData);
       if (res.data.token !== undefined) {
         window.localStorage.setItem("token", res.data.token);
