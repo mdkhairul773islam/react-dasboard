@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../redux/authentication/actionCreator";
 
 import userPhoto from "../../dist/images/user/02.png";
+import { useToasts } from "react-toast-notifications";
 
 function TopHeader(props) {
+  const { addToast } = useToasts();
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.authReducer.loading);
 
@@ -13,7 +15,7 @@ function TopHeader(props) {
   const [userProfileOpen, setUserProfileOpen] = useState(false);
 
   const handleLogout = () => {
-    dispatch(logOut());
+    dispatch(logOut(addToast));
   };
 
   const messageMenuToggleFn = () => {

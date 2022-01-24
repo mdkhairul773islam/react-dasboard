@@ -22,7 +22,7 @@ const login = (data, addToast) => {
       } else {
         window.localStorage.removeItem("token");
         window.localStorage.removeItem("isLoggedin");
-        addToast("Admin Successfully Not Loggedin.", { appearance: "warning" });
+        addToast("Admin Successfully Not Loggedin.", { appearance: "error" });
       }
     } catch (err) {
       dispatch(loginErr(err));
@@ -30,15 +30,17 @@ const login = (data, addToast) => {
   };
 };
 
-const logOut = () => {
+const logOut = (addToast) => {
   return async (dispatch) => {
     try {
       dispatch(logoutBegin());
       window.localStorage.removeItem("isLoggedin");
       dispatch(logoutSuccess(null));
       window.localStorage.removeItem("token");
+      addToast("Admin Successfully Logout.", { appearance: "success" });
     } catch (err) {
       dispatch(logoutErr(err));
+      addToast("Admin Successfully Logout.", { appearance: "error" });
     }
   };
 };
