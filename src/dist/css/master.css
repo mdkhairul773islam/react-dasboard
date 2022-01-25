@@ -1078,6 +1078,7 @@ img {
   background-color: #51a351;
 }
 
+/* print css start */
 @page {
   margin: 0;
 }
@@ -1089,6 +1090,9 @@ img {
   .panel_heading,
   .panel_footer,
   .wrapper_background,
+  .dataTables_length,
+  .dataTables_filter,
+  .dataTables_info,
   .pagination,
   .print_hide,
   .ps__rail-y,
@@ -1096,34 +1100,33 @@ img {
     display: none !important;
   }
   .body_container {
-    padding: 15px !important;
+    padding: 0 !important;
     min-height: 100vh;
     overflow: auto;
     height: auto;
     background: #fff;
   }
+  .body_content {
+    padding: 5px 30px;
+  }
   .panel_body {
-    padding: 0;
+    padding: 20px 0;
   }
   .panel_container {
     box-shadow: none;
     border: none;
   }
-  .body_content {
-    padding: 15px 30px;
+  .print_flex_only {
+    display: flex !important;
   }
   .print_only {
-    display: block;
-  }
-  .table-bordered td,
-  .table-bordered th {
-    border: 1px solid #000 !important;
-    color: #000;
-    padding: 2px 8px;
+    display: block !important;
   }
   .body_content .table th,
   .body_content .table td {
+    border: 1px solid #000 !important;
+    color: #000;
     padding: 2px 6px;
   }
 }
-/* print css end */
+/* print css start */
