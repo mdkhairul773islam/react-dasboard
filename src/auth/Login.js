@@ -6,6 +6,7 @@ import bKas from "../dist/images/icon/bkash.png";
 import logo from "../dist/images/logo/freelanceitlab.png";
 import rocket from "../dist/images/icon/rocket.png";
 import dbbl from "../dist/images/icon/dbbl.png";
+
 import UserWraper from "../components/layouts/UserWraper";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +21,7 @@ function Login() {
   const dispatch = useDispatch();
 
   const isLoggedin = useSelector((state) => state.authReducer.isLoggedin);
-  const loading = useSelector((state) => state.authReducer.loading);
+  //const loading = useSelector((state) => state.authReducer.loading);
 
   const { register, handleSubmit, formState } = useForm({
     defaultValues: {
@@ -35,9 +36,9 @@ function Login() {
     e.target.reset();
   };
 
-  if (loading) {
-    return <p>Loding....</p>;
-  }
+  /*   if (loading) {
+      return <p>Loding....</p>;
+    } */
 
   if (isLoggedin) {
     return <Redirect to="/admin" />;
