@@ -49,7 +49,7 @@ function Category(props) {
     };
 
     useEffect(() => {
-
+        document.title = "Category | React Dashboard";
         async function getCategory() {
             setLoading(true);
             try {

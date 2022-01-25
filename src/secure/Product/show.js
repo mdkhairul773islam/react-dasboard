@@ -5,7 +5,7 @@ import Navbar from "../../secure/Product/navbar";
 import { Container, Row, Col, Card, Button, Table } from "react-bootstrap";
 
 function Show(props) {
-    console.log(props.match.params);
+
     return (
         <AdminWraper menuOpen='product'>
             <Container className="p-0" fluid>

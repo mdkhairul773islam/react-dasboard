@@ -87,6 +87,7 @@ function Edit(props) {
   };
 
   useEffect(() => {
+    document.title = "Edit Product | React Dashboard";
     setGetCategory(getProduct.category_id);
     setGetBrand(getProduct.brand_id);
     setGetUnit(getProduct.unit_id);

@@ -15,6 +15,7 @@ function Show(props) {
   const id = props.match.params.id;
 
   useEffect(() => {
+    document.title = "Supplier Details | React Dashboard";
     dispatch(supplierInfo(id));
   }, [dispatch, id]);
 

@@ -48,7 +48,7 @@ function Brand(props) {
     };
 
     useEffect(() => {
-
+        document.title = "Brand | React Dashboard";
         async function getBrand() {
             setLoading(true);
             try {

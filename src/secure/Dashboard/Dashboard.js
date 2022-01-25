@@ -1,12 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
-//import { DataService } from "../../config/dataService/dataService";
 
 function Dashboard(props) {
-  useEffect(() => {
-    //const res = DataService.get("user-list");
-    //console.log("res", res);
-  });
   return (
     <AdminWraper menuOpen='dashboard'>
       <div className="box_wrapper">

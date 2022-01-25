@@ -40,7 +40,7 @@ function Edit(props) {
   }, [dispatch, id]);
 
   useEffect(() => {
-
+    document.title = "Edit Supplier| React Dashboard";
     getSupplier.initial_balance >= 0 ? setGetBstatus("receivable") : setGetBstatus("payable");
 
     reset({ getSupplier });
