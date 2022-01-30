@@ -4,8 +4,10 @@ import FilterComponent from "./FilterComponent";
 
 function Table(props) {
   // Filter Code Start
+  const data = props.data.length > 0 ? props.data : [];
   const [filterText, setFilterText] = React.useState("");
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+
 
   const subHeaderComponent = useMemo(() => {
     const handleClear = () => {
@@ -25,7 +27,7 @@ function Table(props) {
   }, [filterText, resetPaginationToggle]);
   // Filter Code End
 
-  const filteredItems = props.data.filter(
+  const filteredItems = data.filter(
     (item) =>
       JSON.stringify(item).toLowerCase().indexOf(filterText.toLowerCase()) !==
       -1
