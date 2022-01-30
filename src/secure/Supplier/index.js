@@ -42,8 +42,7 @@ function Index(props) {
     },
     {
       name: "Address",
-      selector: (row) =>
-        row.address != null ? row.address : "N/A",
+      selector: (row) => (row.address != null ? row.address : "N/A"),
     },
     {
       name: "Mobile",
@@ -115,7 +114,7 @@ function Index(props) {
                 </Button>
               </Card.Header>
               <Card.Body>
-                <DataTable columns={columns} data={data} loading={loading} />
+                {/* <DataTable columns={columns} data={data} loading={loading} /> */}
               </Card.Body>
               <Card.Footer className="text-muted">&nbsp;</Card.Footer>
             </Card>
