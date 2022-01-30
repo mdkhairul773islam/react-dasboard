@@ -115,7 +115,7 @@ function Index(props) {
                 </Button>
               </Card.Header>
               <Card.Body>
-                {/* <DataTable columns={columns} data={data} loading={loading} /> */}
+                <DataTable columns={columns} data={data} loading={loading} />
               </Card.Body>
               <Card.Footer className="text-muted">&nbsp;</Card.Footer>
             </Card>
