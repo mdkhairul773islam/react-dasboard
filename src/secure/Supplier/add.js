@@ -38,6 +38,7 @@ function Add(props) {
   };
 
   useEffect(() => {
+    document.title = "Add New Supplier | React Dashboard";
     setValue("balance_status", "payable");
   }, [setValue]);
 

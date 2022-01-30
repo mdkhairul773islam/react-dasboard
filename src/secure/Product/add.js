@@ -49,6 +49,7 @@ function Add(props) {
   });
 
   useEffect(() => {
+    document.title = "Add New Product | React Dashboard";
     dispatch(category());
     dispatch(brand());
     dispatch(unit());
@@ -95,7 +96,7 @@ function Add(props) {
           <Col>
             <Card>
               <Card.Header as="h4" className="fw-bold">
-                New Product
+                Add New Product
               </Card.Header>
               <Card.Body>
                 <Form onSubmit={handleSubmit(onSubmit)}>

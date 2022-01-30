@@ -89,6 +89,7 @@ function Index(props) {
     },
   ];
   useEffect(() => {
+    document.title = "Supplier List | React Dashboard";
     dispatch(supplierList());
   }, [dispatch]);
 

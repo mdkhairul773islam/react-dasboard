@@ -48,6 +48,7 @@ function Unit(props) {
   };
 
   useEffect(() => {
+    document.title = "Unit | React Dashboard";
     async function getUnit() {
       setLoading(true);
       try {
