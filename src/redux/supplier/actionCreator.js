@@ -49,7 +49,6 @@ const supplierInfo = (id) => {
 };
 
 const supplierUpdate = (data, addToast, history) => {
-
   return async (dispatch) => {
     try {
       dispatch(supplierBegin());

@@ -42,8 +42,7 @@ function Index(props) {
     },
     {
       name: "Address",
-      selector: (row) =>
-        row.address != null ? row.address : "N/A",
+      selector: (row) => (row.address != null ? row.address : "N/A"),
     },
     {
       name: "Mobile",
