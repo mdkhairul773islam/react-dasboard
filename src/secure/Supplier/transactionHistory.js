@@ -32,30 +32,21 @@ function TransactionHistory(props) {
 
   const columns = [
     {
+      name: "Date",
+      selector: (row) =>
+        row.date != null ? toFilter(row.date) : "N/A",
+    },
+    {
       name: "Name",
       selector: (row) => row.name,
-    },
-    {
-      name: "Contact Person",
-      selector: (row) =>
-        row.contact_person != null ? toFilter(row.contact_person) : "N/A",
-    },
-    {
-      name: "Address",
-      selector: (row) => (row.address != null ? row.address : "N/A"),
     },
     {
       name: "Mobile",
       selector: (row) => (row.mobile != null ? row.mobile : "N/A"),
     },
     {
-      name: "Initial Balance",
-      selector: (row) => numberFormat(row.initial_balance),
-      center: true,
-    },
-    {
-      name: "Current Balance",
-      selector: (row) => "0",
+      name: "Payment",
+      selector: (row) => numberFormat(row.payment),
       center: true,
     },
     {
@@ -63,14 +54,14 @@ function TransactionHistory(props) {
       cell: (row) => (
         <>
           <Link
-            to={`/supplier/view/${row.id}`}
+            to={`/supplier/transaction-view/${row.id}`}
             className="btn btn-primary btn-sm m-1"
           >
             <i className="fas fa-eye fa-sm"></i>
           </Link>
 
           <Link
-            to={`/supplier/edit/${row.id}`}
+            to={`/supplier/transaction-edit/${row.id}`}
             className="btn btn-success btn-sm m-1"
           >
             <i className="fas fa-pen fa-sm"></i>

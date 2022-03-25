@@ -158,6 +158,7 @@ function AddTransaction(props) {
                                                 type="text"
                                                 {...register("balance", { required: false })}
                                                 placeholder="0.00"
+                                                readOnly
                                                 required
                                             />
                                         </Col>
@@ -194,7 +195,7 @@ function AddTransaction(props) {
                                         <Form.Label column sm={3} className="text-sm-end">
                                             Payment Type
                                         </Form.Label>
-                                        <Col sm={5}>
+                                        <Col sm={2}>
                                             <Select
                                                 onChange={handlePaymentTypeChange}
                                                 ref={(e) => {
@@ -207,6 +208,14 @@ function AddTransaction(props) {
                                                 required
                                             ></Select>
                                         </Col>
+                                        <Col sm={3}>
+                                            <Form.Control
+                                                type="number"
+                                                {...register("payment", { required: true })}
+                                                placeholder="Amount (0.00)"
+                                                required
+                                            />
+                                        </Col>
                                     </Form.Group>
 
                                     <Form.Group as={Row} className="mb-3">
@@ -217,7 +226,7 @@ function AddTransaction(props) {
                                             <Form.Control
                                                 type="text"
                                                 {...register("total_balance", { required: true })}
-                                                placeholder="0.00"
+                                                placeholder="0.00" readOnly
                                                 required
                                             />
                                         </Col>
