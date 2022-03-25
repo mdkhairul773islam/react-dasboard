@@ -43,7 +43,8 @@ function AddTransaction(props) {
         { label: "Cash To T.T", value: "cash_to_tt" },
     ];
 
-    const { control, setValue, register, handleSubmit, formState } = useForm({
+    const { control, setValue, register, handleSubmit, formState: { errors }
+    } = useForm({
         defaultValues: {},
     });
 
@@ -119,7 +120,7 @@ function AddTransaction(props) {
                                             <Select
                                                 onChange={handleShowroomChange}
                                                 ref={(e) => {
-                                                    register("showroom", { required: false });
+                                                    register("showroom", { required: true });
                                                 }}
                                                 type="text"
                                                 options={showroomList}
@@ -127,6 +128,9 @@ function AddTransaction(props) {
                                                 placeholder="Chose Showroom"
                                                 required
                                             ></Select>
+                                            {errors.showroom && errors.showroom.type === "required" && (
+                                                <span class="text-danger">Showroom is required</span>
+                                            )}
                                         </Col>
                                     </Form.Group>
 
@@ -146,6 +150,9 @@ function AddTransaction(props) {
                                                 placeholder="Chose Supplier Name"
                                                 required
                                             ></Select>
+                                            {errors.name && errors.name.type === "required" && (
+                                                <span class="text-danger">Supplier name is required</span>
+                                            )}
                                         </Col>
                                     </Form.Group>
 
@@ -156,10 +163,9 @@ function AddTransaction(props) {
                                         <Col sm={3}>
                                             <Form.Control
                                                 type="text"
-                                                {...register("balance", { required: false })}
+                                                {...register("balance")}
                                                 placeholder="0.00"
                                                 readOnly
-                                                required
                                             />
                                         </Col>
                                         <Col sm={2}>
@@ -188,6 +194,9 @@ function AddTransaction(props) {
                                                 placeholder="Chose Transaction Type"
                                                 required
                                             ></Select>
+                                            {errors.transactionType && errors.transactionType.type === "required" && (
+                                                <span class="text-danger">Showroom is required</span>
+                                            )}
                                         </Col>
                                     </Form.Group>
 
@@ -207,6 +216,9 @@ function AddTransaction(props) {
                                                 placeholder="Chose Payment Type"
                                                 required
                                             ></Select>
+                                            {errors.paymentType && errors.paymentType.type === "required" && (
+                                                <span class="text-danger">Showroom is required</span>
+                                            )}
                                         </Col>
                                         <Col sm={3}>
                                             <Form.Control
@@ -215,6 +227,9 @@ function AddTransaction(props) {
                                                 placeholder="Amount (0.00)"
                                                 required
                                             />
+                                            {errors.payment && errors.payment.type === "required" && (
+                                                <span class="text-danger">Showroom is required</span>
+                                            )}
                                         </Col>
                                     </Form.Group>
 
@@ -271,7 +286,6 @@ function AddTransaction(props) {
                                     <Form.Group as={Row} className="mb-3">
                                         <Form.Label column sm={8} className="text-sm-end">
                                             <Button
-                                                disabled={formState.isSubmitting}
                                                 variant="primary"
                                                 type="submit"
                                             >
