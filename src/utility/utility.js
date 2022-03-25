@@ -30,5 +30,18 @@ const numberFormat = (x) => {
   return Number.parseFloat(x).toFixed(0);
 }
 
+// Get Date YYYY-MM-DD
+const getDate = (str) => {
+  if (str !== undefined) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
+  } else {
+    return "";
+  }
+}
 
-export { ellipsis, toUpperCase, toCapitalize, toFilter, numberFormat };
+
+
+export { ellipsis, toUpperCase, toCapitalize, toFilter, numberFormat, getDate };
