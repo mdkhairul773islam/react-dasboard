@@ -26,7 +26,7 @@ const Product = (state = initState, action) => {
     case PRODUCT_SUCCESS:
       return {
         ...state,
-        productList: data.data,
+        productList: (data.data !== undefined ? data.data : data),
         totalRows: data.total,
         loading: false,
       };

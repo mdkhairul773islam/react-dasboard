@@ -23,7 +23,7 @@ const product = (data, addToast, history) => {
   };
 };
 
-const productList = (currentPage, perPage) => {
+const productList = (currentPage = null, perPage = null) => {
   return async (dispatch) => {
     try {
       dispatch(productBegin());
