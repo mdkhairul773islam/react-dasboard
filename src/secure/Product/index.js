@@ -27,8 +27,8 @@ function Index(props) {
   };
 
   const [totalRows, setTotalRows] = useState(0);
+
   const [perPage, setPerPage] = useState(10);
-  const [page, setPage] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
 
   const columns = [
@@ -81,25 +81,24 @@ function Index(props) {
     },
   ];
 
-  useEffect(() => {
-    setTotalRows(totalDataRows);
-  }, [totalDataRows]);
+  /*   useEffect(() => {
+      setTotalRows(totalDataRows);
+    }, [totalDataRows]); */
 
   useEffect(() => {
     document.title = "Product List | React Dashboard";
-    dispatch(productList(page, perPage));
+    dispatch(productList(currentPage, perPage));
+    setTotalRows(totalDataRows);
 
-  }, [dispatch, page, perPage]);
+  }, [currentPage, dispatch, perPage, totalDataRows]);
 
-  const handlePageChange = (page) => {
-    dispatch(productList(page));
-    setCurrentPage(page);
-    setPage(page);
+  const handlePageChange = (currentPage) => {
+    setCurrentPage(currentPage);
+    dispatch(productList(currentPage));
   };
 
-  const handlePerRowsChange = async (page, perPage) => {
-    //dispatch(productList(page, perPage));
-    //setPerPage(perPage);
+  const handlePerRowsChange = async (perPage, currentPage) => {
+    dispatch(productList(currentPage, perPage));
   };
 
   return (

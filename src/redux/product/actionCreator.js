@@ -23,6 +23,23 @@ const product = (data, addToast, history) => {
   };
 };
 
+const productList = (currentPage, perPage) => {
+
+  console.log('currentPage', currentPage);
+  console.log('perPageRow', perPage);
+
+  return async (dispatch) => {
+    try {
+      dispatch(productBegin());
+      const res = await DataService.get(`product?page=${currentPage}&per_page=${perPage}&delay=1`);
+      dispatch(productSuccess(res.data));
+    } catch (err) {
+      dispatch(productErr(err));
+    }
+  };
+};
+
+/*
 const productList = (page, perPage) => {
 
   console.log('page', page);
@@ -38,6 +55,8 @@ const productList = (page, perPage) => {
     }
   };
 };
+
+*/
 
 const productEdit = (id) => {
   return async (dispatch) => {
