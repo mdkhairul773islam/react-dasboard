@@ -30,6 +30,26 @@ function Index(props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
 
+  useEffect(() => {
+    setTotalRows(totalDataRows);
+  }, [totalDataRows]);
+
+  useEffect(() => {
+    document.title = "Product List | React Dashboard";
+    dispatch(productList(currentPage, perPage));
+
+  }, [currentPage, dispatch, perPage]);
+
+  const handlePageChange = (currentPage) => {
+    setCurrentPage(currentPage);
+    dispatch(productList(currentPage));
+  };
+
+  const handlePerRowsChange = async (perPage, currentPage) => {
+    setPerPage(perPage);
+    dispatch(productList(currentPage, perPage));
+  };
+
   const columns = [
     {
       name: "Name",
@@ -79,22 +99,6 @@ function Index(props) {
       className: "action-width",
     },
   ];
-
-  useEffect(() => {
-    document.title = "Product List | React Dashboard";
-    dispatch(productList(currentPage, perPage));
-    setTotalRows(totalDataRows);
-  }, [currentPage, dispatch, perPage, totalDataRows]);
-
-  const handlePageChange = (currentPage) => {
-    setCurrentPage(currentPage);
-    dispatch(productList(currentPage));
-  };
-
-  const handlePerRowsChange = async (perPage, currentPage) => {
-    setPerPage(perPage);
-    dispatch(productList(currentPage, perPage));
-  };
 
   return (
     <AdminWraper menuOpen="product">
