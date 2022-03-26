@@ -31,6 +31,16 @@ function Table(props) {
       JSON.stringify(item).toLowerCase().indexOf(filterText.toLowerCase()) !==
       -1
   );
+
+
+  const handlePageChange = (page) => {
+    props.handlePageChange(page);
+  };
+
+  const handlePerRowsChange = async (newPerPage, page) => {
+    props.handlePerRowsChange(newPerPage, page);
+  };
+
   return (
     <KitchenSinkStory
       columns={props.columns}
@@ -41,8 +51,8 @@ function Table(props) {
       paginationServer
       paginationTotalRows={props.totalRows}
       paginationDefaultPage={props.currentPage}
-      onChangeRowsPerPage={props.handlePerRowsChange}
-      onChangePage={props.handlePageChange}
+      onChangeRowsPerPage={handlePerRowsChange}
+      onChangePage={handlePageChange}
       selectableRows
       onSelectedRowsChange={({ selectedRows }) => console.log(selectedRows)}
       pointerOnHover

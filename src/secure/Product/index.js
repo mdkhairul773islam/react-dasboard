@@ -81,9 +81,6 @@ function Index(props) {
     },
   ];
 
-
-
-
   useEffect(() => {
     setTotalRows(totalDataRows);
   }, [totalDataRows]);
@@ -100,9 +97,9 @@ function Index(props) {
     setPage(page);
   };
 
-  const handlePerRowsChange = async (newPerPage, page) => {
-    dispatch(productList(page, newPerPage));
-    setPerPage(newPerPage);
+  const handlePerRowsChange = async (page, perPage) => {
+    //dispatch(productList(page, perPage));
+    //setPerPage(perPage);
   };
 
   return (
@@ -131,8 +128,8 @@ function Index(props) {
                   columns={columns} data={data}
                   loading={loading} totalRows={totalRows}
                   currentPage={currentPage} perPage={perPage}
-                  onChangeRowsPerPage={handlePerRowsChange}
-                  onChangePage={handlePageChange}
+                  handlePerRowsChange={handlePerRowsChange}
+                  handlePageChange={handlePageChange}
                 />
               </Card.Body>
               <Card.Footer className="text-muted">&nbsp;</Card.Footer>

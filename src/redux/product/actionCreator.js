@@ -25,6 +25,9 @@ const product = (data, addToast, history) => {
 
 const productList = (page, perPage) => {
 
+  console.log('page', page);
+  console.log('perPage', perPage);
+
   return async (dispatch) => {
     try {
       dispatch(productBegin());
