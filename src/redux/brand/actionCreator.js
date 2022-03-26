@@ -7,7 +7,7 @@ const brand = () => {
     try {
       dispatch(brandBegin());
       const res = await DataService.get("brand");
-      dispatch(brandSuccess(res.data));
+      dispatch(brandSuccess(res.data.data));
     } catch (err) {
       dispatch(brandErr(err));
     }

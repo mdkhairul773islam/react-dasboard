@@ -24,6 +24,10 @@ function Brand(props) {
     const [loading, setLoading] = useState(false);
     const [brands, setBrands] = useState([]);
 
+    const [totalRows, setTotalRows] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [perPage, setPerPage] = useState(10);
+
     const { addToast } = useToasts();
     const handleClose = () => setShow(false);
 
@@ -39,6 +43,7 @@ function Brand(props) {
         try {
             const res = await DataService.post("brand-store", data);
             addToast("Saved Successfully", { appearance: "success" });
+            setTotalRows(res.data.total);
             setBrands(res.data);
             setLoading(false);
         } catch (error) {
@@ -47,21 +52,33 @@ function Brand(props) {
         e.target.reset();
     };
 
+    const getBrand = async function getBrand(currentPage = 1, perPage = 10) {
+        setLoading(true);
+        try {
+            const res = await DataService.get(`brand?page=${currentPage}&per_page=${perPage}`);
+            setTotalRows(res.data.total)
+            setBrands(res.data.data);
+            setLoading(false);
+        } catch (error) {
+            console.log("error");
+        }
+    };
+
+    const handlePageChange = (currentPage) => {
+        setCurrentPage(currentPage);
+        getBrand(currentPage)
+    };
+
+    const handlePerRowsChange = async (perPage, currentPage) => {
+        setPerPage(perPage);
+        getBrand(currentPage, perPage);
+    };
+
+
     useEffect(() => {
         document.title = "Brand | React Dashboard";
-        async function getBrand() {
-            setLoading(true);
-            try {
-                const res = await DataService.get("brand");
-                // console.log(res.data);
-                setBrands(res.data);
-                setLoading(false);
-            } catch (error) {
-                console.log("error");
-            }
-        }
-        getBrand();
-    }, []);
+        getBrand(currentPage, perPage);
+    }, [currentPage, perPage]);
 
     /* Brand database store end here */
 
@@ -208,7 +225,13 @@ function Brand(props) {
                                 Brand List
                             </Card.Header>
                             <Card.Body>
-                                <DataTable columns={columns} data={brands} loading={loading} />
+                                <DataTable
+                                    columns={columns} data={brands}
+                                    loading={loading} totalRows={totalRows}
+                                    currentPage={currentPage} perPage={perPage}
+                                    handlePerRowsChange={handlePerRowsChange}
+                                    handlePageChange={handlePageChange}
+                                />
                                 <Modal show={show} onHide={handleClose}>
                                     <Modal.Header closeButton>
                                         <Modal.Title as="h5">Edit Brand</Modal.Title>
