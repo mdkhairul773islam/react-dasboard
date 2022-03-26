@@ -7,7 +7,7 @@ const category = () => {
     try {
       dispatch(categoryBegin());
       const res = await DataService.get("category");
-      dispatch(categorySuccess(res.data));
+      dispatch(categorySuccess(res.data.data));
     } catch (err) {
       dispatch(categoryErr(err));
     }

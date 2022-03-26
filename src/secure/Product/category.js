@@ -25,6 +25,11 @@ function Category(props) {
     const [loading, setLoading] = useState(false);
     const [category, setCategory] = useState([]);
 
+
+    const [totalRows, setTotalRows] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [perPage, setPerPage] = useState(10);
+
     const { addToast } = useToasts();
     const handleClose = () => setShow(false);
 
@@ -41,6 +46,7 @@ function Category(props) {
             const res = await DataService.post("category-store", data);
             addToast("Saved Successfully", { appearance: "success" });
             setCategory(res.data);
+            setTotalRows(res.data.total);
             setLoading(false);
         } catch (error) {
             console.log("error");
@@ -48,20 +54,36 @@ function Category(props) {
         e.target.reset();
     };
 
+    /* category get and pagination start here */
+
+    const getCategory = async function getCategory(currentPage = 1, perPage = 10) {
+        setLoading(true);
+        try {
+            const res = await DataService.get(`category?page=${currentPage}&per_page=${perPage}`);
+            setTotalRows(res.data.total)
+            setCategory(res.data.data);
+            setLoading(false);
+        } catch (error) {
+            console.log("error");
+        }
+    };
+
+    const handlePageChange = (currentPage) => {
+        setCurrentPage(currentPage);
+        getCategory(currentPage)
+    };
+
+    const handlePerRowsChange = async (perPage, currentPage) => {
+        setPerPage(perPage);
+        getCategory(currentPage, perPage);
+    };
+
     useEffect(() => {
         document.title = "Category | React Dashboard";
-        async function getCategory() {
-            setLoading(true);
-            try {
-                const res = await DataService.get("category");
-                setCategory(res.data);
-                setLoading(false);
-            } catch (error) {
-                console.log("error");
-            }
-        }
-        getCategory();
-    }, []);
+        getCategory(currentPage, perPage);
+    }, [currentPage, perPage]);
+
+    /* category pagination end here */
 
     /* Category database store end here */
 
@@ -208,7 +230,13 @@ function Category(props) {
                                 Category List
                             </Card.Header>
                             <Card.Body>
-                                <DataTable columns={columns} data={category} loading={loading} />
+                                <DataTable
+                                    columns={columns} data={category}
+                                    loading={loading} totalRows={totalRows}
+                                    currentPage={currentPage} perPage={perPage}
+                                    handlePerRowsChange={handlePerRowsChange}
+                                    handlePageChange={handlePageChange}
+                                />
                                 <Modal show={show} onHide={handleClose}>
                                     <Modal.Header closeButton>
                                         <Modal.Title as="h5">Edit Category</Modal.Title>
