@@ -24,10 +24,6 @@ const product = (data, addToast, history) => {
 };
 
 const productList = (currentPage, perPage) => {
-
-  console.log('currentPage', currentPage);
-  console.log('perPageRow', perPage);
-
   return async (dispatch) => {
     try {
       dispatch(productBegin());
@@ -38,25 +34,6 @@ const productList = (currentPage, perPage) => {
     }
   };
 };
-
-/*
-const productList = (page, perPage) => {
-
-  console.log('page', page);
-  console.log('perPage', perPage);
-
-  return async (dispatch) => {
-    try {
-      dispatch(productBegin());
-      const res = await DataService.get(`product?page=${page}&per_page=${perPage}&delay=1`);
-      dispatch(productSuccess(res.data));
-    } catch (err) {
-      dispatch(productErr(err));
-    }
-  };
-};
-
-*/
 
 const productEdit = (id) => {
   return async (dispatch) => {
