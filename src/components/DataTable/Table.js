@@ -32,6 +32,12 @@ function Table(props) {
       -1
   );
 
+  const paginationComponentOptions = {
+    rowsPerPageText: 'Rows per page:',
+    rangeSeparatorText: 'de',
+    selectAllRowsItem: true,
+    selectAllRowsItemText: 'All',
+  };
 
   const handlePageChange = (page) => {
     props.handlePageChange(page);
@@ -48,13 +54,12 @@ function Table(props) {
       progressPending={props.loading}
       highlightOnHover
       pagination
+      paginationComponentOptions={paginationComponentOptions}
       paginationServer
       paginationTotalRows={props.totalRows}
       paginationDefaultPage={props.currentPage}
       onChangeRowsPerPage={handlePerRowsChange}
       onChangePage={handlePageChange}
-      selectableRows
-      onSelectedRowsChange={({ selectedRows }) => console.log(selectedRows)}
       pointerOnHover
       responsive
       striped
