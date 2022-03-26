@@ -34,7 +34,7 @@ function Table(props) {
 
   const paginationComponentOptions = {
     rowsPerPageText: 'Rows per page:',
-    rangeSeparatorText: 'de',
+    rangeSeparatorText: 'of',
     selectAllRowsItem: true,
     selectAllRowsItemText: 'All',
   };

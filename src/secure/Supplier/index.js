@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Supplier/navbar";
@@ -21,6 +21,7 @@ function Index(props) {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.supplierReducer.supplierList);
   const loading = useSelector((state) => state.supplierReducer.loading);
+  const totalDataRows = useSelector((state) => state.supplierReducer.totalRows);
 
   const { addToast } = useToasts();
   const history = useHistory();
@@ -31,6 +32,11 @@ function Index(props) {
   };
 
   const columns = [
+    {
+      name: "Sl",
+      selector: (row, index) => index + 1,
+      maxWidth: "20px",
+    },
     {
       name: "Name",
       selector: (row) => row.name,
@@ -88,10 +94,31 @@ function Index(props) {
       className: "action-width",
     },
   ];
+
+  const [totalRows, setTotalRows] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
+
+  useEffect(() => {
+    setTotalRows(totalDataRows);
+  }, [totalDataRows]);
+
   useEffect(() => {
     document.title = "Supplier List | React Dashboard";
-    dispatch(supplierList());
-  }, [dispatch]);
+    dispatch(supplierList(currentPage, perPage));
+  }, [currentPage, dispatch, perPage]);
+
+  const handlePageChange = (currentPage) => {
+    setCurrentPage(currentPage);
+    dispatch(supplierList(currentPage));
+  };
+
+  const handlePerRowsChange = async (perPage, currentPage) => {
+    setPerPage(perPage);
+    dispatch(supplierList(currentPage, perPage));
+  };
+
+
 
   return (
     <AdminWraper menuOpen="supplier">
@@ -115,7 +142,13 @@ function Index(props) {
                 </Button>
               </Card.Header>
               <Card.Body>
-                <DataTable columns={columns} data={data} loading={loading} />
+                <DataTable
+                  columns={columns} data={data}
+                  loading={loading} totalRows={totalRows}
+                  currentPage={currentPage} perPage={perPage}
+                  handlePerRowsChange={handlePerRowsChange}
+                  handlePageChange={handlePageChange}
+                />
               </Card.Body>
               <Card.Footer className="text-muted">&nbsp;</Card.Footer>
             </Card>

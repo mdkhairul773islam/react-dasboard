@@ -4,6 +4,7 @@ const { SUPPLIER_BEGIN, SUPPLIER_SUCCESS, SUPPLIER_GET, SUPPLIER_ERR } = actions
 
 const initState = {
   supplier: {},
+  totalRows: 0,
   supplierList: [],
   loading: false,
   error: "",
@@ -25,7 +26,8 @@ const Supplier = (state = initState, action) => {
     case SUPPLIER_SUCCESS:
       return {
         ...state,
-        supplierList: data,
+        supplierList: (data.data !== undefined ? data.data : data),
+        totalRows: data.total,
         loading: false,
       };
     case SUPPLIER_GET:
