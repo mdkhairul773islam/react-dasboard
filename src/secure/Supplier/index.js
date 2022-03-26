@@ -118,7 +118,7 @@ function Index(props) {
     dispatch(supplierList(currentPage, perPage));
   };
 
-
+  const totalInitialBalance = data.reduce((totalBalance, row) => totalBalance + parseFloat(row.initial_balance), 0);
 
   return (
     <AdminWraper menuOpen="supplier">
@@ -149,6 +149,7 @@ function Index(props) {
                   handlePerRowsChange={handlePerRowsChange}
                   handlePageChange={handlePageChange}
                 />
+                <p class="text-center fw-bold">Total Initial Balance: {totalInitialBalance} Tk</p>
               </Card.Body>
               <Card.Footer className="text-muted">&nbsp;</Card.Footer>
             </Card>
