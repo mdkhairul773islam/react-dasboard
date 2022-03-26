@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import Navbar from "../../secure/Product/navbar";
@@ -15,6 +15,7 @@ function Index(props) {
   // get data from redux
   const dispatch = useDispatch();
   const data = useSelector((state) => state.productReducer.productList);
+  const totalDataRows = useSelector((state) => state.productReducer.totalRows);
   const loading = useSelector((state) => state.productReducer.loading);
 
   const { addToast } = useToasts();
@@ -24,6 +25,11 @@ function Index(props) {
     var id = e.target.id;
     dispatch(productDelete(id, addToast, history));
   };
+
+  const [totalRows, setTotalRows] = useState(0);
+  const [perPage, setPerPage] = useState(10);
+  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const columns = [
     {
@@ -74,10 +80,30 @@ function Index(props) {
       className: "action-width",
     },
   ];
+
+
+
+
+  useEffect(() => {
+    setTotalRows(totalDataRows);
+  }, [totalDataRows]);
+
   useEffect(() => {
     document.title = "Product List | React Dashboard";
-    dispatch(productList());
-  }, [dispatch]);
+    dispatch(productList(page, perPage));
+
+  }, [dispatch, page, perPage]);
+
+  const handlePageChange = (page) => {
+    dispatch(productList(page));
+    setCurrentPage(page);
+    setPage(page);
+  };
+
+  const handlePerRowsChange = async (newPerPage, page) => {
+    dispatch(productList(page, newPerPage));
+    setPerPage(newPerPage);
+  };
 
   return (
     <AdminWraper menuOpen="product">
@@ -101,7 +127,13 @@ function Index(props) {
                 </Button>
               </Card.Header>
               <Card.Body>
-                <DataTable columns={columns} data={data} loading={loading} />
+                <DataTable
+                  columns={columns} data={data}
+                  loading={loading} totalRows={totalRows}
+                  currentPage={currentPage} perPage={perPage}
+                  onChangeRowsPerPage={handlePerRowsChange}
+                  onChangePage={handlePageChange}
+                />
               </Card.Body>
               <Card.Footer className="text-muted">&nbsp;</Card.Footer>
             </Card>

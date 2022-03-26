@@ -5,6 +5,7 @@ const { PRODUCT_BEGIN, PRODUCT_SUCCESS, PRODUCT_GET, PRODUCT_ERR } = actions;
 const initState = {
   product: {},
   productList: [],
+  totalRows: 0,
   loading: false,
   error: "",
 };
@@ -25,7 +26,8 @@ const Product = (state = initState, action) => {
     case PRODUCT_SUCCESS:
       return {
         ...state,
-        productList: data,
+        productList: data.data,
+        totalRows: data.total,
         loading: false,
       };
     case PRODUCT_GET:

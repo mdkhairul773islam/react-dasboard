@@ -8,7 +8,6 @@ function Table(props) {
   const [filterText, setFilterText] = React.useState("");
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
-
   const subHeaderComponent = useMemo(() => {
     const handleClear = () => {
       if (filterText) {
@@ -39,6 +38,13 @@ function Table(props) {
       progressPending={props.loading}
       highlightOnHover
       pagination
+      paginationServer
+      paginationTotalRows={props.totalRows}
+      paginationDefaultPage={props.currentPage}
+      onChangeRowsPerPage={props.handlePerRowsChange}
+      onChangePage={props.handlePageChange}
+      selectableRows
+      onSelectedRowsChange={({ selectedRows }) => console.log(selectedRows)}
       pointerOnHover
       responsive
       striped

@@ -23,11 +23,12 @@ const product = (data, addToast, history) => {
   };
 };
 
-const productList = (addToast) => {
+const productList = (page, perPage) => {
+
   return async (dispatch) => {
     try {
       dispatch(productBegin());
-      const res = await DataService.get("product");
+      const res = await DataService.get(`product?page=${page}&per_page=${perPage}&delay=1`);
       dispatch(productSuccess(res.data));
     } catch (err) {
       dispatch(productErr(err));
