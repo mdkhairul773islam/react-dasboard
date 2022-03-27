@@ -10,12 +10,21 @@ import {
   Table,
   Button,
 } from "react-bootstrap";
+
 // Use for datePicker
 import DatePicker from "react-datepicker";
 import Select from "react-select";
+import { useForm } from "react-hook-form";
+
+import { getShowroom } from "../../utility/utility";
+const showroomList = getShowroom();
 
 function Purchase(props) {
   const [startDate, setStartDate] = useState(new Date());
+  const { register } = useForm({
+    defaultValues: {},
+  });
+
   const options = [
     { value: "chocolate", label: "Chocolate" },
     { value: "strawberry", label: "Strawberry" },
@@ -97,7 +106,7 @@ function Purchase(props) {
                       sm={6}
                       md={6}
                       lg={3}
-                      xl={3}
+                      xl={2}
                       xxl={3}
                       xs={12}
                     >
@@ -115,7 +124,7 @@ function Purchase(props) {
                       sm={6}
                       md={6}
                       lg={3}
-                      xl={3}
+                      xl={2}
                       xxl={3}
                       xs={12}
                     >
@@ -133,72 +142,46 @@ function Purchase(props) {
                     >
                       <Select
                         type="text"
-                        options={options}
+                        options={showroomList}
                         isClearable={true}
                         isSearchable={true}
                         placeholder="Chose Showroom"
                       />
                     </Col>
-
                     <Col
                       className="mb-3"
                       sm={6}
                       md={6}
                       lg={3}
                       xl={3}
-                      xxl={3}
+                      xxl={2}
                       xs={12}
                     >
                       <Select
                         type="text"
-                        options={options}
+                        options={showroomList}
                         isClearable={true}
                         isSearchable={true}
-                        placeholder="Chose Company"
+                        placeholder="Chose Supllier"
                       />
                     </Col>
-                  </Row>
-
-                  <Row>
                     <Col
                       className="mb-3"
                       sm={6}
                       md={6}
                       lg={3}
-                      xl={3}
+                      xl={2}
                       xxl={3}
                       xs={12}
                     >
                       <Select
                         type="text"
                         options={options}
+                        onChange={addNewProductFn}
                         isClearable={true}
                         isSearchable={true}
-                        placeholder="Chose Business Type"
+                        placeholder="Chose Items"
                       />
-                    </Col>
-
-                    <Col
-                      className="mb-3"
-                      sm={6}
-                      md={6}
-                      lg={3}
-                      xl={3}
-                      xxl={3}
-                      xs={12}
-                    >
-                      <Select
-                        type="text"
-                        options={options}
-                        isClearable={true}
-                        isSearchable={true}
-                        placeholder="Chose Gift Item"
-                      />
-                    </Col>
-                    <Col>
-                      <Button variant="primary" onClick={addNewProductFn}>
-                        Save
-                      </Button>
                     </Col>
                   </Row>
                   <hr />
@@ -213,15 +196,14 @@ function Purchase(props) {
                       >
                         <thead>
                           <tr>
-                            <th>#</th>
-                            <th>Date</th>
-                            <th>Name</th>
-                            <th>DO No.</th>
-                            <th>Qty(ctn)</th>
-                            <th>Free(ctn)</th>
-                            <th>Pending Qty.</th>
-                            <th>Free Qty.</th>
-                            <th>P.Price (TK)</th>
+                            <th>Sl</th>
+                            <th width="200">Item Name</th>
+                            <th>Brand</th>
+                            <th>Model</th>
+                            <th>Qty</th>
+                            <th>Purchase Price (TK)</th>
+                            <th>Dis.(%)</th>
+                            <th>Sale Price</th>
                             <th>Total (TK)</th>
                             <th>Action</th>
                           </tr>
@@ -230,9 +212,9 @@ function Purchase(props) {
                           {cardItems.map((row, index) => (
                             <tr key={index}>
                               <td>{index + 1}</td>
-                              <td>{row.date}</td>
-                              <td>{row.name}</td>
-                              <td>{row.dio_no}</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
                               <td>
                                 <Form.Control
                                   name="qty"
@@ -244,36 +226,27 @@ function Purchase(props) {
                               </td>
                               <td>
                                 <Form.Control
-                                  name="freeCuton"
-                                  type="number"
-                                  value={row.freeCuton}
-                                  placeholder="0"
-                                  onChange={(e) => handleChange(index, e)}
-                                />
-                              </td>
-                              <td>
-                                <Form.Control
-                                  name="pnedingQty"
-                                  type="number"
-                                  value={row.pnedingQty}
-                                  placeholder="0"
-                                  onChange={(e) => handleChange(index, e)}
-                                />
-                              </td>
-                              <td>
-                                <Form.Control
-                                  name="freeQty"
-                                  type="number"
-                                  value={row.freeQty}
-                                  placeholder="0"
-                                  onChange={(e) => handleChange(index, e)}
-                                />
-                              </td>
-                              <td>
-                                <Form.Control
-                                  name="purchasePrice"
+                                  name="purchase_price"
                                   type="number"
                                   value={row.purchasePrice}
+                                  placeholder="0"
+                                  onChange={(e) => handleChange(index, e)}
+                                />
+                              </td>
+                              <td>
+                                <Form.Control
+                                  name="discount"
+                                  type="number"
+                                  value="0"
+                                  placeholder="0"
+                                  onChange={(e) => handleChange(index, e)}
+                                />
+                              </td>
+                              <td>
+                                <Form.Control
+                                  name="sale_price"
+                                  type="number"
+                                  value="0"
                                   placeholder="0"
                                   onChange={(e) => handleChange(index, e)}
                                 />
@@ -301,6 +274,160 @@ function Purchase(props) {
                           ))}
                         </tbody>
                       </Table>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm={5} className="text-sm-end">
+                          Name
+                        </Form.Label>
+                        <Col sm={7}>
+                          <Form.Control
+                            type="text"
+                            placeholder="Supplier Name"
+                            readOnly
+                          />
+                        </Col>
+                      </Form.Group>
+                      <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm={5} className="text-sm-end">
+                          Mobile
+                        </Form.Label>
+                        <Col sm={7}>
+                          <Form.Control
+                            type="text"
+                            placeholder="Mobile"
+                            readOnly
+                          />
+                        </Col>
+                      </Form.Group>
+                      <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm={5} className="text-sm-end">
+                          Address
+                        </Form.Label>
+                        <Col sm={7}>
+                          <Form.Control
+                            as="textarea"
+                            rows={3}
+                            placeholder="Address"
+                            readOnly
+                          />
+                        </Col>
+                      </Form.Group>
+                    </Col>
+
+                    <Col>
+                      <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm={5} className="text-sm-end">
+                          Total
+                        </Form.Label>
+                        <Col sm={7}>
+                          <Form.Control
+                            type="number"
+                            placeholder="0.00"
+                            readOnly
+                          />
+                        </Col>
+                      </Form.Group>
+                      <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm={5} className="text-sm-end">
+                          Total Discount
+                        </Form.Label>
+                        <Col sm={7}>
+                          <Form.Control
+                            type="number"
+                            placeholder="0.00"
+                            readOnly
+                          />
+                        </Col>
+                      </Form.Group>
+
+                      <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm={5} className="text-sm-end">
+                          Transport Cost
+                        </Form.Label>
+                        <Col sm={7}>
+                          <Form.Control
+                            type="number"
+                            placeholder="0.00"
+                            readOnly
+                          />
+                        </Col>
+                      </Form.Group>
+
+                      <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm={5} className="text-sm-end">
+                          Grand Total
+                        </Form.Label>
+                        <Col sm={7}>
+                          <Form.Control
+                            type="number"
+                            placeholder="0.00"
+                            readOnly
+                          />
+                        </Col>
+                      </Form.Group>
+
+                      <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm={5} className="text-sm-end">
+                          Previous Balance
+                        </Form.Label>
+                        <Col sm={4}>
+                          <Form.Control
+                            type="number"
+                            placeholder="0.00"
+                            readOnly
+                          />
+                        </Col>
+                        <Col sm={3}>
+                          <Form.Control
+                            type="text"
+                            placeholder="Receivable"
+                            readOnly
+                          />
+                        </Col>
+                      </Form.Group>
+
+                      <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm={5} className="text-sm-end">
+                          Paid
+                        </Form.Label>
+                        <Col sm={4}>
+                          <Form.Control
+                            type="number"
+                            placeholder="0.00"
+                            readOnly
+                          />
+                        </Col>
+                        <Col sm={3}>
+                          <Form.Select aria-label="Default select example">
+                            <option>Choose Method</option>
+                            <option value="cash">Cash</option>
+                            <option value="cheque">Cheque</option>
+                            <option value="bKash">bKash</option>
+                          </Form.Select>
+                        </Col>
+                      </Form.Group>
+                      <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm={5} className="text-sm-end">
+                          Current Balance
+                        </Form.Label>
+                        <Col sm={4}>
+                          <Form.Control
+                            type="number"
+                            placeholder="0.00"
+                            readOnly
+                          />
+                        </Col>
+                        <Col sm={3}>
+                          <Form.Control
+                            type="text"
+                            placeholder="Payable"
+                            readOnly
+                          />
+                        </Col>
+                      </Form.Group>
                     </Col>
                   </Row>
                   <Row>

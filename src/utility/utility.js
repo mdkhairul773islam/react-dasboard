@@ -9,26 +9,27 @@ const ellipsis = (text, size) => {
 
 const toUpperCase = (text) => {
   return text.toUpperCase();
-}
+};
 //Output: FLEXIPLE
 
 const toCapitalize = (text) => {
-  return text.charAt(0).toUpperCase() + text.slice(1);;
-}
+  return text.charAt(0).toUpperCase() + text.slice(1);
+};
 //Output: Abc efg
 
 const toFilter = (str) => {
-  var i, frags = str.split('_');
+  var i,
+    frags = str.split("_");
   for (i = 0; i < frags.length; i++) {
     frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
   }
-  return frags.join(' ');
-}
+  return frags.join(" ");
+};
 //Output: Humpdey Dumpdey
 
 const numberFormat = (x) => {
   return Number.parseFloat(x).toFixed(0);
-}
+};
 
 // Get Date YYYY-MM-DD
 const getDate = (str) => {
@@ -40,8 +41,22 @@ const getDate = (str) => {
   } else {
     return "";
   }
-}
+};
 
+const getShowroom = () => {
+  const showroomList = [
+    { label: "Showroom-1", value: "0001" },
+    { label: "Showroom-2", value: "0002" },
+  ];
+  return showroomList;
+};
 
-
-export { ellipsis, toUpperCase, toCapitalize, toFilter, numberFormat, getDate };
+export {
+  ellipsis,
+  toUpperCase,
+  toCapitalize,
+  toFilter,
+  numberFormat,
+  getDate,
+  getShowroom,
+};

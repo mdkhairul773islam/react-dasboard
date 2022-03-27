@@ -13,16 +13,14 @@ import { getDate } from "../../utility/utility";
 import { useDispatch } from "react-redux";
 import { supplier } from "../../redux/supplier/actionCreator";
 
+import { getShowroom } from "../../utility/utility";
+const showroomList = getShowroom();
+
 function AddTransaction(props) {
   const [startDate, setStartDate] = useState(new Date());
   const { addToast } = useToasts();
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const showroomList = [
-    { label: "Showroom-1", value: "0001" },
-    { label: "Showroom-2", value: "0002" },
-  ];
 
   const supplierList = [
     { label: "A", value: "001" },
