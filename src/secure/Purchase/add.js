@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
+import SupplierDetails from "./component/supplierDetails";
 import Navbar from "../../secure/Purchase/navbar";
 import {
   Container,
@@ -17,7 +18,7 @@ import Select from "react-select";
 
 // use redux
 import { useDispatch, useSelector } from "react-redux";
-import { showroomWiseSupplierList } from "../../redux/supplier/actionCreator";
+import { showroomWiseSupplierList, supplierInfo } from "../../redux/supplier/actionCreator";
 
 import { getShowroom } from "../../utility/utility";
 const showroomList = getShowroom();
@@ -28,6 +29,11 @@ function Purchase(props) {
   const supllierList = useSelector(
     (state) => state.supplierReducer.supplierList
   );
+
+  const supllierInfoDetails = useSelector(
+    (state) => state.supplierReducer.supplier
+  );
+
 
   const [startDate, setStartDate] = useState(new Date());
 
@@ -82,9 +88,14 @@ function Purchase(props) {
     console.log("cardItems", cardItems);
   };
 
-  const getSupplierList = (e) => {
+  const getSupplierListFn = (e) => {
     var showroom_id = e && e.value !== undefined ? e.value : "";
     dispatch(showroomWiseSupplierList(showroom_id));
+  };
+
+  const getSupplierDetailsFn = (e) => {
+    var id = e && e.value !== undefined ? e.value : "";
+    dispatch(supplierInfo(id));
   };
 
   return (
@@ -146,7 +157,7 @@ function Purchase(props) {
                       <Select
                         type="text"
                         options={showroomList}
-                        onChange={(e) => getSupplierList(e)}
+                        onChange={(e) => getSupplierListFn(e)}
                         isClearable={true}
                         isSearchable={true}
                         placeholder="Chose Showroom"
@@ -164,6 +175,7 @@ function Purchase(props) {
                       <Select
                         type="text"
                         options={supllierList}
+                        onChange={(e) => getSupplierDetailsFn(e)}
                         isClearable={true}
                         isSearchable={true}
                         placeholder="Chose Supllier"
@@ -282,43 +294,7 @@ function Purchase(props) {
                   </Row>
                   <Row>
                     <Col>
-                      <Form.Group as={Row} className="mb-3">
-                        <Form.Label column sm={5} className="text-sm-end">
-                          Name
-                        </Form.Label>
-                        <Col sm={7}>
-                          <Form.Control
-                            type="text"
-                            placeholder="Supplier Name"
-                            readOnly
-                          />
-                        </Col>
-                      </Form.Group>
-                      <Form.Group as={Row} className="mb-3">
-                        <Form.Label column sm={5} className="text-sm-end">
-                          Mobile
-                        </Form.Label>
-                        <Col sm={7}>
-                          <Form.Control
-                            type="text"
-                            placeholder="Mobile"
-                            readOnly
-                          />
-                        </Col>
-                      </Form.Group>
-                      <Form.Group as={Row} className="mb-3">
-                        <Form.Label column sm={5} className="text-sm-end">
-                          Address
-                        </Form.Label>
-                        <Col sm={7}>
-                          <Form.Control
-                            as="textarea"
-                            rows={3}
-                            placeholder="Address"
-                            readOnly
-                          />
-                        </Col>
-                      </Form.Group>
+                      <SupplierDetails supllierInfoDetails={supllierInfoDetails} />
                     </Col>
 
                     <Col>
