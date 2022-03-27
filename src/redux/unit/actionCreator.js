@@ -7,7 +7,7 @@ const unit = () => {
     try {
       dispatch(unitBegin());
       const res = await DataService.get("unit");
-      dispatch(unitSuccess(res.data));
+      dispatch(unitSuccess(res.data.data));
     } catch (err) {
       dispatch(unitErr(err));
     }

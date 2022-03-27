@@ -24,11 +24,11 @@ const supplier = (data, addToast, history) => {
   };
 };
 
-const supplierList = (addToast) => {
+const supplierList = (currentPage = 1, perPage = 10) => {
   return async (dispatch) => {
     try {
       dispatch(supplierBegin());
-      const res = await DataService.get("supplier");
+      const res = await DataService.get(`supplier?page=${currentPage}&per_page=${perPage}&delay=1`);
       dispatch(supplierSuccess(res.data));
     } catch (err) {
       dispatch(supplierErr(err));

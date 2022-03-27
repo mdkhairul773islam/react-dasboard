@@ -80,10 +80,10 @@ function SideBar(props) {
                 <Link to="/supplier/all">All Supplier</Link>
               </li>
               <li>
-                <Link to="#">Add Transaction</Link>
+                <Link to="/supplier/add-transaction">Add Transaction</Link>
               </li>
               <li>
-                <Link to="#">All Transaction</Link>
+                <Link to="/supplier/transaction-histrory">All Transaction</Link>
               </li>
             </ul>
           </li>
@@ -120,9 +120,8 @@ function SideBar(props) {
           </li>
           <li
             data-id="business_type"
-            className={`dropdown ${
-              menuOpen === "business_type" ? "active" : ""
-            }`}
+            className={`dropdown ${menuOpen === "business_type" ? "active" : ""
+              }`}
             onClick={menuOpenFn}
           >
             <Link to="/business_type">
@@ -190,9 +189,8 @@ function SideBar(props) {
 
           <li
             data-id="stock-transfer"
-            className={`dropdown ${
-              menuOpen === "stock-transfer" ? "active" : ""
-            }`}
+            className={`dropdown ${menuOpen === "stock-transfer" ? "active" : ""
+              }`}
             onClick={menuOpenFn}
           >
             <Link to="#">
@@ -226,9 +224,8 @@ function SideBar(props) {
 
           <li
             data-id="damage-stock"
-            className={`dropdown ${
-              menuOpen === "damage-stock" ? "active" : ""
-            }`}
+            className={`dropdown ${menuOpen === "damage-stock" ? "active" : ""
+              }`}
             onClick={menuOpenFn}
           >
             <Link to="#">
@@ -277,9 +274,8 @@ function SideBar(props) {
 
           <li
             data-id="damage-product"
-            className={`dropdown ${
-              menuOpen === "damage-product" ? "active" : ""
-            }`}
+            className={`dropdown ${menuOpen === "damage-product" ? "active" : ""
+              }`}
             onClick={menuOpenFn}
           >
             <Link to="#">
@@ -404,9 +400,8 @@ function SideBar(props) {
           </li>
           <li
             data-id="free-product"
-            className={`dropdown ${
-              menuOpen === "free-product" ? "active" : ""
-            }`}
+            className={`dropdown ${menuOpen === "free-product" ? "active" : ""
+              }`}
             onClick={menuOpenFn}
           >
             <Link to="#">

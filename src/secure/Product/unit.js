@@ -23,6 +23,10 @@ function Unit(props) {
   const [loading, setLoading] = useState(false);
   const [units, setUnits] = useState([]);
 
+  const [totalRows, setTotalRows] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
+
   const { addToast } = useToasts();
   const handleClose = () => setShow(false);
 
@@ -39,6 +43,7 @@ function Unit(props) {
     try {
       const res = await DataService.post("unit-store", data);
       addToast("Saved Successfully", { appearance: "success" });
+      setTotalRows(res.data.total);
       setUnits(res.data);
       setLoading(false);
     } catch (error) {
@@ -47,20 +52,33 @@ function Unit(props) {
     e.target.reset();
   };
 
+
+  const getUnit = async function getUnit(currentPage = 1, perPage = 10) {
+    setLoading(true);
+    try {
+      const res = await DataService.get(`unit?page=${currentPage}&per_page=${perPage}`);
+      setTotalRows(res.data.total);
+      setUnits(res.data.data);
+      setLoading(false);
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
+  const handlePageChange = (currentPage) => {
+    setCurrentPage(currentPage);
+    getUnit(currentPage)
+  };
+
+  const handlePerRowsChange = async (perPage, currentPage) => {
+    setPerPage(perPage);
+    getUnit(currentPage, perPage);
+  };
+
   useEffect(() => {
     document.title = "Unit | React Dashboard";
-    async function getUnit() {
-      setLoading(true);
-      try {
-        const res = await DataService.get("unit");
-        setUnits(res.data);
-        setLoading(false);
-      } catch (error) {
-        console.log("error");
-      }
-    }
-    getUnit();
-  }, []);
+    getUnit(currentPage, perPage);
+  }, [currentPage, perPage]);
 
   /* unit database store end here */
 
@@ -205,7 +223,13 @@ function Unit(props) {
                 Unit List
               </Card.Header>
               <Card.Body>
-                <DataTable columns={columns} data={units} loading={loading} />
+                <DataTable
+                  columns={columns} data={units}
+                  loading={loading} totalRows={totalRows}
+                  currentPage={currentPage} perPage={perPage}
+                  handlePerRowsChange={handlePerRowsChange}
+                  handlePageChange={handlePageChange}
+                />
                 <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
                     <Modal.Title as="h5">Edit Unit</Modal.Title>
