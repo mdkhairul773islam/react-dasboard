@@ -35,6 +35,18 @@ const productList = (currentPage = 1, perPage = 10) => {
   };
 };
 
+const productOptionList = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(productBegin());
+      const res = await DataService.get(`product-list`);
+      dispatch(productSuccess(res.data));
+    } catch (err) {
+      dispatch(productErr(err));
+    }
+  };
+};
+
 const productEdit = (id) => {
   return async (dispatch) => {
     try {
@@ -86,4 +98,4 @@ const productDelete = (id, addToast) => {
   };
 };
 
-export { product, productList, productEdit, productUpdate, productDelete };
+export { product, productList, productOptionList, productEdit, productUpdate, productDelete };

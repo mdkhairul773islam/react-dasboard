@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AdminWraper from "../../components/layouts/AdminWraper";
 import SupplierDetails from "./component/supplierDetails";
 import Navbar from "../../secure/Purchase/navbar";
@@ -19,6 +19,7 @@ import Select from "react-select";
 // use redux
 import { useDispatch, useSelector } from "react-redux";
 import { showroomWiseSupplierList, supplierInfo } from "../../redux/supplier/actionCreator";
+import { productOptionList } from "../../redux/product/actionCreator";
 
 import { getShowroom } from "../../utility/utility";
 const showroomList = getShowroom();
@@ -34,11 +35,12 @@ function Purchase(props) {
     (state) => state.supplierReducer.supplier
   );
 
+  const productList = useSelector(
+    (state) => state.productReducer.productList
+  );
+
 
   const [startDate, setStartDate] = useState(new Date());
-
-  const options = [{ value: "chocolate", label: "Chocolate" }];
-
   const [cardItems, setCardItems] = useState([]);
 
   const addNewProductFn = () => {
@@ -97,6 +99,10 @@ function Purchase(props) {
     var id = e && e.value !== undefined ? e.value : "";
     dispatch(supplierInfo(id));
   };
+
+  useEffect(() => {
+    dispatch(productOptionList());
+  }, [dispatch]);
 
   return (
     <AdminWraper menuOpen="purchase">
@@ -192,7 +198,7 @@ function Purchase(props) {
                     >
                       <Select
                         type="text"
-                        options={options}
+                        options={productList}
                         onChange={addNewProductFn}
                         isClearable={true}
                         isSearchable={true}
