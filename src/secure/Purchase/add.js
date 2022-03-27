@@ -14,26 +14,24 @@ import {
 // Use for datePicker
 import DatePicker from "react-datepicker";
 import Select from "react-select";
-import { useForm } from "react-hook-form";
+
+// use redux
+import { useDispatch, useSelector } from "react-redux";
+import { showroomWiseSupplierList } from "../../redux/supplier/actionCreator";
 
 import { getShowroom } from "../../utility/utility";
 const showroomList = getShowroom();
 
 function Purchase(props) {
-  const [startDate, setStartDate] = useState(new Date());
-  const { register } = useForm({
-    defaultValues: {},
-  });
+  const dispatch = useDispatch();
 
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-    { value: "Khairul", label: "Khairul" },
-    { value: "A", label: "A" },
-    { value: "B", label: "B" },
-    { value: "C", label: "C" },
-  ];
+  const supllierList = useSelector(
+    (state) => state.supplierReducer.supplierList
+  );
+
+  const [startDate, setStartDate] = useState(new Date());
+
+  const options = [{ value: "chocolate", label: "Chocolate" }];
 
   const [cardItems, setCardItems] = useState([]);
 
@@ -82,6 +80,11 @@ function Purchase(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("cardItems", cardItems);
+  };
+
+  const getSupplierList = (e) => {
+    var showroom_id = e && e.value !== undefined ? e.value : "";
+    dispatch(showroomWiseSupplierList(showroom_id));
   };
 
   return (
@@ -143,6 +146,7 @@ function Purchase(props) {
                       <Select
                         type="text"
                         options={showroomList}
+                        onChange={(e) => getSupplierList(e)}
                         isClearable={true}
                         isSearchable={true}
                         placeholder="Chose Showroom"
@@ -159,7 +163,7 @@ function Purchase(props) {
                     >
                       <Select
                         type="text"
-                        options={showroomList}
+                        options={supllierList}
                         isClearable={true}
                         isSearchable={true}
                         placeholder="Chose Supllier"

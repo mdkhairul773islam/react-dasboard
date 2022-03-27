@@ -6,7 +6,6 @@ const supplier = (data, addToast, history) => {
   return async (dispatch) => {
     try {
       dispatch(supplierBegin());
-      console.log("data", data);
       const res = await DataService.post("supplier-store", data);
 
       if (res.data.success) {
@@ -28,7 +27,21 @@ const supplierList = (currentPage = 1, perPage = 10) => {
   return async (dispatch) => {
     try {
       dispatch(supplierBegin());
-      const res = await DataService.get(`supplier?page=${currentPage}&per_page=${perPage}&delay=1`);
+      const res = await DataService.get(
+        `supplier?page=${currentPage}&per_page=${perPage}&delay=1`
+      );
+      dispatch(supplierSuccess(res.data));
+    } catch (err) {
+      dispatch(supplierErr(err));
+    }
+  };
+};
+
+const showroomWiseSupplierList = (showroom_id) => {
+  return async (dispatch) => {
+    try {
+      dispatch(supplierBegin());
+      const res = await DataService.get(`supplier?showroom_id=${showroom_id}`);
       dispatch(supplierSuccess(res.data));
     } catch (err) {
       dispatch(supplierErr(err));
@@ -87,4 +100,11 @@ const supplierDelete = (id, addToast) => {
   };
 };
 
-export { supplier, supplierList, supplierInfo, supplierUpdate, supplierDelete };
+export {
+  supplier,
+  supplierList,
+  showroomWiseSupplierList,
+  supplierInfo,
+  supplierUpdate,
+  supplierDelete,
+};
