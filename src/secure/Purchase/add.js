@@ -164,7 +164,6 @@ function Purchase(props) {
                         type="text"
                         options={showroomList}
                         onChange={(e) => getSupplierListFn(e)}
-                        isClearable={true}
                         isSearchable={true}
                         placeholder="Chose Showroom"
                       />
