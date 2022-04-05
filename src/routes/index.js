@@ -1,4 +1,5 @@
 // Routes
+import Home from "../routes/frontend";
 import Login from "../routes/login";
 import Dashboard from "../routes/dashboard";
 import Purchase from "../routes/purchase";
@@ -8,6 +9,7 @@ import Product from "../routes/product";
 import Supplier from "../routes/supplier";
 
 const RouterList = [
+  Home,
   Login,
   Dashboard,
   Purchase,

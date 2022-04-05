@@ -64,7 +64,7 @@ const AdminWraper = (props, { children }) => {
         <div className="developer">
           <p>
             Developed By : &nbsp;
-            <a href="https://freelanceitlab.com/">Freelance It Lab</a>
+            <a href="https://khairulislam.xyz/">Khairul Islam</a>
           </p>
         </div>
         <div className="wrapper_background" onClick={asideToggleFn}></div>
